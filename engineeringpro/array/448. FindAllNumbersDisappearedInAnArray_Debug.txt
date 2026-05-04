@@ -1,0 +1,79 @@
+        0 1 2 3 4 5 6 7
+nums = [4,3,2,7,8,2,3,1] -> length = 8. Tất cả các phần tử trong mảng 1 <= nums[index] <= length = 8
+
+// Use marking technique
+{
+	
+	pos = num - 1 // // tại sao phải trừ 1 vì 
+	 // 1. vì nums[8] không tồn tại trong mảng -> throw exception 
+	 // 2. giá trị min trong mảng 1 cần phải trừ 1 để âm hóa phần tử đầu tiên nums[0] *= -1
+	 
+	if nums[pos]>0 // âm hóa những phần tử dương
+	{
+		nums[pos]*=-1
+	}
+}
+
+index = 0, num = 4
+{
+	pos = abs(num) - 1 = 3
+	if nums[3]>0  (7>0) ✅
+	{
+		nums[3]=-nums[3] = -7 // [4,3,2,-7,8,2,3,1]
+	}
+}
+
+index = 1, num = 3
+{
+	pos = abs(num) - 1 = 2
+	if nums[2]>0  (2>0) ✅
+	{
+		nums[2]=-nums[2]=-2 // [4,3,-2,-7,8,2,3,1]
+	}
+}
+
+index = 2, num = 2
+{
+	pos = abs(num) - 1 = 1
+	if nums[1]>0  (3>0) ✅
+	{
+		nums[1]=-nums[1]=-3 // [4,-3,-2,-7,8,2,3,1]
+	}
+}
+index = 3, num = 7
+{
+	pos = abs(num) - 1 = 6
+	if nums[6]>0  (3>0) ✅
+	{
+		nums[6]=-nums[6]=-3 // [4,-3,-2,-7,8,2,-3,1]
+	}
+}
+
+index = 4, num = 8
+{
+	pos = abs(num) - 1 = 7
+	if nums[7]>0  (1>0) ✅
+	{
+		nums[7]=-nums[7]=-1 // [4,-3,-2,-7,8,2,-3,-1]
+	}
+}
+
+index = 5, num = 2
+{
+	pos = abs(num) - 1 = 1
+	if nums[1]>0  (-3>0) ❌	 
+}
+
+index = 6, num = -3
+{
+	pos = abs(num) - 1 = 2
+	if nums[2]>0  (-2>0) ❌	 
+}
+
+index = 7, num = -1
+{
+	pos = abs(num) - 1 = 0
+	if nums[0]>0  (4>0)  {
+		nums[0]=-nums[0] = -4 //  [-4,-3,-2,-7,8,2,-3,-1]
+	}	 
+}

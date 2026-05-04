@@ -1,0 +1,97 @@
+---------------------------------------------- 257. Binary Tree Paths ----------------------------------------------
+
+// stack = [binaryTreePaths(root1)]
+{
+	if root1 == nil ❌
+	if root1.Left == nil && root1.Right == nil ❌
+	
+	return  findTreePaths(root1)
+}
+
+//  stack = [findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if root1 == nil ❌
+	
+	leftNodePaths:= findTreePaths(root1.Left) = findTreePaths(node2)
+}
+
+
+//  stack = [findTreePaths(node2),findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if node2 == nil ❌
+	
+	paths:=[]string
+	leftNodePaths:= findTreePaths(node2.Left) = findTreePaths(nil) -> return nil
+	if leftNodePaths != nil ❌
+	
+	rightNodePaths:= findTreePaths(node2.Right) = findTreePaths(node5)
+}
+
+//  stack = [findTreePaths(node5),findTreePaths(node2),findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if node5 == nil ❌
+	if node5.Left == nil && node5.Right == nil {
+		return  []{strconv.Itoi(node5.Val)} // ["5"]
+	}	
+}
+
+//  stack = [findTreePaths(node2),findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if node2 == nil ❌
+	
+	paths:=[]string
+	leftNodePaths:= findTreePaths(node2.Left) = findTreePaths(nil) -> return nil
+	if leftNodePaths != nil ❌
+	
+	rightNodePaths:= ["5"]
+	if rightNodePaths!=nil ✅ {
+		for _,rightNodePath := rightNodePaths{
+			newPath:= node2 + "->" + rightNodePath = "2->5"
+			paths=append(newPath,paths)
+		}
+	}
+	return paths // [2->5]
+}
+
+//  stack = [findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if root1 == nil ❌
+	
+	leftNodePaths:= [2->5]
+	if leftNodePaths!=nil {
+		for _,leftNodePath := leftNodePaths{
+			newPath:= root1 + "->" + leftNodePath = "1->2->5"
+			paths=append(newPath,paths)
+		}
+	}
+	rightNodePaths:=findTreePaths(root1.Right) = findTreePaths(node3) 
+}
+
+//  stack = [findTreePaths(node3),findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if node3 == nil ❌
+	if node3.Left == nil && node3.Right == nil {
+		return  []{strconv.Itoi(node3.Val)} // ["3"]
+	}	
+}
+
+//  stack = [findTreePaths(root1),binaryTreePaths(root1)]
+{
+	if root1 == nil ❌
+	
+	leftNodePaths:= [2->5]
+	if leftNodePaths!=nil {
+		for _,leftNodePath := leftNodePaths{
+			newPath:= root1 + "->" + leftNodePath = "1->2->5"
+			paths=append(newPath,paths)
+		}
+	}
+	rightNodePaths:= ["3"]
+	if rightNodePaths!=nil {
+		for _,rightNodePath := rightNodePaths{
+			newPath:= root1 + "->" + rightNodePath = "1->3"
+			paths=append(newPath,paths) 
+		}
+	}
+	return paths // ["1->2->5","1->3"]
+}

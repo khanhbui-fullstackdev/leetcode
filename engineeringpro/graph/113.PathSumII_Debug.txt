@@ -1,0 +1,128 @@
+---------------------------------------------------------- 113. Path Sum II ----------------------------------------------------------
+//stack = [pathSum(root5,22)]
+{
+	if root == nil ❌		 	
+	if root.Left == nil && root.Right == nil && root.Val == targetSum  ❌
+	
+	var paths *[][]int
+	var arr 	*[]int
+	
+	findPathSum(root5,22,paths,arr) 
+	
+	return paths
+}
+
+//stack = [findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if root5 == nil ❌		 	
+	if root5.Left == nil && root5.Right == nil && root5.Val == targetSum  ❌
+	
+	else {
+		arr=append(arr,root5.Val) // arr = [5]
+		targetSum = targetSum - root5.Val =  17
+		findPathSum(node4,17,[[]],[])
+	}
+}
+
+//stack = [findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node4 == nil ❌		 	
+	if node4.Left == nil && node4.Right == nil && node4.Val == targetSum  ❌
+	
+	
+	else {
+		arr=append(arr,node4.Val) // arr = [5,4]
+		targetSum = targetSum - node4.Val =  13
+		findPathSum(node11,13,[[]],[])
+	}
+}
+
+//stack = [findPathSum(node11,13,[[]],[]),findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node11 == nil ❌		 	
+	if node11.Left == nil && node11.Right == nil && node11.Val == targetSum  ❌
+	else {
+		arr=append(arr,node4.Val) // arr = [5,4,11]
+		targetSum = targetSum - node11.Val =  2
+		findPathSum(node7,2,[[]],[])
+	}
+}
+
+//stack = [findPathSum(node7,2,[[]],[]),findPathSum(node11,13,[[]],[]),findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node7 == nil ❌		 
+	if node7.Left == nil && node7.Right == nil && node7.Val == targetSum  ❌
+	else {
+		arr=append(arr,node4.Val) // arr = [5,4,11,7]
+		targetSum = targetSum - node7.Val =  -5
+		findPathSum(nil,-5,[[]],[]) // return 
+		findPathSum(nil,-5,[[]],[]) // return
+	}
+	// remove the last item
+	arr= arr[:len(arr)-1]  // arr = [5,4,11]
+}
+
+//stack = [findPathSum(node11,13,[[]],[]),findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node11 == nil ❌		 	
+	if node11.Left == nil && node11.Right == nil && node11.Val == targetSum  ❌
+	
+	else {
+		arr=append(arr,node4.Val) // arr = [5,4,11]
+		targetSum = targetSum - node11.Val =  2
+		findPathSum(node7,2,[[]],[]) // return
+		findPathSum(node2,2,[[]],[])
+	}
+	
+}
+
+//stack = [findPathSum(node2,2,[[]],[]),findPathSum(node11,13,[[]],[]),findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node2 == nil ❌		 
+	if node2.Left == nil && node2.Right == nil && node2.Val == targetSum (2==2)  ✅
+	{
+		arr = append(node2.val) // arr = [5,4,11,2]
+		tempArr:= make ([]int,len(*arr))	
+		copy(tempArr,arr)
+		paths=append(paths,tempArr)
+	}
+	
+	// remove the last item
+	arr= arr[:len(arr)-1]  // arr = [5,4]
+}
+
+//stack = [findPathSum(node11,13,[[]],[]),findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node11 == nil ❌		 	
+	if node11.Left == nil && node11.Right == nil && node11.Val == targetSum  ❌
+	
+	else {
+		arr=append(arr,node4.Val) // arr = [5,4,11]
+		targetSum = targetSum - node11.Val =  2
+		findPathSum(node7,2,[[]],[]) // return
+		findPathSum(node2,2,[[]],[]) // return
+	}
+	// remove the last item
+	arr= arr[:len(arr)-1]  // arr = [5]
+}
+
+//stack = [findPathSum(node4,17,[[]],[]),findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	if node4 == nil ❌		 	
+	if node4.Left == nil && node4.Right == nil && node4.Val == targetSum  ❌
+	
+	
+	else {
+		arr=append(arr,node4.Val) // arr = [5,4]
+		targetSum = targetSum - node4.Val =  13
+		findPathSum(node11,13,[[]],[]) // return
+		findPathSum(nil,13,[[]],[]) // return
+	}
+	// remove the last item
+	arr= arr[:len(arr)-1]  // arr = []
+}
+
+//stack = [findPathSum(root5,22,[[]],[]),pathSum(root5,22)]
+{
+	
+}

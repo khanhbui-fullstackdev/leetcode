@@ -1,0 +1,63 @@
+-------------------------------------------  100. Same Tree -------------------------------------------
+https://leetcode.com/problems/same-tree/description/
+
+// stack = [isSameTree(pRoot1,qRoot1)]
+{
+	if pRoot1 == nil && qRoot1==nil ❌
+	if pRoot1 ==nil || qRoot1 == nil ❌
+	if pRoot1.Val != qRoot1.Val (1!=1) ❌
+	
+	return isSameTree(pRoot1.Left,qRoot1.Left) &&  isSameTree(pRoot1.Right,qRoot1.Right) =  isSameTree(pNode2,qNode2) && isSameTree(pNode3,qNode3)
+}
+
+// stack = [isSameTree(pNode2,qNode2),isSameTree(pRoot1,qRoot1)]
+{
+	if pNode2 == nil && qNode2==nil ❌
+	if pNode2 ==nil || qNode2 == nil ❌
+	if pNode2.Val != qNode2.Val (2!=2) ❌
+	
+	return isSameTree(pNode2.Left,qNode2.Left) = isSameTree(nil,nil)
+}
+
+// stack = [isSameTree(nil,nil),isSameTree(pNode2,qNode2),isSameTree(pRoot1,qRoot1)]
+{
+	if pNode2 == nil && qNode2==nil ✅ {
+		return true
+	}	 
+}
+
+// stack = [isSameTree(pNode2,qNode2),isSameTree(pRoot1,qRoot1)]
+{
+	if pNode2 == nil && qNode2==nil ❌
+	if pNode2 ==nil || qNode2 == nil ❌
+	if pNode2.Val != qNode2.Val (2!=2) ❌
+	
+	return true && isSameTree(pNode2.Right,qNode2.Right) = isSameTree(nil,nil) // return true
+}
+
+// stack = [isSameTree(pRoot1,qRoot1)]
+{
+	if pRoot1 == nil && qRoot1==nil ❌
+	if pRoot1 ==nil || qRoot1 == nil ❌
+	if pRoot1.Val != qRoot1.Val (1!=1) ❌
+	
+	return true &&  isSameTree(pNode3,qNode3)
+}
+
+// stack = [isSameTree(pNode3,qNode3),isSameTree(pRoot1,qRoot1)]
+{
+	if pNode3 == nil && qNode3==nil ❌
+	if pNode3 ==nil || qNode3 == nil ❌
+	if pNode3.Val != qNode3.Val (1!=1) ❌
+	
+	return isSameTree(pNode3.Left,qNode3.Left) && isSameTree(pNode3.Right,qNode3.right) = isSameTree(nil,nil) && isSameTree(nil,nil) = true && true
+}
+
+// stack = [isSameTree(pRoot1,qRoot1)]
+{
+	if pRoot1 == nil && qRoot1==nil ❌
+	if pRoot1 ==nil || qRoot1 == nil ❌
+	if pRoot1.Val != qRoot1.Val (1!=1) ❌
+	
+	return true &&  true
+}

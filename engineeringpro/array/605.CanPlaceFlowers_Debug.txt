@@ -1,0 +1,163 @@
+flowerbed = [1, 0, 0, 0, 1] n = 1
+
+Bước 1: Kiểm tra vị trí index hiện tại có được trồng hoa(có ô trống hay không)
+Bước 2: Nếu bước 1 thỏa, ta kiểm tra vị trí index trước đó(index-1) có ô trống hay không  flowerbed[i-1] == 0.Tương tự ta kiểm tra vị trí index tiếp theo(index+1)
+Bước 3: Nếu leftEmpty == true && rightEmpty == true. Thì ta gán flowerbed[index] = 1 (vị trí trồng hoa hợp lệ
+Bước 4: Giảm số lượng hoa n xuống 1 đơn vị. Nếu số lượng n hoa về không thì break khỏi vòng lặp
+
+
+for index,_ := range flowerbed
+{	
+	if flowerbed[index] == 0 {
+		isLeftValid =  flowerbed[index-1] ==0 || index==0
+		isRightValid = flowerbed[index+1] ==0 || index== len(flowerbed) - 1
+		
+		if isLeftValid&& isRightValid
+		{			
+			flowerbed[index] = 1
+			n--
+			index=index+2
+		}		
+	}
+}
+
+index = 0, flower = 1
+{
+	if flowerbed[index] == 0  ❌
+}
+
+index = 1, flower = 0
+{
+	if flowerbed[index] == 0  ✅
+	{
+		isLeftValid =  flowerbed[0] ==0   ❌ || index==0 ❌
+		isRightValid = flowerbed[2] ==0 ✅ || index== len(flowerbed) - 1 ❌
+		if isLeftValid&& isRightValid ❌
+	}
+}
+
+index = 2, flower = 0
+{
+	if flowerbed[2] == 0  ✅
+	{
+		isLeftValid =  flowerbed[1] ==0   ✅ || index==0 ❌
+		isRightValid = flowerbed[3] ==0 ✅ || index== len(flowerbed) - 1 ❌
+		if isLeftValid&& isRightValid ✅ {
+			flowerbed[index] = 1
+			n = 0
+			index=index+2
+		}
+	}
+	if n < 0 {
+		return false
+	}
+}
+index = 4, flower = 1
+{
+	if flowerbed[4] == 0  ❌
+}
+
+return n == 0
+
+
+
+flowerbed = [0, 0, 0, 0, 0, 1] n = 2
+
+// Quy tắc
+B1: Duyệt từ trái -> phải. Kiểm tra vị trí index hiện tại có thể trồng dc cây hay không ?
+ if flowerbed[index] == 0
+B2: Nếu bước 1 thỏa ta kiểm tra hàng xóm bên trái & bên phải
+    isLeftValid = flowerbed[index-1] == 0 || index == 0(kiểm tra vị trí đầu tiên có trồng cây dc hay không)
+	isRightValid = flowerbed[index+1] == 0 || index == flowerbed[len(flowerbed) - 1) (kiểm tra vị trí cuối cùng có trồng cây dc hay không)
+	if isLeftValid && isRightValid
+	{
+		flowerbed[index] = 1
+		n--
+		index = index + 2
+	}
+	if n <0 return false
+
+return n == 0
+
+index = 0, flowerbedValue = 0 // flowerbed = [0, 0, 0, 0, 0, 1] n = 2
+if flowerbedValue == 0 (0==0)✅ 
+{
+	// check the neighbour
+	// kiểm tra hàng xóm trc đó có trồng cây chưa ? hay nếu vị trí đầu tiên có trồng cây được hay không
+	isLeftValid =   flowerbed[index-1] == 0 ❌ || index ==0 ✅
+	
+	// kiểm tra hàng xóm đằng sau có trồng cây được không?
+	isRightValid =  flowerbed[index+1] == 0 ✅ || index == flowerbed[5]) ❌
+	
+	if isLeftValid && isRightValid ✅{
+		// ok trồng
+		flowerbed[0] = 1
+		n--; // 1
+		index+=2 // 2
+	}
+}
+ 
+index = 2, flowerbedValue = 0// flowerbed = [1, 0, 0, 0, 0, 1] n = 1
+{
+	if flowerbedValue == 0 (0==0)✅
+	{
+		isLeftValid =  flowerbed[1] == 0 ✅ || index ==0 ❌
+		isRightValid = flowerbed[3] == 0 ✅ || index == flowerbed[5] ❌
+		if isLeftValid && isRightValid ✅{
+			// ok trồng
+			flowerbed[2] = 1
+			n--; // 0
+			index+=4 // 2
+		}
+	}
+}
+
+index = 4, flowerbedValue = 0// flowerbed = [1, 0, 1, 0, 0, 1] n = 1
+{
+	if flowerbedValue == 0 (0==0)✅
+	{
+		isLeftValid =  flowerbed[3] == 0 ✅ || index ==0 ❌
+		isRightValid = flowerbed[5] == 0 ❌ || index == flowerbed[5] ❌
+		if isLeftValid && isRightValid ❌			
+	}
+}
+
+return n == 0
+
+
+
+flowerbed = [0,0,1,0,0] n = 1; length = 5
+
+index = 0, flower = 0
+{
+	if flower ==0 ✅{
+		isLeftValid =  index == 0 ✅
+		isRightValid = index == 5 ❌ || flowerbed[1] == 0 ✅
+		if isLeftValid && isRightValid ✅		{
+			flowerbed[0] = 1
+			n-- // n = 0
+			index+=2
+		}
+	}
+}
+
+index = 2, flower = 1
+{
+	if flower ==0 ❌
+}
+
+index = 3, flower = 0
+{
+	if flower ==0 ✅{
+		isLeftValid =  index == 0 ❌ || flowerbed[2] == 0❌
+		isRightValid = index == 4 ❌ || flowerbed[4] == 0 ✅
+		if isLeftValid && isRightValid❌
+	}
+}
+
+index = 4, flower = 0
+{
+	if n==0 ✅ {
+		break
+	}	
+}

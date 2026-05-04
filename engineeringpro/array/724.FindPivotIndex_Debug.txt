@@ -1,0 +1,56 @@
+------------------------------------------- 724. Find Pivot Index -------------------------------------------
+nums = [1,7,3,6,5,6] -> preSum = 28
+
+leftSum = 0
+pivotIndex = -1
+
+index = 0, num = 1
+{
+	if index > 0 ❌
+}
+
+index = 1, num = 7
+{
+	if index > 0 (7>0)✅
+	{
+		leftSum += nums[index-1] = nums[0] = 0 + 1 = 1
+	}
+	rightSum:= preSum - num - leftSum = 28 - 7 - 1 = 20
+}
+
+
+index = 2, num = 3
+{
+	if index > 0  (2>0)✅
+	{
+		leftSum += nums[index-1] = nums[1] = 1 + 7 = 8
+	}
+	rightSum:= preSum - num - leftSum = 28 - 3 - 8 = 17
+}
+
+index = 3, num = 6
+{
+	if index > 0  (3>0)✅
+	{
+		leftSum += nums[index-1] = nums[2] = 8 + 3 = 11
+	}
+	rightSum:= preSum - num - leftSum = 28 - 6 - 11 = 11
+	if leftSum == rightSum (11==11 ✅){
+		pivotIndex = index
+		return pivotIndex // 3
+	}
+}
+
+nums = [2,1,-1] -> preSum = 2
+leftSum = 0
+pivotIndex = -1
+
+index = 0, num = 2
+{
+	if index > 0 ❌
+	rightSum:= preSum - num - leftSum =  2 - 2 - 0 = 0
+	if rightSum == leftSum ✅{
+		pivotIndex = index = 0
+		return pivotIndex
+	}
+}

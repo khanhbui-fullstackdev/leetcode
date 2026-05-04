@@ -1,0 +1,57 @@
+ "return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i]."
+=> Tích của tất cả các số ngoại trừ chính nó. Hãy nhân tất cả những con số "hàng xóm" xung quanh lại, nhưng tuyệt đối không được đụng vào chính mình.
+
+nums = [1,2,3,4] -> expected output: [24,12,8,6]
+
+leftProduct:=make([]int, len(nums))
+
+// Tích trái
+left := 1
+index = 0, num = 1
+{
+	leftProduct[0] = left = 1 		// leftProduct = [1]
+	left = left * num = 1
+}
+
+index = 1, num = 2
+{
+	leftProduct[1] = left = 1 		// leftProduct = [1, 1]
+	left = left * num = 1 * 2 = 2  
+}
+
+index = 2, num = 3
+{
+	leftProduct[2] = left = 2  		// leftProduct = [1, 1, 2]
+	left = left * num = 3 * 2 = 6
+}
+
+index = 3, num = 4
+{
+	leftProduct[3] = left = 6     // leftProduct = [1, 1, 2, 6]
+	left = left * num = 6 * 4 = 24
+}
+
+rightProduct:=make([]int, len(nums)) // [0,0,0,0]
+
+// Tích phải
+right:=1
+index = 3, num = 4
+{
+	rightProduct[3] = right = 1 // rightProduct = [0,0,0,1]
+	right = right * num = 1 * 4 = 4
+}
+index = 2, num = 3
+{
+	rightProduct[2] = right = 4 // rightProduct = [0,0,4,1]
+	right = right * num = 4 * 3 = 12
+}
+index = 1, num = 2
+{
+	rightProduct[1] = right = 12 // rightProduct = [0,12,4,1]
+	right = right * num = 12 * 2 = 24
+}
+index = 0, num = 1
+{
+	rightProduct[0] = right = 24 // rightProduct = [24,12,4,1]
+	right = right * num = 24 * 1 = 24
+}

@@ -1,0 +1,171 @@
+-------------------------------------------  101. Symmetric Tree -------------------------------------------
+https://leetcode.com/problems/symmetric-tree/description/
+
+Test case 1
+
+// stack = [isSymmetric(root1)]
+{
+	if root == nil || (root.Left == nil && root.Right == nil) ❌
+	leftNode := root.LeftNode
+	rightNode := root.RightNode
+	
+	if leftNode.Val != rightNode.Val  (2!=2)❌
+	 
+	
+	leftNode:= root1.Left = node2
+	rightNode:=root1.Right = node2
+	
+	
+	return checkSymmetric(root1.Left, root1.Right)  = checkSymmetric(node2, node2)  
+}
+
+
+// stack = [checkSymmetric(node2,node2), [isSymmetric(root1)]]
+{
+	if (lNode.Val!=rNode.Val) (node2.Val != node2.Val) ❌
+	if (lNode.Left!=nil && rNode.Right==nil) (node2.Left!=nil && node2.Right==nil) ❌ || (lNode.Left==nil &&rNode.Right!=nil) ❌
+	
+	// check node is a leaf
+	if (lNode.Left == nil && lNode.Right == nil) && (rNode.Left==nil && rNode.Right==nil) {
+		if  (lNode.Val == rNode.Right)  {
+			return true
+		}
+	}
+	return checkSymmetric(lNode.Left,rNode.Right) && checkSymmetric(lNode.Right,rNode.Left) = checkSymmetric(node3,node3)
+}
+
+// stack = [checkSymmetric(node3,node3),checkSymmetric(node2,node2), [isSymmetric(root1)]]
+{
+	if (lNode.Val!=rNode.Val) (node3.Val != node3.Val) ❌
+	if (lNode.Left!=nil && rNode.Right==nil) (node2.Left!=nil && node2.Right==nil) ❌ || (lNode.Left==nil &&rNode.Right!=nil) ❌
+	// check node is a leaf
+	if (lNode.Left == nil && lNode.Right == nil) (node3.Left == nil && node3.Right == nil) ✅ && 
+	(rNode.Left==nil && rNode.Right==nil) node3.Left == nil && node3.Right == nil)✅ {
+		if  (node3.Val == node3.Right) (3==3)✅ {
+			return true
+		}
+	}
+}
+
+
+// stack = [checkSymmetric(node2,node2), [isSymmetric(root1)]]
+{
+	if (lNode.Val!=rNode.Val) (node2.Val != node2.Val) ❌
+	if (lNode.Left!=nil && rNode.Right==nil) (node2.Left!=nil && node2.Right==nil) ❌ || (lNode.Left==nil &&rNode.Right!=nil) ❌
+	
+	// check node is a leaf
+	if (lNode.Left == nil && lNode.Right == nil) && (rNode.Left==nil && rNode.Right==nil) {
+		if  (lNode.Val == rNode.Right)  {
+			return true
+		}
+	}
+	return true && checkSymmetric(node4,node4)
+}
+
+// stack = [checkSymmetric(node4,node4),checkSymmetric(node2,node2), [isSymmetric(root1)]]
+{
+	if (lNode.Val!=rNode.Val) (node4.Val != node4.Val) ❌
+	if (lNode.Left!=nil && rNode.Right==nil) (node4.Left!=nil && node4.Right==nil) ❌ || (node4.Left==nil && node4.Right!=nil) ❌
+	
+	// check node is a leaf
+	if (lNode.Left == nil && lNode.Right == nil) (node4.Left == nil && node4.Right == nil) ✅ && 
+	(rNode.Left==nil && rNode.Right==nil) node4.Left == nil && node4.Right == nil)✅ {
+		if  (node4.Val == node4.Right) (4==4)✅ {
+			return true
+		}
+	}
+}
+
+// stack = [checkSymmetric(node2,node2), [isSymmetric(root1)]]
+{
+	if (lNode.Val!=rNode.Val) (node2.Val != node2.Val) ❌
+	if (lNode.Left!=nil && rNode.Right==nil) (node2.Left!=nil && node2.Right==nil) ❌ || (lNode.Left==nil &&rNode.Right!=nil) ❌
+	
+	// check node is a leaf
+	if (lNode.Left == nil && lNode.Right == nil) && (rNode.Left==nil && rNode.Right==nil) {
+		if  (lNode.Val == rNode.Right)  {
+			return true
+		}
+	}
+	return true && true
+}
+
+
+// stack = [isSymmetric(root1)]
+{
+	if root == nil || (root.Left == nil && root.Right == nil) ❌
+	leftNode := root.LeftNode
+	rightNode := root.RightNode
+	
+	if leftNode.Val != rightNode.Val  (2!=2)❌
+	 
+	
+	leftNode:= root1.Left = node2
+	rightNode:=root1.Right = node2
+	
+	
+	return  checkSymmetric(node2, node2)  = true
+}
+
+---------------------------------------------------------------------- Test case 11/200 ----------------------------------------------------------------------
+[1,2,2,null,3,3]
+        1
+       / \
+      2   2
+       \  /
+        3 3
+
+// stack = [isSymmetric(root1)]
+{
+	if root1 == nil || (root1.Left == nil && root1.Right == nil) ❌
+	return checkSymmetric(root.Left, root.Right) = checkSymmetric(node2,node2)
+}
+
+// stack = [checkSymmetric(node2,node2), isSymmetric(root1)]
+{
+	// lNode = node2; rNode = node2
+	if (lNode == nil && rNode != nil) || (lNode != nil && rNode == nil)   ❌
+
+	if lNode != nil && rNode != nil && lNode.Val != rNode.Val  ❌  
+	
+	if lNode ==nil && rNode ==nil return true
+	
+	if lNode.Left == nil && lNode.Right == nil && (rNode.Left == nil && rNode.Right == nil ) ❌ 
+	
+	return checkSymmetric(node2.Left, node2.Right)  // checkSymmetric(nil, nil)
+		&& checkSymmetric(node2.Right, node2.Left) = 
+}
+
+// stack = [checkSymmetric(nil, node3), checkSymmetric(node2,node2), isSymmetric(root1)]
+{
+	// lNode = nil; rNode = nil
+	if (lNode == nil && rNode != nil) || (lNode != nil && rNode == nil)   ❌
+	if lNode != nil && rNode != nil && lNode.Val != rNode.Val  ❌   
+	if lNode ==nil && rNode ==nil ✅ return true
+}
+
+// stack = [checkSymmetric(node2,node2), isSymmetric(root1)]
+{
+	// lNode = node2; rNode = node2
+	if (lNode == nil && rNode != nil)❌|| (lNode != nil && rNode == nil)   ❌
+
+	if lNode != nil && rNode != nil && lNode.Val != rNode.Val  ❌  
+		
+	if lNode.Left == nil && lNode.Right == nil && (rNode.Left == nil && rNode.Right == nil ) ❌ 
+	
+	return true  // checkSymmetric(nil, nil)
+		&& checkSymmetric(node2.Right, node2.Left) // checkSymmetric(node3, node3)
+}
+
+// stack = [checkSymmetric(node3, node3),checkSymmetric(node2,node2), isSymmetric(root1)]
+{
+	// lNode = node3; rNode = node3
+	if (lNode == nil && rNode != nil) ❌ || (lNode != nil && rNode == nil)   ❌
+
+	if lNode != nil ✅ && rNode != nil ✅ && lNode.Val != rNode.Val (3!=3)  ❌  
+		
+	if (lNode.Left == nil && lNode.Right == nil) ✅ && (rNode.Left == nil && rNode.Right == nil ) ✅ return true
+	
+	return true  // checkSymmetric(nil, node3)
+		&& true // checkSymmetric(node3, node3)
+}

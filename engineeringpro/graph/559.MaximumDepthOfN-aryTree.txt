@@ -1,0 +1,133 @@
+// stack = [maxDepth(root1)]
+{
+	if root1 == nil  ❌
+	if root.Children == nil ❌
+
+	maxHeight = calculateHeight(root1)
+	return maxHeight
+}
+
+// stack = [calculateHeight(root1)]
+{
+	maxHeight:=0
+	for ,childNode:=range node.Children
+	{
+		nodeHeight := calculateHeight(node3)
+	}
+}
+
+// stack = [calculateHeight(node3), calculateHeight(root1)]
+{
+	if node3.Children == nil ❌
+	maxHeight:=0
+	for ,childNode:=range node.Children
+	{
+		nodeHeight := calculateHeight(node5)
+	}
+}
+
+// stack = [calculateHeight(node5),calculateHeight(node3), calculateHeight(root1)]
+{
+	if node5.Children == nil return 1	 
+}
+
+// stack = [calculateHeight(node3), calculateHeight(root1)]
+{
+	if node3.Children == nil ❌
+	maxHeight:=0
+	for ,childNode:=range node.Children
+	{
+		node5
+		{
+			nodeHeight := 1
+			if nodeHeight>maxHeight{
+				maxHeight = nodeHeight // 1
+			}
+		}
+		node6{
+			nodeHeight := calculateHeight(node6)
+		}
+	}
+	return maxHeight
+}
+
+// stack = [calculateHeight(node6),calculateHeight(node3), calculateHeight(root1)]
+{
+	if node5.Children == nil return 1	 
+}
+
+// stack = [calculateHeight(node3), calculateHeight(root1)]
+{
+	if node3.Children == nil ❌
+	maxHeight:=0
+	for ,childNode:=range node.Children
+	{
+		node5
+		{
+			nodeHeight := 1
+			if nodeHeight>maxHeight{
+				maxHeight = nodeHeight // 1
+			}
+		}
+		node6
+		{
+			nodeHeight := 1
+			if nodeHeight>maxHeight ❌
+		}
+	}
+	return 1+maxHeight // 2
+}
+
+
+// stack = [calculateHeight(root1)]
+{
+	maxHeight:=0
+	for ,childNode:=range node.Children
+	{
+		node3
+		{
+			nodeHeight := 2
+			if nodeHeight>maxHeight{
+				maxDepth = nodeHeight // 2
+			}
+		}
+		node2
+		{
+			nodeHeight:= calculateHeight(node2)	
+		}
+		
+	}
+}
+
+// stack = [calculateHeight(node2)	,calculateHeight(root1)]
+{
+	if node2.Children == nil ❌ return 1
+}
+
+// stack = [calculateHeight(root1)]
+{
+	maxHeight:=0
+	for ,childNode:=range node.Children
+	{
+		node3
+		{
+			nodeHeight := 2
+			if nodeHeight>maxHeight{
+				maxDepth = nodeHeight // 2
+			}
+		}
+		node2
+		{
+			nodeHeight:= 1
+			if nodeHeight>maxHeight (1>2) ❌				
+		}
+		
+		node4
+		{
+			nodeHeight:= 1
+			if nodeHeight>maxHeight (1>2) ❌		
+		}	
+	}
+	
+	return maxHeight+1 // 3
+}

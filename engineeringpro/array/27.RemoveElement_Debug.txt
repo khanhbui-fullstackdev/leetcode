@@ -1,0 +1,94 @@
+---------------------------------------- 27. Remove Element ----------------------------------------
+sau khi hàm thực thi, k phần tử đầu tiên của mảng phải là những phần tử không bằng val.
+
+nums = [3,2,2,3], val = 3 -> expect output = 2, nums = [2,2,_,_]
+
+writerIndex:=0
+index = 0, num = 3 (reader)
+{
+	if num != val  (3!=3) ❌
+	else{
+		
+	}
+}
+
+index = 1, num = 2 (reader)
+{	 
+	if num != val  (2!=3) ✅{
+		nums[writerIndex] = nums[0] = 2 // nums = [2,2,2,3]
+		writerIndex++ // 1
+	}
+}
+
+index = 2, num = 2 (reader)
+{	 
+	if num != val  (2!=3) ✅{
+		nums[writerIndex] = nums[1] = 2 // nums = [2,2,2,3]
+		writerIndex++ // 2
+	}
+}
+
+index = 3, num = 3 (reader)
+{	 
+	if num != val  (3!=3) ❌
+}
+
+return writerIndex // 2 
+
+-------------------------------------------- Test case 2 --------------------------------------------
+
+Input: nums = [0,1,2,2,3,0,4,2], val = 2
+Output: 5, nums = [0,1,4,0,3,_,_,_]
+
+writerIdx:=0
+index = 0, num = 0 (reader)
+{
+	if num != val  (0!=2) ✅{
+		nums[writerIdx] = num => nums[0] = 0 // nums = [0,1,2,2,3,0,4,2]
+		writerIdx++ // 1
+	}
+}
+
+index = 1, num = 1 (reader)
+{
+	if num != val  (1!=2) ✅{
+		nums[writerIdx] = num => nums[1] = 1 // nums = [0,1,2,2,3,0,4,2]
+		writerIdx++ // 2
+	}
+}
+
+index = 2, num = 2 (reader)
+{
+	if num != val  (2!=2) ❌  
+}
+index = 3, num = 2 (reader)
+{
+	if num != val  (2!=2) ❌  
+}
+index = 4, num = 3 (reader)
+{
+	if num != val  (3!=2) ✅ {
+		nums[writerIdx] = num => nums[2] = 3 // nums = [0,1,3,2,3,0,4,2]
+		writerInx++ // 3
+	}
+}
+index = 5, num = 0 (reader)
+{
+	if num != val  (0!=2) ✅ {
+		nums[writerIdx] = num => nums[3] = 0 // nums = [0,1,3,0,3,0,4,2]
+		writerInx++ // 4
+	}
+}
+
+index = 6, num = 4 (reader)
+{
+	if num != val  (4!=2) ✅ {
+		nums[writerIdx] = num => nums[4] = 4 // nums = [0,1,3,0,4,0,4,2]
+		writerInx++ // 5
+	}
+}
+index = 7, num = 2 (reader)
+{
+	if num != val  (2!=2) ❌ // nums = [0,1,3,0,4,0,4,2]
+}
+return writerInx // 5

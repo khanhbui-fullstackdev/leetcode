@@ -1,0 +1,151 @@
+------------------------------------------------------ 110. Balanced Binary Tree ------------------------------------------------------ 
+
+// stack = [isBalanced(root3)]
+{
+	root3 == nil || (root3.Left == nil && root3.Right == nil) ❌
+}
+
+// stack = [calculateNodeHeight(root3),isBalanced(root3)]
+{
+	if node == nil ❌
+	if node.Left == nil && node.Right == nil ❌
+	
+	leftHeight:= calculateNodeHeight(root3.Left) = calculateNodeHeight(node9)
+}
+
+// stack = [calculateNodeHeight(node9),calculateNodeHeight(root3),isBalanced(root3)]
+{
+	if node9 == nil ❌
+	if node9.Left == nil && node9.Right == nil {
+		return 1
+	}
+}
+
+// stack = [calculateNodeHeight(root3),isBalanced(root3)]
+{
+	if node == nil ❌
+	if node.Left == nil && node.Right == nil ❌
+	
+	leftHeight:= 1
+	rightHeight:=calculateNodeHeight(root3.Right) = calculateNodeHeight(node20)
+}
+ 
+// stack = [calculateNodeHeight(node20),calculateNodeHeight(root3),isBalanced(root3)]
+{
+	if node20 == nil ❌
+	if node20.Left == nil && node20.Right == nil ❌
+	
+	leftHeight:= calculateNodeHeight(node20.Left) = calculateNodeHeight(node15) // return 1
+	rightHeight:=calculateNodeHeight(node20.Right) = calculateNodeHeight(node7) // return 1
+	
+	res = leftHeight-rightHeight = 0
+	if res > 1 ❌
+	
+	if leftHeight>=rightHeight ✅ {return 1+leftHeight = 1 + 1 = 2}
+}
+
+ // stack = [calculateNodeHeight(root3),isBalanced(root3)]
+{
+	if root3 == nil ❌
+	if root3.Left == nil && root3.Right == nil ❌
+	
+	leftHeight:= 1
+	rightHeight:=2
+	
+	res = abs(leftHeight - rightHeight) = 1
+	if res > 1 ❌
+	if leftHeight>=rightHeight  ❌
+	return rightHeight+ 1 = 3
+}
+
+// stack = [isBalanced(root3)]
+{
+	root3 == nil || (root3.Left == nil && root3.Right == nil) 
+	
+	return calculateNodeHeight(root3)!=-1
+}
+
+
+------------------------------------------------ Test case 2 ------------------------------------------------
+           1
+         /   \
+        2     2
+       /       \
+      3         3
+     /         /
+    4         4
+
+// stack = [isBalanced(root1)]
+{
+	root1 == nil || (root1.Left == nil && root1.Right == nil) ❌
+	
+	return calculateNodeHeight(root1)
+}
+
+
+// stack = [calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if root1 == nil ❌
+	if root1.Left == nil && root1.Right == nil ❌
+	
+	leftHeight:= calculateNodeHeight(root1.Left) = calculateNodeHeight(node2) 
+}
+
+// stack = [calculateNodeHeight(node2),calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if node2 == nil ❌
+	if node2.Left == nil && node2.Right == nil ❌
+	
+	leftHeight:=  calculateNodeHeight(node3) 
+}
+
+// stack = [calculateNodeHeight(node3) ,calculateNodeHeight(node2),calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if node3 == nil ❌
+	if node3.Left == nil && node3.Right == nil ❌
+	
+	leftHeight:=  calculateNodeHeight(node4) 
+}
+// stack = [calculateNodeHeight(node4) ,calculateNodeHeight(node3) ,calculateNodeHeight(node2),calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if node4 == nil ❌
+	if node4.Left == nil && node4.Right == nil ✅{
+		return 1
+	}
+}
+
+// stack = [calculateNodeHeight(node3) ,calculateNodeHeight(node2),calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if node3 == nil ❌
+	if node3.Left == nil && node3.Right == nil ❌
+	
+	leftHeight:=  1
+	rightHeight:= calculateNodeHeight(nil) // return 0
+	
+	res = 1 > 1❌
+	return leftHeight + 1 = 2
+}
+
+
+
+// stack = [calculateNodeHeight(node2),calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if node2 == nil ❌
+	if node2.Left == nil && node2.Right == nil ❌
+	
+	leftHeight:=  2
+	rigthHeight:= calculateNodeHeight(nil) // return 0
+	
+	res = 2 - 0 = 2
+	res > 1 ✅ {
+		return -1
+	}
+}
+
+// stack = [calculateNodeHeight(root1),isBalanced(root1)]
+{
+	if root1 == nil ❌
+	if root1.Left == nil && root1.Right == nil ❌
+	
+	leftHeight:= -1
+}

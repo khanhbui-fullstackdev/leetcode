@@ -1,0 +1,96 @@
+func hasPathSum(root *models.TreeNode, targetSum int) bool {
+	// if the tree is empty, there are no root to leaf paths
+	if root == nil {
+		return false
+	}
+	// check if the node is a leaf.
+	if root.Left == nil && root.Right == nil && root.Val == targetSum {
+		return true
+	}
+	return checkPath(root, targetSum)
+}
+
+// stack = [hasPathSum(root5,22)]
+{
+	if root5 == nil ❌
+	if root5.Left == nil && root5.Right == nil && root5.Val == targetSum ❌
+	return checkPath(root5,22)
+}
+
+// stack = [checkPath(root5,22),hasPathSum(root,22)] 
+{
+	
+	targetSum:= targetSum - root5.Val = 22 - 5 = 17
+	validLeftPath:= checkPath(root.Left,targetSum) = checkPath(node4,17)
+}
+
+// stack = [checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	targetSum:= targetSum - node4.Val = 17 - 4 = 13
+	validLeftPath:= checkPath(node4.Left,targetSum) = checkPath(node11,13)
+}
+
+// stack = [checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	targetSum:= targetSum - node11.Val = 13 - 11 = 2
+	validLeftPath:= checkPath(node11.Left,targetSum) = checkPath(node7,2)
+}
+
+// stack = [checkPath(node7,2),checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	if node.Left == nil && node.right == nil && node.val == targetSum ❌
+	
+	targetSum:= targetSum - node7.Val = 2 - 7 = -5
+	validLeftPath:= checkPath(node7.Left,targetSum) = checkPath(nil,-5)
+}
+
+// stack = [checkPath(nil,-5),checkPath(node7,2),checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	if node is nil return false	 // avoid throwing exception
+}
+
+// stack = [checkPath(node7,2),checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	if node.Left == nil && node.right == nil && node.val == targetSum ❌
+	
+	targetSum:= targetSum - node7.Val = 2 - 7 = -5
+	validLeftPath:= false
+	validRightPath:= checkPath(node7.Right,targetSum) = checkPath(nil,-5) // return false
+	
+	return validLeftPath || validRightPath
+}
+
+// stack = [checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	targetSum:= targetSum - node11.Val = 13 - 11 = 2
+	validLeftPath:= false
+	validRightPath:= checkPath(node11.Right,targetSum) = checkPath(node2,2)
+}
+
+// stack = [checkPath(node2,2),checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	if node2 ==nil ❌
+	if node2.Left == nil && node2.Right == nil && node2.Val == targetSum (2==2) ✅{
+		return true
+	}		
+}
+
+// stack = [checkPath(node11,13),checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	targetSum:= targetSum - node11.Val = 13 - 11 = 2
+ 
+	return checkPath(node.Left,targetSum) || checkPath(node.Right,targetSum) // false ||  true -> return true
+}
+
+// stack = [checkPath(node4,17),checkPath(root5,22),hasPathSum(root,22)] 
+{
+	targetSum:= targetSum - node4.Val = 17 - 4 = 13
+	return checkPath(node.Left,targetSum)  // true
+}
+
+	
+// stack = [checkPath(root5,22),hasPathSum(root,22)] 
+{
+	targetSum:= targetSum - node4.Val = 17 - 4 = 13
+	return checkPath(root5,22)//true
+}

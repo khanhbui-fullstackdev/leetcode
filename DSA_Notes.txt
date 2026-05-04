@@ -1,0 +1,170 @@
+--------------------------------------- DSA Level 1 ------------------------------------------------------
+
+Date: Apr 15, 2025 8:02 PM Vietnam
+Duration:01:07:00
+Passcode: #zKnoa6.
+
+Link:https://us06web.zoom.us/rec/play/dKG9ACIIoHmH5eD6V7FWpAINO49Cl9LLLBAhtoJ-NkfGgF8tErkfP01bqcuc94X23o3kyP9I5wiz9eLi.LMS8k8oULv3b7SPv?accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&iet=J5UJc76I6OmJMXw3S773NalnCvth2sFGntw43M1R3c0.AG.QEqBuG-2RRDq-cxJGGbZOQkRZQg90YA3Jt7SYxsQcnT6E7aT0pu3Nhmj1GpRKxcsiw_CEVWMOIZJYdQ09doAWhePhnfNLSwrGkkK25Z2SndhnLJwACT2EgwepXBDYe4.m-3IEdlI4pLJ69nMWdjzKw.Jg3HJOOOobIJzPwT&componentName=rec-play&originRequestUrl=https%3A%2F%2Fus06web.zoom.us%2Frec%2Fshare%2FFg8Mpnp2yk4NcPIl6IiCuiXrSAfRZvTpoi5iy-nCuvIehrk_LTMC_hKT5IrkPCty.9qV0aqSPoBYoaCJ3%3Fiet%3DJ5UJc76I6OmJMXw3S773NalnCvth2sFGntw43M1R3c0.AG.QEqBuG-2RRDq-cxJGGbZOQkRZQg90YA3Jt7SYxsQcnT6E7aT0pu3Nhmj1GpRKxcsiw_CEVWMOIZJYdQ09doAWhePhnfNLSwrGkkK25Z2SndhnLJwACT2EgwepXBDYe4.m-3IEdlI4pLJ69nMWdjzKw.Jg3HJOOOobIJzPwT
+
+go mod init 4.Sort
+
+✅ ❌
+
+--------------------------------------- Slides ------------------------------------------------------------
+Buổi 1 Slice array:https://docs.google.com/presentation/d/1UXq3HTFCA-0hGWPFiu620wBJg0E7VGg-/edit#slide=id.p1
+Buổi 2 String:https://docs.google.com/presentation/d/1-9V6zRv-4YXR6XelNh4Qnu4ijF6QE93H/edit?slide=id.p1#slide=id.p1
+Buổi 3 Recursion:https://docs.google.com/presentation/d/1BlpDVdGDM1UGk2RuNT8PoVwl3q0bf49i/edit?slide=id.p1#slide=id.p1
+Buổi 4 Sorting: https://docs.google.com/presentation/d/17uz1PConYvlP1qqOmjc2YNW09xqCRRio/edit?slide=id.p1#slide=id.p1
+Buổi 5 Binary Search:https://docs.google.com/presentation/d/1cAcTvUpf_AlTdfPlY753ir5W4N6aymrU/edit?slide=id.p1#slide=id.p1
+Buổi 6 HashTable:https://docs.google.com/presentation/d/1e6WH8aiukmcvMo2PHrraZ46Zr23YbgUU/edit#slide=id.p1
+Buổi 7+8 LinkList:https://docs.google.com/presentation/d/1R-ZE31RwS3kWhiVFXw1Fhbf2TgctQ7t2/edit?slide=id.p1#slide=id.p1
+Buổi 9 Stack Queue:https://docs.google.com/presentation/d/1v0sgkPBHnuD7ssvoGiuq3pqMrFu9tXUD/edit?rtpof=true&sd=true
+Buổi 10 Graph 1:https://docs.google.com/presentation/d/1eeYhgJBlEeg8Ji8xo5OF4EdQxsG87IHI/edit?slide=id.p1#slide=id.p1
+Buổi 11 Graph 2:https://docs.google.com/presentation/d/15WOla6Ycf9FzY0gUQ_fmo8CoEmEVC-gs/edit?slide=id.p1#slide=id.p1
+Buổi 12 Breadth First Search (6):https://docs.google.com/presentation/d/1SzfTLVnzepqzsRfx4kvwd2NpXxiFU6eT/edit?slide=id.p1#slide=id.p1
+Buổi 13 Depth First Search (7):https://docs.google.com/presentation/d/18HJUIniBz-TE-wL8NMdbb_WsxnWUjh8Q/edit?slide=id.p1#slide=id.p1
+Buổi 14 Island Matrix Traversal:https://docs.google.com/presentation/d/18Kp5KpFmYMaBYB_tfkyuISmga0xKtdEC/edit?slide=id.p2#slide=id.p2
+Buổi 15 Topical sort:https://docs.google.com/presentation/d/1TudRJ4POto2u5PdH-NUrCnCgdIHRDpBq/edit
+Buổi 16 Interval -> https://docs.google.com/presentation/d/1LyVKFzwEVCYEnS0x8ddlIa1YVXpIgmA4/edit?slide=id.p1#slide=id.p1
+Buổi 17 Heap -> https://docs.google.com/presentation/d/1vy6MZAUCTE0skzjlKp3qvlBnAOgGVmvl/edit?slide=id.p1#slide=id.p1
+Buổi 18 Greedy -> https://docs.google.com/presentation/d/1v1WvySoProKzflm99RLjkJuwk7bBn2VG/edit?slide=id.p1#slide=id.p1
+Buổi 19 Divide and Conquer -> https://docs.google.com/presentation/d/1tgMCd2qcSAuJTvNNatb95V5FVEXcKm1k/edit?slide=id.p1#slide=id.p1
+Buổi 20 Monotonic Stack & Queue->https://docs.google.com/presentation/d/1CQCcNhoDfrx7qTYAzhZ7D2ETMfpyxe9k/edit?slide=id.p1#slide=id.p1
+
+Buổi 21:Prefix sum (6):https://docs.google.com/presentation/d/1v4gU5lsYGykqD4ys3jNifMGzE99zjL4a/edit?slide=id.p1#slide=id.p1
+Buổi 22:Prime number:https://docs.google.com/presentation/d/1I3jt39I6RJvg_u-rsOAjHGPoHY1uVI_I/edit
+
+------------------------------------------------------ Employment Hero -------------------------------------------------------
+
+https://leetcode.com/.../464.../Calculate-longest-substring/
+
+https://leetcode.com/.../5623323/Microsoft-OA-Question/
+
+------------------------------------------------------- NAB -------------------------------------------------------------------
+https://drive.google.com/file/d/1A_F8CRt7RJlniicFJJsPm-cWM30pTp0y/view?fbclid=IwY2xjawQNN81leHRuA2FlbQIxMABicmlkETIwSUk2NndNaEE4TTk2ampNc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHsNpAuxmRxKRz2fptNr7HRvU8S_ZtLWniM8qHWr24TlXznF5J4ifFhFwOSYr_aem_qwuFW8DbvckOmLBY1uM8tQ&pli=1
+
+------------------------------------------------------- String's theory -------------------------------------------------------
+| Hàm                               | Chức năng                 | Ví dụ                                          |
+| --------------------------------- | ------------------------- | ---------------------------------------------- |
+| `strings.Contains(s, sub)`        | Kiểm tra substring        | `"abc", "a" → true`                            |
+| `strings.HasPrefix(s, prefix)`    | Chuỗi bắt đầu bằng…       | `"hello", "he" → true`                         |
+| `strings.HasSuffix(s, suffix)`    | Chuỗi kết thúc bằng…      | `"hello", "lo" → true`                         |
+| `strings.Count(s, sub)`           | Đếm số lần xuất hiện      | `"banana", "a" → 3`                            |
+| `strings.Index(s, sub)`           | Vị trí đầu tiên của sub   | `"go gopher", "go" → 0`                        |
+| `strings.LastIndex(s, sub)`       | Vị trí cuối cùng của sub  | `"go gopher", "go" → 3`                        |
+| `strings.Repeat(s, n)`            | Lặp lại chuỗi n lần       | `"a", 3 → "aaa"`                               |
+| `strings.Replace(s, old, new, n)` | Thay thế chuỗi            | `"oink oink", "oink", "moo", -1` → `"moo moo"` |
+| `strings.Split(s, sep)`           | Cắt chuỗi thành slice     | `"a,b,c" → []string{"a","b","c"}`              |
+| `strings.Join(slice, sep)`        | Ghép slice thành chuỗi    | `["a","b"] → "a-b"`                            |
+| `strings.ToLower(s)`              | Chuyển thường             | `"HELLO" → "hello"`                            |
+| `strings.ToUpper(s)`              | Chuyển hoa                | `"hi" → "HI"`                                  |
+| `strings.Trim(s, cutset)`         | Xóa ký tự đầu/cuối        | `"!!!hello!!!", "!" → "hello"`                 |
+| `strings.TrimSpace(s)`            | Xóa khoảng trắng đầu/cuối | `"  hi  " → "hi"`                              |
+| `strings.Fields(s)`               | Tách theo whitespace      | `"a b  c" → ["a","b","c"]`                     |
+
+
+strconv.Itoa(i) : int → string.
+
+strconv.Atoi(s) : string → int.
+
+fmt.Sprintf(...) : format chuỗi.
+
+
+
+
+------------------------------------------------------ Golang vs C# String -----------------------------------------
+
+| Purpose         | Golang (`strings` / built-in)                | C# (`string` / `System.Text`)                  | Time Complexity                                                   |
+| --------------- | -------------------------------------------- | ---------------------------------------------- | ----------------------------------------------------------------- |
+| ✅ Length        | `len(str)`                                   | `str.Length`                                   | **O(1)** (stored property, không phải scan chuỗi)                 |
+| ✅ Indexing      | `str[i]` (byte) / `[]rune(str)[i]` (unicode) | `str[i]` (char)                                | **O(1)** (but `[]rune` conversion in Go là **O(n)** để tạo slice) |
+| ✅ Substring     | `str[start:end]`                             | `str.Substring(start, len)`                    | **O(k)** (k = độ dài substring)                                   |
+| ✅ Concatenation | `str1 + str2` / `strings.Builder`            | `str1 + str2` / `StringBuilder`                | `+` = **O(n+m)**, Builder amortized **O(1)** append               |
+| ✅ Contains      | `strings.Contains(str, sub)`                 | `str.Contains(sub)`                            | **O(n·m)** worst-case (Boyer-Moore / IndexOf tối ưu hơn một chút) |
+| ✅ Has Prefix    | `strings.HasPrefix(str, prefix)`             | `str.StartsWith(prefix)`                       | **O(m)**                                                          |
+| ✅ Has Suffix    | `strings.HasSuffix(str, suffix)`             | `str.EndsWith(suffix)`                         | **O(m)**                                                          |
+| ✅ Index Of      | `strings.Index(str, sub)`                    | `str.IndexOf(sub)`                             | **O(n·m)** worst-case                                             |
+| ✅ Last Index Of | `strings.LastIndex(str, sub)`                | `str.LastIndexOf(sub)`                         | **O(n·m)**                                                        |
+| ✅ Replace       | `strings.Replace(str, old, new, n)`          | `str.Replace(old, new)`                        | **O(n·m)** (scan toàn bộ, copy lại)                               |
+| ✅ Split         | `strings.Split(str, sep)`                    | `str.Split(sep)`                               | **O(n)** (scan toàn bộ, tạo mảng mới)                             |
+| ✅ Join          | `strings.Join(slice, sep)`                   | `string.Join(sep, arr)`                        | **O(n)** (copy toàn bộ + sep)                                     |
+| ✅ Trim          | `strings.Trim(str, cutset)`                  | `str.Trim(chars)`                              | **O(n)**                                                          |
+| ✅ Trim Left     | `strings.TrimLeft`                           | `str.TrimStart`                                | **O(n)** (worst-case)                                             |
+| ✅ Trim Right    | `strings.TrimRight`                          | `str.TrimEnd`                                  | **O(n)** (worst-case)                                             |
+| ✅ To Lower      | `strings.ToLower(str)`                       | `str.ToLower()`                                | **O(n)**                                                          |
+| ✅ To Upper      | `strings.ToUpper(str)`                       | `str.ToUpper()`                                | **O(n)**                                                          |
+| ✅ Compare       | `strings.Compare(a, b)`                      | `string.Compare(a, b)`                         | **O(min(n,m))**                                                   |
+| ✅ Equals        | `a == b`                                     | `a == b`                                       | **O(n)** (worst-case; short-circuit nếu khác ngay từ đầu)         |
+| ✅ Repeat        | `strings.Repeat(str, count)`                 | `string.Concat(Enumerable.Repeat(str, count))` | **O(n·count)**                                                    |
+
+
+
+package main
+
+import (
+	"fmt"
+	"strings"
+	"strconv"
+)
+
+func main() {
+	str := "go gopher"
+
+	// 1. Contains / Prefix / Suffix / Count
+	fmt.Println(strings.Contains(str, "go"))            // true
+	fmt.Println(strings.HasPrefix(str, "go"))           // true
+	fmt.Println(strings.HasSuffix(str, "her"))          // true
+	fmt.Println(strings.Count("banana", "an"))          // 2
+
+	// 2. Index / LastIndex / IndexAny
+	fmt.Println(strings.Index(str, "go"))               // 0
+	fmt.Println(strings.LastIndex("abracadabra", "ra")) // 9
+	fmt.Println(strings.IndexAny("hello, 世界", "界!"))     // 8 (vị trí rune '界')
+
+	// 3. Replace / ReplaceAll
+	fmt.Println(strings.Replace("a-a-a", "a", "x", 2))  // x-x-a
+	fmt.Println(strings.ReplaceAll("a-a-a", "a", "x"))  // x-x-x
+
+	// 4. Split / SplitN / Join
+	parts := strings.Split("a,b,c", ",")
+	fmt.Println(parts)                                  // [a b c]
+	fmt.Println(strings.SplitN("a,b,c", ",", 2))        // [a b,c]
+	fmt.Println(strings.Join([]string{"go", "lang"}, "-")) // go-lang
+
+	// 5. ToLower / ToUpper / EqualFold
+	fmt.Println(strings.ToLower("GoLang"))              // golang
+	fmt.Println(strings.ToUpper("GoLang"))              // GOLANG
+	fmt.Println(strings.EqualFold("straße", "STRASSE")) // true (case-folding Unicode)
+
+	// 6. Trim / TrimSpace / TrimPrefix / TrimSuffix
+	fmt.Println(strings.Trim("  --hello--  ", " -"))    // hello
+	fmt.Println(strings.TrimSpace(" \t hi \n"))         // hi
+	fmt.Println(strings.TrimPrefix("foobar", "foo"))    // bar
+	fmt.Println(strings.TrimSuffix("foobar", "bar"))    // foo
+
+	// 7. Fields / FieldsFunc
+	fmt.Println(strings.Fields("Go   is\tgreat\n"))     // [Go is great]
+	isVowel := func(r rune) bool {
+		return strings.ContainsRune("aeiouAEIOU", r)
+	}
+	fmt.Println(strings.FieldsFunc("h-e?l!l,o", isVowel)) // tách theo nguyên âm -> [h- -?l!l,]
+
+	// 8. Repeat
+	fmt.Println(strings.Repeat("na", 4) + " Batman!")   // nanananana Batman!
+
+	// 9. Builder (hiệu năng tốt)
+	var b strings.Builder
+	b.Grow(16)
+	b.WriteString("Hello")
+	b.WriteByte(' ')
+	b.WriteString("Gopher")
+	fmt.Println(b.String())                             // Hello Gopher
+
+	// 10. strconv Atoi / Itoa / ParseInt
+	i, err := strconv.Atoi("123")
+	fmt.Println(i, err)                                 // 123 <nil>
+	fmt.Println(strconv.Itoa(456))                      // "456"
+	// ParseInt: base 16, 32-bit
+	n, _ := strconv.ParseInt("FF", 16, 32)
+	fmt.Println(n)                                      // 255
+}
