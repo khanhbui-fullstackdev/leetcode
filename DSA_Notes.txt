@@ -168,3 +168,7 @@ func main() {
 	n, _ := strconv.ParseInt("FF", 16, 32)
 	fmt.Println(n)                                      // 255
 }
+
+
+------------------------------------------------------ Review progress ------------------------------------------
+https://docs.google.com/spreadsheets/d/1N-Ed0GlvUXyxB0kgFbjuejUNZeNx58BLw4Hsz9iHVtQ/edit?gid=0#gid=0
