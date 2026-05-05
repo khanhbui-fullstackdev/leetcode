@@ -267,3 +267,42 @@ func removeDuplicates(s string) string {
 
 	return strBuilder.String()
 }
+
+func RunTimeRequiredToBuy() {
+	tickets1 := []int{2, 3, 2}
+	k1 := 2
+
+	takenTime1 := timeRequiredToBuy(tickets1, k1)
+	fmt.Println("Buying time:", takenTime1)
+
+	// tickets2 := []int{5, 1, 1, 1}
+	// k2 := 0
+
+	// takenTime2 := timeRequiredToBuy(tickets2, k2)
+	// fmt.Println("Buying time:", takenTime2)
+}
+
+func timeRequiredToBuy(tickets []int, k int) int {
+	queueTicketBuyers := models.QueueObj{}
+	for index, ticket := range tickets {
+		tickerBuyer := models.NewTicketBuyer(index, ticket)
+		queueTicketBuyers.EnqueueObj(tickerBuyer)
+	}
+
+	for queueTicketBuyers.Count > 0 {
+		// val, _ := queueTicketBuyers.DequeueObj()
+		// tickerBuyer := val.(models.TicketBuyer)
+		// tickerBuyer.UpdateTicket()
+
+		val := queueTicketBuyers.PeekObj()
+		tickerBuyer := val.(models.TicketBuyer)
+		if tickerBuyer.Tickets > 0 {
+			tickerBuyer.Tickets--
+			val, _ = queueTicketBuyers.DequeueObj()
+			tickerBuyer = val.(models.TicketBuyer)
+			queueTicketBuyers.EnqueueObj(tickerBuyer)
+		}
+	}
+
+	return 0
+}
