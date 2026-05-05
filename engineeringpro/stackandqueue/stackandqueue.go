@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"leetcode/engineeringpro/stackandqueue/models"
+	"strings"
 )
 
 func RunIsValidParentheses() {
@@ -39,7 +40,7 @@ func isValid(s string) bool {
 		return false
 	}
 
-	stackInt := &models.StackInt{}
+	stackInt := &models.Stack{}
 
 	for _, charS := range s {
 		if charS == 40 || charS == 91 || charS == 123 {
@@ -66,7 +67,7 @@ func isValid(s string) bool {
 			}
 		}
 	}
-	if stackInt.Length > 0 {
+	if stackInt.Count > 0 {
 		return false
 	}
 	return true
@@ -105,7 +106,7 @@ func RunBackSpaceCompare() {
 }
 
 func backspaceCompare(s string, t string) bool {
-	stackS := models.StackInt{}
+	stackS := models.Stack{}
 	for _, charS := range s {
 		if charS == 35 {
 			stackS.Pop()
@@ -114,7 +115,7 @@ func backspaceCompare(s string, t string) bool {
 		}
 	}
 
-	stackT := models.StackInt{}
+	stackT := models.Stack{}
 	for _, charT := range t {
 		if charT == 35 {
 			stackT.Pop()
@@ -123,11 +124,11 @@ func backspaceCompare(s string, t string) bool {
 		}
 	}
 
-	if stackS.Length != stackT.Length {
+	if stackS.Count != stackT.Count {
 		return false
 	}
 
-	for stackS.Length > 0 {
+	for stackS.Count > 0 {
 		itemS, _ := stackS.Pop()
 		itemT, _ := stackT.Pop()
 		if itemS != itemT {
@@ -176,4 +177,93 @@ func RunPing() {
 	fmt.Println(rc4.Ping(4002))
 	fmt.Println("Queue:", rc4.QueueCounter.Elements)
 	fmt.Println()
+}
+
+func RunCountStudents() {
+	// students1 := []int{1, 1, 0, 0}
+	// sandwiches1 := []int{0, 1, 0, 1}
+	// numberofStudentsAreUnableToEat1 := countStudents(students1, sandwiches1)
+	// fmt.Printf("Count students:%d", numberofStudentsAreUnableToEat1)
+	// fmt.Println()
+
+	students2 := []int{1, 1, 1, 0, 0, 1}
+	sandwiches2 := []int{1, 0, 0, 0, 1, 1}
+	numberofStudentsAreUnableToEat2 := countStudents(students2, sandwiches2)
+	fmt.Printf("Count students:%d", numberofStudentsAreUnableToEat2)
+	fmt.Println()
+}
+
+func countStudents(students []int, sandwiches []int) int {
+	if len(students) != len(sandwiches) {
+		return 0
+	}
+
+	queueStudents := models.Queue{}
+	for _, student := range students {
+		queueStudents.Enqueue(student)
+	}
+
+	stackSandwiches := models.Stack{}
+	for index := len(sandwiches) - 1; index >= 0; index-- {
+		stackSandwiches.Push(sandwiches[index])
+	}
+
+	retryCount := 0
+
+	for queueStudents.Count > 0 {
+		student := queueStudents.Peek()
+		sandwich, _ := stackSandwiches.Peek()
+		if student == sandwich {
+			queueStudents.Dequeue()
+			stackSandwiches.Pop()
+			retryCount = 0
+		} else {
+			queueStudent, _ := queueStudents.Dequeue()
+			queueStudents.Enqueue(queueStudent)
+			retryCount++
+			if retryCount > queueStudents.Count {
+				break
+			}
+		}
+	}
+
+	return queueStudents.Count
+}
+
+func RunRemoveDuplicates() {
+	s1 := "abbaca"
+	fmt.Println("Remove duplicate:", removeDuplicates(s1))
+
+	s2 := "azxxzy"
+	fmt.Println("Remove duplicate:", removeDuplicates(s2))
+}
+
+func removeDuplicates(s string) string {
+	lenS := len(s)
+	if lenS == 1 {
+		return s
+	}
+
+	stackS := models.Stack{}
+	for index := lenS - 1; index >= 0; index-- {
+		intS := (int)(s[index])
+		if stackS.Count > 0 {
+			item, _ := stackS.Peek()
+			if item == intS {
+				stackS.Pop()
+				continue
+			}
+		}
+		stackS.Push(intS)
+	}
+
+	var strBuilder strings.Builder
+	strBuilder.Grow(stackS.Count)
+
+	for stackS.Count > 0 {
+		item, _ := stackS.Pop()
+		strBuilder.WriteRune(rune(item))
+	}
+
+	return strBuilder.String()
 }

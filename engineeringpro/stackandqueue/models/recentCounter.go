@@ -1,12 +1,12 @@
 package models
 
 type RecentCounter struct {
-	QueueCounter QueueInt
+	QueueCounter Queue
 }
 
 func Constructor() RecentCounter {
 	return RecentCounter{
-		QueueCounter: QueueInt{},
+		QueueCounter: Queue{},
 	}
 }
 

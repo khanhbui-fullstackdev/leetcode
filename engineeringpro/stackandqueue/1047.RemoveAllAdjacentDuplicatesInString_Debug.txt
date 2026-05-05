@@ -1,0 +1,56 @@
+s = "abbaca"
+
+intS = "a" // 97
+{
+	if stackS.Count > 0 ❌
+	stackS.Push(97) // stackS = [97]  
+}
+
+intS = "c" // 99
+{
+	if stackS.Count > 0 ✅{
+		item = stackS.Peek() = 97
+		if item == intS (97==99)❌ 
+	}
+	stackS.Push(99) // stackS = [99,97]  
+}
+
+intS = "a" // 97
+{
+	if stackS.Count > 0 ✅{
+		item = stackS.Peek() = 99
+		if item == intS (99==97)❌  
+	}
+	stackS.Push(97) // stackS = [97,99,97]  
+}
+
+intS = "b" // 98
+{
+	if stackS.Count > 0 ✅{
+		item = stackS.Peek() = 97
+		if item == intS (97==98)❌  
+	}
+	stackS.Push(98) // stackS = [98,97,99,97]  
+}
+
+intS = "b" // 98
+{
+	if stackS.Count > 0 ✅{
+		item = stackS.Peek() = 98
+		if item == intS (98==98)✅  {
+			stackS.Pop() // // stackS = [97,99,97]  
+			continue
+		}
+	}	 
+}
+intS = "a" // 98
+{
+	if stackS.Count > 0 ✅{
+		item = stackS.Peek() = 97
+		if item == intS (97==97)✅  {
+			stackS.Pop() // // stackS = [99,97]  // 'c', 'a'
+			continue
+		}
+	}	 
+}
+

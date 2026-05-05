@@ -23,9 +23,12 @@ func main() {
 
 		case 3:
 			RunPing()
+
 		case 4:
+			RunCountStudents()
 
 		case 5:
+			RunRemoveDuplicates()
 
 		case 6:
 
@@ -50,8 +53,8 @@ func showMenu() {
 	fmt.Println("1. 20. Valid Parentheses")
 	fmt.Println("2. 844. Backspace String Compare")
 	fmt.Println("3. 933. Number of Recent Calls")
-	fmt.Println("4. ")
-	fmt.Println("5. ")
+	fmt.Println("4. 1700. Number of Students Unable to Eat Lunch")
+	fmt.Println("5. 1047. Remove All Adjacent Duplicates In String")
 	fmt.Println("6. ")
 	fmt.Println("7. ")
 	fmt.Println("8. ")
