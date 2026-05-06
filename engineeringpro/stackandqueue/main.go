@@ -34,6 +34,7 @@ func main() {
 			RunTimeRequiredToBuy()
 
 		case 7:
+			RunCalPoints()
 
 		case 8:
 
@@ -57,7 +58,7 @@ func showMenu() {
 	fmt.Println("4. 1700. Number of Students Unable to Eat Lunch")
 	fmt.Println("5. 1047. Remove All Adjacent Duplicates In String")
 	fmt.Println("6. 2073. Time Needed to Buy Tickets")
-	fmt.Println("7. ")
+	fmt.Println("7. 682. Baseball Game")
 	fmt.Println("8. ")
 	fmt.Print("Enter your choice: ")
 }

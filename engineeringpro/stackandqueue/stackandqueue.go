@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"leetcode/engineeringpro/stackandqueue/models"
+	"strconv"
 	"strings"
 )
 
@@ -274,12 +275,14 @@ func RunTimeRequiredToBuy() {
 
 	takenTime1 := timeRequiredToBuy(tickets1, k1)
 	fmt.Println("Buying time:", takenTime1)
+	fmt.Println()
 
-	// tickets2 := []int{5, 1, 1, 1}
-	// k2 := 0
+	tickets2 := []int{5, 1, 1, 1}
+	k2 := 0
 
-	// takenTime2 := timeRequiredToBuy(tickets2, k2)
-	// fmt.Println("Buying time:", takenTime2)
+	takenTime2 := timeRequiredToBuy(tickets2, k2)
+	fmt.Println("Buying time:", takenTime2)
+	fmt.Println()
 }
 
 func timeRequiredToBuy(tickets []int, k int) int {
@@ -289,20 +292,70 @@ func timeRequiredToBuy(tickets []int, k int) int {
 		queueTicketBuyers.EnqueueObj(tickerBuyer)
 	}
 
+	takenTime := 0
 	for queueTicketBuyers.Count > 0 {
-		// val, _ := queueTicketBuyers.DequeueObj()
-		// tickerBuyer := val.(models.TicketBuyer)
-		// tickerBuyer.UpdateTicket()
+		takenTime++
 
 		val := queueTicketBuyers.PeekObj()
 		tickerBuyer := val.(models.TicketBuyer)
-		if tickerBuyer.Tickets > 0 {
-			tickerBuyer.Tickets--
-			val, _ = queueTicketBuyers.DequeueObj()
-			tickerBuyer = val.(models.TicketBuyer)
+		tickerBuyer.Tickets--
+		queueTicketBuyers.DequeueObj()
+
+		if tickerBuyer.Tickets == 0 {
+			if tickerBuyer.Index == k {
+				break
+			}
+		} else {
 			queueTicketBuyers.EnqueueObj(tickerBuyer)
 		}
 	}
+	return takenTime
+}
 
-	return 0
+func RunCalPoints() {
+	operations1 := []string{"5", "2", "C", "D", "+"}
+	scores1 := calPoints(operations1)
+	fmt.Println("Score:", scores1)
+
+	operations2 := []string{"5", "-2", "4", "C", "D", "9", "+", "+"}
+	scores2 := calPoints(operations2)
+	fmt.Println("Score:", scores2)
+
+	operations3 := []string{"1", "C"}
+	scores3 := calPoints(operations3)
+	fmt.Println("Score:", scores3)
+}
+
+func calPoints(operations []string) int {
+	score := 0
+	stackScore := models.Stack{}
+
+	for _, operation := range operations {
+		number, err := strconv.Atoi(operation)
+		if err != nil {
+			switch operation {
+			case "C":
+				stackScore.Pop()
+			case "D":
+				previousScore, _ := stackScore.Peek()
+				stackScore.Push(previousScore * 2)
+			case "+":
+				previousScore1, _ := stackScore.Pop()
+				previousScore2, _ := stackScore.Peek()
+
+				stackScore.Push(previousScore1)
+				totalScore := previousScore1 + previousScore2
+				stackScore.Push(totalScore)
+			}
+		} else {
+			stackScore.Push(number)
+		}
+	}
+
+	for stackScore.Count > 0 {
+		item, _ := stackScore.Pop()
+		score += item
+	}
+
+	return score
 }

@@ -11,7 +11,3 @@ func NewTicketBuyer(index int, tickets int) TicketBuyer {
 		Index:   index,
 	}
 }
-
-func (t *TicketBuyer) UpdateTicket() {
-	t.Tickets--
-}
