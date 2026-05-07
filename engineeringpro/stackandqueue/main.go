@@ -37,6 +37,10 @@ func main() {
 			RunCalPoints()
 
 		case 8:
+			RunMakeGood()
+
+		case 9:
+			RunMinLength()
 
 		case 0:
 			fmt.Println("Exit...")
@@ -59,7 +63,10 @@ func showMenu() {
 	fmt.Println("5. 1047. Remove All Adjacent Duplicates In String")
 	fmt.Println("6. 2073. Time Needed to Buy Tickets")
 	fmt.Println("7. 682. Baseball Game")
-	fmt.Println("8. ")
+	fmt.Println("8. 1544. Make The String Great")
+	fmt.Println("9. 2696. Minimum String Length After Removing Substrings")
+	fmt.Println("10. 224. Basic Calculator")
+	fmt.Println("11. 227. Basic Calculator II")
 	fmt.Print("Enter your choice: ")
 }
 

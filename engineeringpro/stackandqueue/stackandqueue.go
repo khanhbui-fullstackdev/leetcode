@@ -359,3 +359,102 @@ func calPoints(operations []string) int {
 
 	return score
 }
+
+func RunMakeGood() {
+	// a:97 A:65 b:98 B:66 c:99 C:67
+	s1 := "leEeetcode"
+	fmt.Printf("s1: %s -> after process = %s", s1, makeGood(s1))
+	fmt.Println()
+
+	s2 := "abBAcC"
+	fmt.Printf("s2: %s -> after process = %s", s2, makeGood(s2))
+	fmt.Println()
+
+	s3 := "abBAcC"
+	fmt.Printf("s2: %s -> after process = %s", s3, makeGood(s3))
+	fmt.Println()
+}
+
+func makeGood(s string) string {
+	sLength := len(s)
+	if sLength == 1 {
+		return s
+	}
+	stack := models.Stack{}
+	for _, charS := range s {
+		if stack.Count == 0 {
+			stack.Push((int(charS)))
+			continue
+		}
+		item, _ := stack.Peek()
+		if absInt(item-int(charS)) == 32 {
+			stack.Pop()
+		} else {
+			stack.Push((int(charS)))
+		}
+	}
+	var stringBuilder strings.Builder
+	stringBuilder.Grow(stack.Count)
+	nums := make([]int, 0, stack.Count)
+	for stack.Count > 0 {
+		item, _ := stack.Pop()
+		nums = append(nums, item)
+	}
+
+	for index := len(nums) - 1; index >= 0; index-- {
+		runeItem := rune(nums[index])
+		stringBuilder.WriteRune(runeItem)
+	}
+
+	return stringBuilder.String()
+}
+
+func absInt(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
+func RunMinLength() {
+	// s33 := "ABCD"
+	// fmt.Printf("A:%d", s33[0])   //A:65
+	// fmt.Printf("\nB:%d", s33[1]) // B:66
+	// fmt.Printf("\nC:%d", s33[2]) //C:67
+	// fmt.Printf("\nD:%d", s33[3]) //D:68
+
+	s1 := "ABFCACDB"
+	minLength1 := minLength(s1)
+	fmt.Printf("\n Min length:%d", minLength1)
+	fmt.Println()
+
+	s2 := "ACBBD"
+	minLength2 := minLength(s2)
+	fmt.Printf("\n Min length:%d", minLength2)
+	fmt.Println()
+
+	s1496 := "VKBAJBOYY"
+	minLength1496 := minLength(s1496)
+	fmt.Printf("\n Min length:%d", minLength1496)
+	fmt.Println()
+}
+
+func minLength(s string) int {
+	stack := models.Stack{}
+
+	for _, charS := range s {
+		if stack.Count == 0 {
+			stack.Push(int(charS))
+			continue
+		}
+		item, _ := stack.Peek()
+		if (charS == 66 && item == 65) || (item == 67 && charS == 68) {
+			stack.Pop()
+		} else {
+			stack.Push(int(charS))
+		}
+	}
+	fmt.Println("Stack:", stack)
+
+	return stack.Count
+}
