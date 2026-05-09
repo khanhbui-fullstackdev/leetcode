@@ -42,6 +42,9 @@ func main() {
 		case 9:
 			RunMinLength()
 
+		case 10:
+			RunBasicCalculatorII()
+
 		case 0:
 			fmt.Println("Exit...")
 			return
@@ -65,8 +68,8 @@ func showMenu() {
 	fmt.Println("7. 682. Baseball Game")
 	fmt.Println("8. 1544. Make The String Great")
 	fmt.Println("9. 2696. Minimum String Length After Removing Substrings")
-	fmt.Println("10. 224. Basic Calculator")
-	fmt.Println("11. 227. Basic Calculator II")
+	fmt.Println("10. 224. Basic Calculator II")
+	fmt.Println("11. 227. Basic Calculator")
 	fmt.Print("Enter your choice: ")
 }
 

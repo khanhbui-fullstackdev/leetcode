@@ -458,3 +458,100 @@ func minLength(s string) int {
 
 	return stack.Count
 }
+
+func RunBasicCalculatorII() {
+	// +:43 -:45 *:42 /:47
+
+	// s1 := "3+2*2" // 7 ✅
+	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	// fmt.Println()
+
+	// s1 = "3-2*2" // -1 ✅
+	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	// fmt.Println()
+
+	// s1 = "-3-2*2+17" // 10 ✅
+	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	// fmt.Println()
+
+	// s1 = "-3+17" // 10 ✅
+	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	// fmt.Println()
+
+	// s2 := " 3/2 " // 0✅
+	// fmt.Printf("Basic calculator II of %s  = %d", s2, calculateII(s2))
+	// fmt.Println()
+
+	s3 := " 3+50 / 2 " // 28 ✅
+	fmt.Printf("Basic calculator II of %s  = %d", s3, calculateII(s3))
+	fmt.Println()
+
+	s3 = " 525 / 25 " // 21
+	fmt.Printf("Basic calculator II of %s  = %d", s3, calculateII(s3))
+	fmt.Println()
+
+	s3 = " 3*50 / 10 "
+	fmt.Printf("Basic calculator II of %s  = %d", s3, calculateII(s3))
+	fmt.Println()
+}
+
+func calculateII(s string) int {
+	s = strings.TrimSpace(s)
+	lenS := len(s)
+	stack := models.Stack{}
+	buildNumber := 0
+	currentSign := 43 // '+'
+	for index, charS := range s {
+		if charS == 32 {
+			continue
+		}
+		// buid number first
+		if isANumber(charS) {
+			digit := int(charS - '0')
+			buildNumber = buildNumber*10 + digit
+		}
+		if !isANumber(charS) || index == lenS-1 {
+			number := buildNumber
+			// check current sign is * or /
+			switch currentSign {
+
+			case 42:
+			case 47:
+				a, _ := stack.Pop()
+				b := number
+				number = executeSignOperation(currentSign, a, b)
+				// reset
+				buildNumber = 0
+				currentSign = 43
+			case 45:
+				number = -number
+			}
+			currentSign = int(charS)
+			stack.Push(number)
+			buildNumber = 0
+		}
+	}
+	total := 0
+	for stack.Count > 0 {
+		item, _ := stack.Pop()
+		total += item
+	}
+	return total
+}
+
+func isANumber(charS rune) bool {
+	return charS != 43 && charS != 45 && charS != 42 && charS != 47
+}
+
+func executeSignOperation(sign int, a int, b int) int {
+	calculateResult := 0
+
+	switch sign {
+	case 42:
+		calculateResult = (a * b)
+
+	case 47:
+		calculateResult = (a / b)
+	}
+	return calculateResult
+}
