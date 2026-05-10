@@ -34,6 +34,18 @@ Buổi 20 Monotonic Stack & Queue->https://docs.google.com/presentation/d/1CQCcN
 Buổi 21:Prefix sum (6):https://docs.google.com/presentation/d/1v4gU5lsYGykqD4ys3jNifMGzE99zjL4a/edit?slide=id.p1#slide=id.p1
 Buổi 22:Prime number:https://docs.google.com/presentation/d/1I3jt39I6RJvg_u-rsOAjHGPoHY1uVI_I/edit
 
+
+1. elements[:index]
+Tạo một slice mới bắt đầu từ phần tử đầu tiên của mảng gốc cho đến phần tử thứ index - 1. Độ dài (Length): index
+Ví dụ: a := []int{0, 1, 2, 3, 4} -> a[:3] kết quả là [0, 1, 2].
+
+2. elements[startIndex:endIndex]
+Tạo một slice mới bắt đầu từ startIndex và kết thúc tại endIndex - 1. Độ dài (Length): endIndex - startIndex
+Ví dụ: a[1:4] kết quả là [1, 2, 3].
+
+3. elements[index:]
+Tạo một slice mới bắt đầu từ index cho đến hết phần tử cuối cùng của mảng gốc.
+Ví dụ: a[2:] kết quả là [2, 3, 4].
 ------------------------------------------------------ Employment Hero -------------------------------------------------------
 
 https://leetcode.com/.../464.../Calculate-longest-substring/

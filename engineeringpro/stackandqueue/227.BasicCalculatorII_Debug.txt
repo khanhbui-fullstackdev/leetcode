@@ -1,0 +1,43 @@
+s = " 3/2 "
+s = strings.TrimSpace(s) = "3/2"
+
+buildNumber := 0
+stack := Stack{}
+currentSign := 43
+
+index = 0, charS = '3'
+{
+	if !isSignedOperation(3) ✅
+	{
+		digit = 3
+		buildNumber = 0 * 10 + 3 = 3 
+	}
+}
+
+index = 1, charS = '/'
+{
+	if !isSignedOperation('/') ❌
+	else ✅{
+		switch (43)
+		case 43 : stack.Push(3) // stack = [3]
+		
+		currentSign = 47 // '/'
+		buildNumber = 0
+	}
+}
+
+index = 2, charS = '2'
+{
+	if !isSignedOperation('2') ✅
+	{
+		digit = 2
+		buildNumber = buildNumber * 0 + digit = 2
+	}
+	else if index == len(s) - 1✅ {
+		switch (47){
+			case 47: 
+				prev,_:=stack.Pop() = 3
+				stack.Push(pre/buildNumber) = (3/2) = 1
+		}
+	}
+}

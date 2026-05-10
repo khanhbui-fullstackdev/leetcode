@@ -1,0 +1,61 @@
+students = [1,1,1,0,0,1], sandwiches = [1,0,0,0,1,1]
+
+student = 1, sandwich = 1
+{
+	if student == sandwich ✅ {
+		queueStudents.Dequeue() // students = [1,1,0,0,1]
+		stackSandwiches.Pop()   // sandwiches = [0,0,0,1,1]
+		retryCount = 0
+	}
+}
+
+
+student = 1, sandwich = 0
+{
+	if student == sandwich  ❌
+	else ✅{
+			queueStudent, _ := queueStudents.Dequeue()
+			queueStudents.Enqueue(queueStudent) // students = [1,0,0,1,1]; sandwiches = [0,0,0,1,1]
+			retryCount = 1
+			
+	}
+}
+
+
+student = 1, sandwich = 0
+{
+	if student == sandwich  ❌
+	else ✅{
+			queueStudent, _ := queueStudents.Dequeue()
+			queueStudents.Enqueue(queueStudent) // students = [0,0,1,1,1]; sandwiches = [0,0,0,1,1]
+			retryCount = 2
+	}
+}
+
+student = 0 sandwich = 0
+{
+	if student == sandwich  ✅{
+			queueStudents.Dequeue() // students = [ 0,1,1,1]; sandwiches = [ 0,0,1,1]
+			stackSandwiches.Pop()
+			 retryCount = 0
+	}	
+}
+
+student = 0 sandwich = 0
+{
+	if student == sandwich  ✅{
+			queueStudents.Dequeue() // students = [ 1,1,1]; sandwiches = [ 0,1,1]
+			stackSandwiches.Pop()
+retryCount = 0			
+	}
+}
+
+student = 1 sandwich = 0
+{
+	if student == sandwich  ❌
+	else{
+			queueStudent, _ := queueStudents.Dequeue()
+			queueStudents.Enqueue(queueStudent)
+			retryCount++ // 1
+	}
+}
