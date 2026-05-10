@@ -1,120 +1,43 @@
+s = " 3/2 "
+s = strings.TrimSpace(s) = "3/2"
 
-s = "3+2*2"
-
-currentSign = '+'
-
-index = 0, charS = '3'
-{
-	if isSignedOperation(charS) ❌
-	else {
-		stack = ['3']
-	}
-}
-
-index = 1, charS = '+'
-{
-	if isSignedOperation(charS) ✅{
-		currentSign = charS
-		
-	}
-}
-
-
-
-index = 2, charS = '2'
-{
-	if isSignedOperation(charS) ❌
-	else {
-		stack = ['2','3']
-	}
-}
-
-
-
-index = 3, charS = '*'
-{
-	if isSignedOperation(charS) {	
-	}
-	 
-}
-
-
-index = 4, charS = '2'
-{
-	if isSignedOperation(charS) ❌
-	else {
-		if currentSign == '*'{
-			calculatedResult:= charS * stack.Pop() = 2 * 2 = 4		
-		}
-		stack.push(4) // stack = ['4','3']
-		currentSign = '+' // reset default
-	}
-}
-
-total = 0
-stack.count > 0 {
-	total += stack.Pop()
-}
-
-return total // 7
-
-
-----------------------------------------------
-s = "3-2*2"
-currentSign = '+'
+buildNumber := 0
+stack := Stack{}
+currentSign := 43
 
 index = 0, charS = '3'
 {
-	if isSignedOperation(charS) ❌
-	else {
-		stack = ['3']
+	if !isSignedOperation(3) ✅
+	{
+		digit = 3
+		buildNumber = 0 * 10 + 3 = 3 
 	}
 }
 
-index = 1, charS = '-'
+index = 1, charS = '/'
 {
-	if isSignedOperation(charS) ✅{
-		currentSign = charS // -
+	if !isSignedOperation('/') ❌
+	else ✅{
+		switch (43)
+		case 43 : stack.Push(3) // stack = [3]
 		
+		currentSign = 47 // '/'
+		buildNumber = 0
 	}
 }
-
 
 index = 2, charS = '2'
 {
-	if isSignedOperation(charS) ❌
-	else {
-		if currentSign == '-'		
-		stack = ['-2','3']
+	if !isSignedOperation('2') ✅
+	{
+		digit = 2
+		buildNumber = buildNumber * 0 + digit = 2
 	}
-}
-
-
-
-index = 3, charS = '*'
-{
-	if isSignedOperation(charS) {
-		currentSign = '*'
-	}
-	 
-}
-
-
-index = 4, charS = '2'
-{
-	if isSignedOperation(charS) ❌
-	else {
-		if currentSign == '*'{
-			calculatedResult:= charS * stack.Pop() = 2 * -2 = -4		
+	else if index == len(s) - 1✅ {
+		switch (47){
+			case 47: 
+				prev,_:=stack.Pop() = 3
+				stack.Push(pre/buildNumber) = (3/2) = 1
 		}
-		stack.push(-4) // stack = ['-4','3']
-		currentSign = '+' // reset default
 	}
 }
-
-total = 0
-stack.count > 0 {
-	total += stack.Pop()
-}
-
-return total // -1

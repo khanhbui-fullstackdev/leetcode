@@ -28,6 +28,9 @@ func (s *Stack) Pop() (int, error) {
 	// remove it by re-slicing
 	s.elements = s.elements[:index] // arr := []int{0, 1, 2, 3, 4} -> arr[:len(arr)-1] = [0, 1, 2, 3].
 	s.Count = len(s.elements)
+
+	// // Tối ưu bộ nhớ: Xóa tham chiếu tới phần tử cũ
+	// s.elements[index] = 0
 	return element, nil
 }
 

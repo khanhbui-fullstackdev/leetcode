@@ -462,25 +462,25 @@ func minLength(s string) int {
 func RunBasicCalculatorII() {
 	// +:43 -:45 *:42 /:47
 
-	// s1 := "3+2*2" // 7 ✅
-	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
-	// fmt.Println()
+	s1 := "3+2*2" // 7 ✅
+	fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	fmt.Println()
 
-	// s1 = "3-2*2" // -1 ✅
-	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
-	// fmt.Println()
+	s1 = "3-2*2" // -1 ✅
+	fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	fmt.Println()
 
-	// s1 = "-3-2*2+17" // 10 ✅
-	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
-	// fmt.Println()
+	s1 = "-3-2*2+17" // 10 ✅
+	fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	fmt.Println()
 
-	// s1 = "-3+17" // 10 ✅
-	// fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
-	// fmt.Println()
+	s1 = "-3+17" // 10 ✅
+	fmt.Printf("Basic calculator II of %s  = %d", s1, calculateII(s1))
+	fmt.Println()
 
-	// s2 := " 3/2 " // 0✅
-	// fmt.Printf("Basic calculator II of %s  = %d", s2, calculateII(s2))
-	// fmt.Println()
+	s2 := " 3/2 " // 0✅
+	fmt.Printf("Basic calculator II of %s  = %d", s2, calculateII(s2))
+	fmt.Println()
 
 	s3 := " 3+50 / 2 " // 28 ✅
 	fmt.Printf("Basic calculator II of %s  = %d", s3, calculateII(s3))
@@ -495,42 +495,49 @@ func RunBasicCalculatorII() {
 	fmt.Println()
 }
 
+// +:43 -:45 *:42 /:47
 func calculateII(s string) int {
 	s = strings.TrimSpace(s)
 	lenS := len(s)
-	stack := models.Stack{}
+	if lenS == 1 {
+		return int(s[0])
+	}
+	// loop through string s,
+	// step 1 check if charS is empty space 32 -> ' ' -> continue
+	// step 2 build number
+	// step 3 when charS is a signedOperation '+', '-', '*', '/' then we prioritize * and / then we execute the operation and push the result into stack
+	currentSign := 43
 	buildNumber := 0
-	currentSign := 43 // '+'
+	stack := models.Stack{}
 	for index, charS := range s {
 		if charS == 32 {
 			continue
 		}
-		// buid number first
 		if isANumber(charS) {
 			digit := int(charS - '0')
 			buildNumber = buildNumber*10 + digit
 		}
 		if !isANumber(charS) || index == lenS-1 {
-			number := buildNumber
-			// check current sign is * or /
 			switch currentSign {
-
-			case 42:
-			case 47:
-				a, _ := stack.Pop()
-				b := number
-				number = executeSignOperation(currentSign, a, b)
-				// reset
-				buildNumber = 0
-				currentSign = 43
+			case 43:
+				stack.Push(buildNumber)
 			case 45:
-				number = -number
+				stack.Push(-buildNumber)
+			case 42:
+				preNumber, _ := stack.Pop()
+				stack.Push(preNumber * buildNumber)
+			case 47:
+				preNumber, _ := stack.Pop()
+				stack.Push(preNumber / buildNumber)
 			}
+			// set current sign to default '+'
 			currentSign = int(charS)
-			stack.Push(number)
 			buildNumber = 0
 		}
 	}
+
+	fmt.Println("Stack:", stack)
+
 	total := 0
 	for stack.Count > 0 {
 		item, _ := stack.Pop()
@@ -540,18 +547,84 @@ func calculateII(s string) int {
 }
 
 func isANumber(charS rune) bool {
-	return charS != 43 && charS != 45 && charS != 42 && charS != 47
+	return charS != 43 && charS != 45 && charS != 42 && charS != 47 && charS != 40 && charS != 41
 }
 
-func executeSignOperation(sign int, a int, b int) int {
-	calculateResult := 0
+func RunCalculate() {
+	// +:43 -:45 (:40 ):41
 
-	switch sign {
-	case 42:
-		calculateResult = (a * b)
+	s1 := "1 + 1" // 2 ✅
+	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
+	fmt.Println()
 
-	case 47:
-		calculateResult = (a / b)
+	s1 = " 2-1 + 2 " // 3 ✅
+	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
+	fmt.Println()
+
+	s1 = " 2-1 + (2+10) " // 13 ✅
+	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
+	fmt.Println()
+
+	s1 = "(1+(4+5+2)-3)+(6+8)" // 23 ✅
+	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
+	fmt.Println()
+}
+
+func calculate(s string) int {
+	s = strings.TrimSpace(s)
+
+	lenS := len(s)
+	if lenS == 1 {
+		return int(s[0] - '0')
 	}
-	return calculateResult
+	buildNumber := 0
+	total := 0
+	currentSign := 1 // '1' is plus sign; '-1' is negative sign
+	stack := models.Stack{}
+	for index, charS := range s {
+		if charS == 32 {
+			continue
+		}
+		if isANumber(charS) {
+			digit := int(charS - '0')
+			buildNumber = buildNumber*10 + digit
+			if index == lenS-1 {
+				total += currentSign * buildNumber
+			}
+		} else {
+			switch charS {
+			case 43: // '+'
+				total += buildNumber
+				currentSign = 1
+
+			case 45: // '-'
+				total += buildNumber
+				currentSign = -1
+
+			case 40: // '('
+				// push number (1) and sign (2) into stack
+				stack.Push(total)
+				stack.Push(currentSign)
+				total = 0
+				currentSign = 1
+
+			case 41: // ')'
+				if currentSign == 1 {
+					total += buildNumber
+				} else {
+					total -= buildNumber
+				}
+				// first pop => get sign from stack
+				item, _ := stack.Pop()
+				total *= item
+
+				// second pop => get sign from
+				item2, _ := stack.Pop()
+				total += item2
+			}
+			buildNumber = 0
+		}
+	}
+
+	return total
 }

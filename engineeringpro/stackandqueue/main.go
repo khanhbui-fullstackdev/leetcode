@@ -45,6 +45,9 @@ func main() {
 		case 10:
 			RunBasicCalculatorII()
 
+		case 11:
+			RunCalculate()
+
 		case 0:
 			fmt.Println("Exit...")
 			return
