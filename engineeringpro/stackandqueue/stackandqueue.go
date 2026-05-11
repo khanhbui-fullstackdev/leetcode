@@ -557,7 +557,7 @@ func RunCalculate() {
 	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
 	fmt.Println()
 
-	s1 = " 2-1 + 2 " // 3 ✅
+	s1 = " 2-1 - 2 " // -1 ✅
 	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
 	fmt.Println()
 
@@ -572,55 +572,50 @@ func RunCalculate() {
 
 func calculate(s string) int {
 	s = strings.TrimSpace(s)
-
-	lenS := len(s)
-	if lenS == 1 {
+	sLen := len(s)
+	if sLen == 1 {
 		return int(s[0] - '0')
 	}
+	currentSign := 1 // 1 means '+'; -1 means '-'
 	buildNumber := 0
 	total := 0
-	currentSign := 1 // '1' is plus sign; '-1' is negative sign
 	stack := models.Stack{}
 	for index, charS := range s {
 		if charS == 32 {
 			continue
 		}
+
 		if isANumber(charS) {
 			digit := int(charS - '0')
 			buildNumber = buildNumber*10 + digit
-			if index == lenS-1 {
-				total += currentSign * buildNumber
+			if index == len(s)-1 {
+				total += buildNumber * currentSign
 			}
 		} else {
 			switch charS {
+
 			case 43: // '+'
-				total += buildNumber
+				total += buildNumber * currentSign
 				currentSign = 1
 
 			case 45: // '-'
-				total += buildNumber
+				total += buildNumber * currentSign
 				currentSign = -1
 
 			case 40: // '('
-				// push number (1) and sign (2) into stack
 				stack.Push(total)
 				stack.Push(currentSign)
 				total = 0
 				currentSign = 1
 
 			case 41: // ')'
-				if currentSign == 1 {
-					total += buildNumber
-				} else {
-					total -= buildNumber
-				}
-				// first pop => get sign from stack
-				item, _ := stack.Pop()
-				total *= item
+				total = total + (currentSign * buildNumber)
 
-				// second pop => get sign from
-				item2, _ := stack.Pop()
-				total += item2
+				// first pop to get sign
+				signItem, _ := stack.Pop()
+				// second pop to get total
+				previousTotal, _ := stack.Pop()
+				total = total*signItem + previousTotal
 			}
 			buildNumber = 0
 		}
