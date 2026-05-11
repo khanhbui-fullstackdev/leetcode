@@ -1,0 +1,201 @@
+s1 := " 2-1 - 2 "
+                                    0123456
+s1 = strings.TrimSpace(s1) //  s = "2-1 - 2"
+sLen := len(s) = 7
+currentSign := 1 // 1 means '+'; -1 means '-'
+buildNumber := 0
+total := 0
+
+index = 0, charS = '2'
+{
+	if charS == 32 ❌
+	
+	if isValidNummber(charS) ✅{
+		digit = 2
+		buildNumber = buildNumber*10 + 2 = 0 * 10 + 2 = 2
+	}
+}
+
+index = 1, charS = '-'
+{
+	if charS == 32 ❌
+	
+	if isValidNummber(charS) ❌
+	else {
+		switch (charS){
+			case 45: 
+				total+= buildNumber*currentSign = 2*1=2
+				currentSign = -1
+		}
+		buildNumber = 0
+	}
+}
+
+index = 2, charS = '1'
+{
+	if charS == 32 ❌
+	
+	if isValidNummber(charS)  ✅{
+		digit = 1
+		buildNumber = buildNumber*10 + digit = 1
+	}
+}
+
+index = 3, charS = ''
+{
+	if charS == 32 {
+		continue
+	}
+}
+
+index = 4, charS = '-'
+{
+	if charS == 32 ❌
+	if isValidNummber(charS) ❌
+	else{
+		switch (charS){
+			case 45: 
+				total+=buildNumber * currentSign = 2 + 1*-1 =1
+				currentSign = -1
+		}
+		buildNumber = 0		
+	}
+}
+
+index = 5, charS = ''
+{
+	if charS == 32{
+		continue
+	}
+}
+
+index = 6, charS = '2'
+{
+	if charS == 32 ❌
+	if isValidNummber(charS)✅{
+		digit = 2
+		buildNumber = buildNumber*10+2 = 2
+		if index == sLen-1 (6 == 6) ✅{
+			total+= buildNumber*currentSign = 1 + 2*-1 = -1
+		}
+	}
+}
+
+return total = 6
+
+-------------------------------------------- Test case --------------------------------------------
+      
+s1 := "5-15-(15-33)"
+
+sign = 1
+total = 0
+buildNumber = 0
+
+index = 0, charS = '5' total = 0
+{
+	if isValidNummber(charS)✅{
+		digit = 5
+		buildNumber = buildNumber*10 + digit = 5
+	}
+}
+
+index = 1, charS = '-' total = 0
+{
+	else {
+		switch(charS){
+			case 45: // -
+			total+= buildNumber*currentSign= 5 * 1 = 5// 5
+			currentSign = -1
+		}
+		buildNumber = 0
+	}
+}
+
+index = 2, charS = '1' total = 5
+{
+	if isValidNummber('1') ✅ {
+		digit = 1
+		buildNumber = buildNumber*10+digit = 1
+	}
+}
+
+index = 3, charS = '5' total = 5
+{
+	if isValidNummber('5') ✅ {
+		digit = 5
+		buildNumber = buildNumber*10+digit = 1 * 10 + 5 = 15
+	}
+}
+
+index = 4, charS = '-' total = 5
+{
+	else ✅{
+		switch('+')
+		{
+			case 43:
+				total+= buildNumber*currentSign= 5 + (15 * -1) = -10
+				currentSign = -1
+		}
+		buildNumber = 0	
+	}
+}
+
+index = 5, charS = '(' total = -10
+{
+	else {
+		switch('('){
+			case 40:
+				//push số trc & sign sau
+				stack.Push(total) // stack [-10]
+				stack.Push(currentSign) // stack [-1,-10]
+				
+				// reset to default value
+				total = 0
+				currentSign =1
+		}
+		buildNumber = 0
+	}	
+}
+
+index = 6, charS = '1' total = 0, currentSign = 1
+{
+	 buildNumber = 1
+}
+
+index = 7, charS = '5' total = 0
+{
+	 buildNumber = 15
+}
+
+index = 8, charS = '-' total = 0
+{
+	else {
+		switch (43)
+		{
+			case 43:
+				total+= buildNumber * currentSign = 15 * 1 = 15
+				currentSign = -1
+		}
+		buildNumber = 0
+	}
+}
+
+index = 9 & 10, charS = '33' total = 15, currentSign = -1
+{
+	buildNumber = 33
+}
+index = 11, charS = ')' //   stack [-1,-10]
+{
+	else {
+		switch(charS)
+		case 41:
+			total = currentSign == -1 ✅ ? total = total + buildNumber* currentSign = 15 +  33* -1 = -18
+			
+			// get sign
+			item1 = stack.pop() = -1
+			item2 = stack.pop() = -10
+			
+			total = total*item1 +item2 = -18*(-1) -10 = 18 - 10 = 8
+	}
+}
+return total = 8
