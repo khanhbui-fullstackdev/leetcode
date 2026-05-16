@@ -1,0 +1,80 @@
+head = [1,1,2]
+
+currentNode:=head // node1
+for currentNode!=nil (node1!=nil)✅{
+	nextNode:=currentNode.Next // node1
+	
+	if nextNode!=nil && nextNode.Val == currentNode.Val (1==1) {
+		currentNode = nextNode.Next//node2
+		nextNode = nil
+	}
+} 
+
+for currentNode!=nil (node1!=nil)✅{
+	nextNode:=currentNode.Next // node2
+	if nextNode!=nil && nextNode.Val == currentNode.Val ❌
+	else {
+		currentNode = currentNode.Next // node2
+	}
+} 
+
+for currentNode!=nil (node2!=nil)✅{
+	nextNode:=currentNode.Next // node2
+	if nextNode!=nil && nextNode.Val == currentNode.Val ❌
+	else {
+		currentNode = currentNode.Next // nil
+	}
+} 
+
+return head
+
+
+head = [1,1,2,3,3]
+currentNode:=head // node1
+
+for currentNode!=nil (node1!=nil)✅{
+	nextNode:=currentNode.Next // node1
+	
+	if nextNode!=nil && nextNode.Val == currentNode.Val (1==1)✅ {
+		currentNode.Next = nextNode.Next //node1.Next = node2
+		nextNode = nil // head = [1,2,3,3]
+	}
+}
+
+for currentNode!=nil (node1!=nil)✅{
+	nextNode:=currentNode.Next // node2
+	
+	if nextNode!=nil && nextNode.Val == currentNode.Val (1==2)❌ 
+	else {
+		currentNode = nextNode // node2
+	}
+}
+
+for currentNode!=nil (node2!=nil)✅{
+	nextNode:=currentNode.Next // node3
+	
+	if nextNode!=nil && nextNode.Val == currentNode.Val (3==2)❌ 
+	else {
+		currentNode = nextNode // node3
+	}
+}
+
+for currentNode!=nil (node3!=nil)✅{
+	nextNode:=currentNode.Next // node3
+	
+	if nextNode!=nil && nextNode.Val == currentNode.Val (3==3)✅ {
+		currentNode.Next = nextNode.Next // node3.Next = nil
+		nextNode = nil // head = [1,2,3]
+	}
+}
+
+for currentNode!=nil (node3!=nil)✅{
+	nextNode:=currentNode.Next // nil
+	
+	if nextNode!=nil && nextNode.Val == currentNode.Val (3==3)❌
+	else{
+		currentNode=currentNode.Next // nil
+	}
+}
+
+return head // head = [1,2,3]

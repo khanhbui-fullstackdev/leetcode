@@ -1,0 +1,35 @@
+head = [7,7,7,7] val = 7
+
+dummyNode:= &models.ListNode{val:7, Next: head} // dummyNode = [-1,7,7,7,7]
+
+currentNode := dummyNode
+
+for currentNode != nil (-node1!=nil)✅{
+	nextNode:=currentNode.Next // node7
+	if nextNode!=nil (node7!=nil ✅) && nextNode.Val == val (node7==7)✅{
+		currentNode.Next = nextNode.Next // -node1.Next = node7.Next = node7
+	}
+}
+
+for currentNode != nil (-node1!=nil)✅{
+	nextNode:=currentNode.Next // node7
+	if nextNode!=nil (node7!=nil ✅) && nextNode.Val == val (node7==7)✅{
+		currentNode.Next = nextNode.Next // -node1.Next = node7.Next = node7
+	}
+}
+
+for currentNode != nil (-node1!=nil)✅{
+	nextNode:=currentNode.Next // node7
+	if nextNode!=nil (node7!=nil ✅) && nextNode.Val == val (node7==7)✅{
+		currentNode.Next = nextNode.Next // -node1.Next = node7.Next = node7
+	}
+}
+
+for currentNode != nil (-node1!=nil)✅{
+	nextNode:=currentNode.Next // node7
+	if nextNode!=nil (node7!=nil ✅) && nextNode.Val == val (node7==7)✅{
+		currentNode.Next = nextNode.Next // nil
+	}
+}
+
+return dummyNode.Next
