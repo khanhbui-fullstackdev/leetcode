@@ -231,3 +231,96 @@ func getIntersectionNodeUsingMath(headA, headB *models.ListNode) *models.ListNod
 
 	return currentNodeA
 }
+
+func RunReverseList() {
+	testcase1_head := &models.ListNode{
+		Val: 1, Next: &models.ListNode{
+			Val: 2,
+			Next: &models.ListNode{
+				Val: 3,
+				Next: &models.ListNode{
+					Val:  4,
+					Next: &models.ListNode{Val: 5}}}},
+	}
+	testcase1_reveredNode := reverseList(testcase1_head)
+	testcase1_reveredNode.PrintAllListNode()
+}
+
+func reverseList(head *models.ListNode) *models.ListNode {
+	if head == nil {
+		return nil
+	}
+	if head.Next == nil {
+		return head
+	}
+	var prevNode *models.ListNode = nil
+	currentNode := head
+	nextNode := currentNode
+
+	for currentNode != nil {
+		nextNode = currentNode.Next
+		currentNode.Next = prevNode
+
+		prevNode = currentNode
+		currentNode = nextNode
+	}
+
+	return prevNode
+}
+
+func RunMergeTwoLists() {
+	testcase1_list1 := &models.ListNode{Val: 1, Next: &models.ListNode{Val: 2, Next: &models.ListNode{Val: 4}}}
+	testcase1_list2 := &models.ListNode{Val: 1, Next: &models.ListNode{Val: 3, Next: &models.ListNode{Val: 4}}}
+	testcase1_mergedList := mergeTwoLists(testcase1_list1, testcase1_list2)
+	testcase1_mergedList.PrintAllListNode()
+
+	testcase3_list2 := &models.ListNode{Val: 0}
+	testcase3_mergedList := mergeTwoLists(nil, testcase3_list2)
+	testcase3_mergedList.PrintAllListNode()
+}
+
+func mergeTwoLists(list1 *models.ListNode, list2 *models.ListNode) *models.ListNode {
+	if list1 == nil && list2 == nil {
+		return nil
+	}
+
+	// Khởi tạo node output
+	mergedListNode := &models.ListNode{Val: -1, Next: nil}
+	workerNode := mergedListNode
+
+	for list1 != nil && list2 != nil {
+		list1Val := list1.Val
+		list2Val := list2.Val
+
+		if list1Val <= list2Val {
+			// Add all of list 1 into workerNode
+			node := &models.ListNode{Val: list1Val, Next: nil}
+			workerNode.Next = node
+			workerNode = workerNode.Next
+			list1 = list1.Next
+		} else {
+			// Add all of list 2 into workerNode
+			node := &models.ListNode{Val: list2Val, Next: nil}
+			workerNode.Next = node
+			workerNode = workerNode.Next
+			list2 = list2.Next
+		}
+	}
+
+	for list1 != nil {
+		// Add all of list 1 into workerNode
+		node := &models.ListNode{Val: list1.Val, Next: nil}
+		workerNode.Next = node
+		workerNode = workerNode.Next
+		list1 = list1.Next
+	}
+
+	for list2 != nil {
+		// Add all of list 1 into workerNode
+		node := &models.ListNode{Val: list2.Val, Next: nil}
+		workerNode.Next = node
+		workerNode = workerNode.Next
+		list2 = list2.Next
+	}
+	return mergedListNode.Next
+}

@@ -28,8 +28,10 @@ func main() {
 			RunGetIntersectionNode()
 
 		case 5:
+			RunReverseList()
 
 		case 6:
+			RunMergeTwoLists()
 
 		case 7:
 
@@ -59,8 +61,8 @@ func showMenu() {
 	fmt.Println("2. 83. Remove Duplicates from Sorted List")
 	fmt.Println("3. 203. Remove Linked List Elements")
 	fmt.Println("4. 160. Intersection of Two Linked Lists")
-	fmt.Println("5. ")
-	fmt.Println("6. ")
+	fmt.Println("5. 206. Reverse Linked List")
+	fmt.Println("6. 21. Merge Two Sorted Lists")
 	fmt.Println("7. ")
 	fmt.Println("8. ")
 	fmt.Println("9. ")

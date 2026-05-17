@@ -1,0 +1,32 @@
+head = [1,2,3,4,5] -> output = [5,4,3,2,1]
+
+prevNode:=nil
+currentNode:=node1
+nextNode:=nil
+
+for currentNode!=nil (node1!=nil) ✅{
+	nextNode = currentNode.Next // nextNode = node1.Next = node2
+	// nextNode.Next = currentNode // node2.Next = node1
+	currentNode.Next = prevNode // node1.Next = nil
+	
+	preNode = currentNode // node1
+	currentNode = nextNode // node2	
+}
+
+for currentNode!=nil (node2!=nil) ✅{
+	nextNode = currentNode.Next // nextNode = node2.Next = node3
+	// nextNode.Next = currentNode // node3.Next = node2
+	currentNode.Next = prevNode // node2.Next = node1
+	
+	preNode = currentNode // node2
+	currentNode = nextNode // node3	
+}
+
+for currentNode!=nil (node3!=nil) ✅{
+	nextNode = currentNode.Next // nextNode = node3.Next = node4
+	//nextNode.Next = currentNode // node4.Next = node3
+	currentNode.Next = preNode // node3.Next = node2
+	
+	preNode = currentNode // node3
+	currentNode = nextNode // node4
+}
