@@ -34,6 +34,7 @@ func main() {
 			RunMergeTwoLists()
 
 		case 7:
+			RunIsPalindrome()
 
 		case 8:
 
@@ -63,7 +64,7 @@ func showMenu() {
 	fmt.Println("4. 160. Intersection of Two Linked Lists")
 	fmt.Println("5. 206. Reverse Linked List")
 	fmt.Println("6. 21. Merge Two Sorted Lists")
-	fmt.Println("7. ")
+	fmt.Println("7. 234. Palindrome Linked List")
 	fmt.Println("8. ")
 	fmt.Println("9. ")
 	fmt.Println("10. ")

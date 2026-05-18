@@ -20,6 +20,7 @@ func RunMiddleNode() {
 	}
 
 	fmt.Println("Middle node:", middleNode(head1))
+	middleNode(head1).PrintAllListNode()
 
 	testcase3_node1 := &models.ListNode{Val: 1, Next: &models.ListNode{Val: 2}}
 	fmt.Println("Middle node:", middleNode(testcase3_node1))
@@ -323,4 +324,95 @@ func mergeTwoLists(list1 *models.ListNode, list2 *models.ListNode) *models.ListN
 		list2 = list2.Next
 	}
 	return mergedListNode.Next
+}
+
+func RunIsPalindrome() {
+	testcase1_head := &models.ListNode{
+		Val: 1,
+		Next: &models.ListNode{
+			Val: 2,
+			Next: &models.ListNode{
+				Val:  2,
+				Next: &models.ListNode{Val: 1}}}}
+
+	fmt.Printf("Is palindrome:%v", isPalindrome(testcase1_head))
+	fmt.Println()
+
+	testcase2_head := &models.ListNode{
+		Val: 1,
+		Next: &models.ListNode{
+			Val:  2,
+			Next: nil}}
+
+	fmt.Printf("Is palindrome:%v", isPalindrome(testcase2_head))
+	fmt.Println()
+
+	testcase3_node := &models.ListNode{
+		Val: 2,
+		Next: &models.ListNode{
+			Val: 3,
+			Next: &models.ListNode{
+				Val:  4,
+				Next: &models.ListNode{Val: 5}}}}
+
+	testcase3_head := &models.ListNode{
+		Val:  1,
+		Next: testcase3_node,
+	}
+
+	fmt.Printf("Is palindrome:%v", isPalindrome(testcase3_head))
+	fmt.Println()
+}
+
+func isPalindrome(head *models.ListNode) bool {
+	if head == nil || head.Next == nil {
+		return true
+	}
+	middleNode := findMiddleNode(head)
+	fmt.Printf("Print middle node:%v", middleNode)
+	middleNode.PrintAllListNode()
+
+	reversedNode := reverseListNodes(middleNode)
+	fmt.Printf("Print reverse node:%v", reversedNode)
+	reversedNode.PrintAllListNode()
+
+	currentNode := head
+	for reversedNode != nil {
+		if currentNode.Val == reversedNode.Val {
+			currentNode = currentNode.Next
+			reversedNode = reversedNode.Next
+		} else {
+			return false
+		}
+	}
+
+	return true
+}
+
+func findMiddleNode(node *models.ListNode) *models.ListNode {
+	currentNode := node
+	fastNode := node
+	for currentNode != nil {
+		if fastNode == nil || fastNode.Next == nil {
+			return currentNode
+		}
+		fastNode = currentNode.Next.Next
+		currentNode = currentNode.Next
+	}
+	return nil
+}
+
+func reverseListNodes(node *models.ListNode) *models.ListNode {
+	var previousNode *models.ListNode = nil
+	currentNode := node
+	var nextNode *models.ListNode = nil
+
+	for currentNode != nil {
+		nextNode = currentNode.Next
+		currentNode.Next = previousNode
+
+		previousNode = currentNode
+		currentNode = nextNode
+	}
+	return previousNode
 }
