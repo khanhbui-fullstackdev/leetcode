@@ -37,7 +37,7 @@ func main() {
 			RunIsPalindrome()
 
 		case 8:
-
+			BuildDoubleLinkedList()
 		case 9:
 
 		case 10:
@@ -65,7 +65,7 @@ func showMenu() {
 	fmt.Println("5. 206. Reverse Linked List")
 	fmt.Println("6. 21. Merge Two Sorted Lists")
 	fmt.Println("7. 234. Palindrome Linked List")
-	fmt.Println("8. ")
+	fmt.Println("8. Build Double Linked List")
 	fmt.Println("9. ")
 	fmt.Println("10. ")
 	fmt.Println("11. ")

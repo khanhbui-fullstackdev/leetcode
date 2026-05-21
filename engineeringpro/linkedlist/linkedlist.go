@@ -416,3 +416,20 @@ func reverseListNodes(node *models.ListNode) *models.ListNode {
 	}
 	return previousNode
 }
+
+func BuildDoubleLinkedList() {
+	linkedList := &models.LinkedList{}
+
+	// Scenario 1: GivenAddFirst_WhenLinkedListIsEmpty_ThenReturnListNodes
+	// linkedList.AddFirst(10)
+	// linkedList.AddFirst(20)
+	// linkedList.AddFirst(30)
+	// linkedList.PrintAllNodes()
+
+	// Scenario 2: GivenAddLast_WhenLinkedListIsEmpty_ThenReturnListNodes
+	linkedList.AddLast(1)
+	linkedList.AddLast(3)
+	linkedList.AddLast(8)
+	linkedList.AddLast(30)
+	linkedList.PrintAllNodes()
+}
