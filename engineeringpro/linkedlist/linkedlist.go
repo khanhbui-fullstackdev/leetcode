@@ -421,15 +421,27 @@ func BuildDoubleLinkedList() {
 	linkedList := &models.LinkedList{}
 
 	// Scenario 1: GivenAddFirst_WhenLinkedListIsEmpty_ThenReturnListNodes
-	// linkedList.AddFirst(10)
-	// linkedList.AddFirst(20)
-	// linkedList.AddFirst(30)
-	// linkedList.PrintAllNodes()
+	linkedList.AddFirst(10)
+	linkedList.AddFirst(20)
+	linkedList.AddFirst(30)
+	linkedList.PrintAllNodes()
 
 	// Scenario 2: GivenAddLast_WhenLinkedListIsEmpty_ThenReturnListNodes
-	linkedList.AddLast(1)
-	linkedList.AddLast(3)
-	linkedList.AddLast(8)
-	linkedList.AddLast(30)
+	linkedList.AddLast(40)
+	linkedList.AddLast(50)
+	linkedList.AddLast(860)
+	linkedList.AddLast(730)
 	linkedList.PrintAllNodes()
+
+	// foundNode, err := linkedList.FindNodeByValue(30)
+	// if err != nil {
+	// 	fmt.Printf("\n Error:%s", err.Error())
+	// } else {
+	// 	fmt.Printf("\n Found node:%v", foundNode)
+	// }
+	// fmt.Println()
+
+	linkedList.RemoveNodeByVal(860)
+	linkedList.PrintAllNodes()
+	linkedList.PrintAllNodeMaps()
 }
