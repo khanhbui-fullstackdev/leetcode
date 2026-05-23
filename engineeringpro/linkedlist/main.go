@@ -38,8 +38,9 @@ func main() {
 
 		case 8:
 			BuildDoubleLinkedList()
-		case 9:
 
+		case 9:
+			RunLRUCache()
 		case 10:
 
 		case 11:
@@ -66,7 +67,7 @@ func showMenu() {
 	fmt.Println("6. 21. Merge Two Sorted Lists")
 	fmt.Println("7. 234. Palindrome Linked List")
 	fmt.Println("8. Build Double Linked List")
-	fmt.Println("9. ")
+	fmt.Println("9. 146. LRU Cache")
 	fmt.Println("10. ")
 	fmt.Println("11. ")
 	fmt.Print("Enter your choice: ")

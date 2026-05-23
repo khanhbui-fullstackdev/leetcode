@@ -420,20 +420,45 @@ func reverseListNodes(node *models.ListNode) *models.ListNode {
 func BuildDoubleLinkedList() {
 	linkedList := &models.LinkedList{}
 
-	// Scenario 1: GivenAddFirst_WhenLinkedListIsEmpty_ThenReturnListNodes
-	linkedList.AddFirst(10)
-	linkedList.AddFirst(20)
-	linkedList.AddFirst(30)
-	linkedList.PrintAllNodes()
+	// Test AddFirst()
+	// linkedList.AddFirst(10)
+	// linkedList.AddFirst(20)
+	// linkedList.AddFirst(30)
+	// linkedList.PrintAllNodes()
 
-	// Scenario 2: GivenAddLast_WhenLinkedListIsEmpty_ThenReturnListNodes
-	linkedList.AddLast(40)
-	linkedList.AddLast(50)
+	// Test AddLast()
+	linkedList.AddLast(30)
+	linkedList.AddLast(75)
 	linkedList.AddLast(860)
 	linkedList.AddLast(730)
+	linkedList.AddLast(20)
 	linkedList.PrintAllNodes()
 
-	// foundNode, err := linkedList.FindNodeByValue(30)
+	// Test DesignateNodeAsHead()
+	headNode, err := linkedList.DesignateNodeAsHead("node#1")
+	if err != nil {
+		fmt.Printf("\n Error:%s", err.Error())
+	} else {
+		fmt.Printf("\n Head node:%v", headNode)
+	}
+	fmt.Println()
+	linkedList.PrintAllNodes()
+
+	// linkedList.RemoveNodeByVal(860)
+	// linkedList.PrintAllNodes()
+	// linkedList.PrintAllNodeMaps()
+
+	// foundNodes, err := linkedList.FindNodesByValue(30)
+	// if err != nil {
+	// 	fmt.Printf("\n Error:%s", err.Error())
+	// } else {
+	// 	for _, node := range foundNodes {
+	// 		fmt.Printf("\nNodeId:%s, val:%d", node.Id, node.Val)
+	// 	}
+	// }
+	// fmt.Println()
+
+	// foundNode, err := linkedList.FindNodeById("node#7")
 	// if err != nil {
 	// 	fmt.Printf("\n Error:%s", err.Error())
 	// } else {
@@ -441,7 +466,37 @@ func BuildDoubleLinkedList() {
 	// }
 	// fmt.Println()
 
-	linkedList.RemoveNodeByVal(860)
-	linkedList.PrintAllNodes()
-	linkedList.PrintAllNodeMaps()
+	// newNode, err := linkedList.AddNewNodeAfterExistingNode("node#6", 235)
+	// if err != nil {
+	// 	fmt.Printf("\n Error:%s", err.Error())
+	// } else {
+	// 	fmt.Printf("\n New node:%v", newNode)
+	// }
+	// fmt.Println()
+	// linkedList.PrintAllNodes()
+
+}
+
+func RunLRUCache() {
+	lruCache := models.Constructor(2)
+	lruCache.Put(1, 1)
+	lruCache.Put(2, 2)
+	lruCache.PrintAllListNode()
+
+	fmt.Println("Get(1):", lruCache.Get(1))
+	lruCache.PrintAllListNode()
+
+	lruCache.Put(3, 3)
+	lruCache.PrintAllListNode()
+	lruCache.PrintAllCacheMap()
+
+	fmt.Println("Get(2):", lruCache.Get(2))
+
+	lruCache.Put(4, 4)
+	lruCache.PrintAllListNode()
+	lruCache.PrintAllCacheMap()
+
+	fmt.Println("Get(1):", lruCache.Get(1))
+	fmt.Println("Get(3):", lruCache.Get(3))
+	fmt.Println("Get(4):", lruCache.Get(4))
 }
