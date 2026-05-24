@@ -19,7 +19,7 @@ type CacheNode struct {
 func Constructor(capacity int) LRUCache {
 	lruCache := LRUCache{
 		Capacity: capacity,
-		CacheMap: make(map[int]*CacheNode, 2),
+		CacheMap: make(map[int]*CacheNode, capacity),
 	}
 	return lruCache
 }
@@ -36,6 +36,7 @@ func (this *LRUCache) Get(key int) int {
 func (this *LRUCache) Put(key int, value int) {
 	foundNode, hasExisted := this.CacheMap[key]
 	if hasExisted {
+		fmt.Printf("\nNode(%d) has existed in cached. Update new value:%d", key, value)
 		// update node value
 		foundNode.Val = value
 		this.CacheMap[key] = foundNode
@@ -62,15 +63,15 @@ func (this *LRUCache) DesignateNodeAsHead(designatedNode *CacheNode) *CacheNode 
 	switch designatedNode {
 	case this.Head:
 	case this.Tail:
-		prevFoundNode := designatedNode.Previous
-		prevFoundNode.Next = nil
-		this.Tail = prevFoundNode
+		prevFoundNode := designatedNode.Previous // prevFoundNode = node8.Previous = node17
+		prevFoundNode.Next = nil                 // node17.Next = nil
+		this.Tail = prevFoundNode                // this.Tail = node17
 
-		currentHead := this.Head
-		currentHead.Previous = designatedNode
-		designatedNode.Next = currentHead
-		designatedNode.Previous = nil
-		this.Head = designatedNode
+		currentHead := this.Head              // currentHead = node1
+		currentHead.Previous = designatedNode // node1.Previous = node8
+		designatedNode.Next = currentHead     // node8.Next= node1
+		designatedNode.Previous = nil         // node8.Previous = nil
+		this.Head = designatedNode            // this.Head = node8
 
 	default:
 		prevFoundNode := designatedNode.Previous // node3
@@ -83,8 +84,10 @@ func (this *LRUCache) DesignateNodeAsHead(designatedNode *CacheNode) *CacheNode 
 
 		designatedNode.Previous = nil     // node17.Prev = nil
 		designatedNode.Next = currentHead // node17.Next = node1
-		this.Head = designatedNode
+		this.Head = designatedNode        // this.Head = node17
+		currentHead.Previous = this.Head  // node1.Previous = node17
 	}
+
 	return designatedNode
 }
 
@@ -92,20 +95,29 @@ func (this *LRUCache) DesignateNodeAsHead(designatedNode *CacheNode) *CacheNode 
 // head [1,3,17,8] -> RemoveTail() -> head [1,3,17]
 func (this *LRUCache) RemoveTail() {
 	currentTail := this.Tail
+	fmt.Printf("\nEvict the least recently used key:%v", currentTail)
+
 	// remove key
 	delete(this.CacheMap, currentTail.Key)
 
-	previousTail := currentTail.Previous
-	previousTail.Next = nil
-	this.Tail = previousTail
-	currentTail = nil
+	if currentTail == this.Head && currentTail == this.Tail {
+		this.Head = nil
+		this.Tail = nil
+		currentTail = nil
+	} else {
+		previousTail := currentTail.Previous
+		previousTail.Next = nil
+		this.Tail = previousTail
+		currentTail = nil
+	}
 }
 
 func (this *LRUCache) PrintAllListNode() {
+	fmt.Println("Print all list nodes")
 	node := this.Head
 	fmt.Printf("nil")
 	for node != nil {
-		fmt.Printf("<-%d->", node.Val)
+		fmt.Printf("<-[%d,%d]->", node.Key, node.Val)
 		node = node.Next
 	}
 	fmt.Printf("nil")
@@ -128,6 +140,7 @@ func (this *LRUCache) AddFirst(key int, value int) {
 		this.Head = newNode
 		this.Tail = newNode
 		this.CacheMap[key] = newNode
+		fmt.Printf("\nFirst new node designate as head node:%v", newNode)
 		return
 	}
 	currentNode := this.Head
@@ -135,4 +148,6 @@ func (this *LRUCache) AddFirst(key int, value int) {
 	newNode.Next = currentNode
 	this.Head = newNode
 	this.CacheMap[key] = newNode
+
+	fmt.Printf("\nAdd new node and designate as head node:%v", newNode)
 }

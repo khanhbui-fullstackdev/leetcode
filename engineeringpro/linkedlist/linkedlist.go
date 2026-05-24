@@ -478,25 +478,92 @@ func BuildDoubleLinkedList() {
 }
 
 func RunLRUCache() {
-	lruCache := models.Constructor(2)
-	lruCache.Put(1, 1)
-	lruCache.Put(2, 2)
-	lruCache.PrintAllListNode()
+	// Test case 1
+	// lruCache := models.Constructor(2)
+	// lruCache.Put(1, 1)
+	// lruCache.Put(2, 2)
+	// lruCache.PrintAllListNode()
 
-	fmt.Println("Get(1):", lruCache.Get(1))
-	lruCache.PrintAllListNode()
+	// fmt.Println("Get(1):", lruCache.Get(1))
+	// lruCache.PrintAllListNode()
+
+	// lruCache.Put(3, 3)
+	// lruCache.PrintAllListNode()
+	// lruCache.PrintAllCacheMap()
+
+	// fmt.Println("Get(2):", lruCache.Get(2))
+
+	// lruCache.Put(4, 4)
+	// lruCache.PrintAllListNode()
+	// lruCache.PrintAllCacheMap()
+
+	// fmt.Println("Get(1):", lruCache.Get(1))
+	// fmt.Println("Get(3):", lruCache.Get(3))
+	// fmt.Println("Get(4):", lruCache.Get(4))
+
+	// Test case 2
+	// lruCache := models.Constructor(1)
+	// lruCache.Put(2, 1)
+	// lruCache.PrintAllListNode()
+
+	// fmt.Println("Get(2):", lruCache.Get(2))
+	// lruCache.Put(3, 2)
+	// lruCache.PrintAllListNode()
+
+	// fmt.Println("Get(2):", lruCache.Get(2))
+	// fmt.Println("Get(3):", lruCache.Get(3))
+
+	// Test case 14
+	lruCache := models.Constructor(3)
+	lruCache.Put(1, 1)
+
+	// headNode1 := lruCache.Head
+	// fmt.Printf("\nHead1:%v | Next:%v | Prev:%v", headNode1, headNode1.Next, headNode1.Previous)
+
+	lruCache.Put(2, 2)
+	// headNode2 := lruCache.Head
+	// fmt.Printf("\nHead2:%v | Next:%v | Prev:%v", headNode2, headNode2.Next, headNode2.Previous)
 
 	lruCache.Put(3, 3)
-	lruCache.PrintAllListNode()
-	lruCache.PrintAllCacheMap()
-
-	fmt.Println("Get(2):", lruCache.Get(2))
+	// headNode3 := lruCache.Head
+	// fmt.Printf("\nHead3:%v | Next:%v | Prev:%v", headNode3, headNode3.Next, headNode3.Previous)
+	// fmt.Printf("\nNode2:%v | Next:%v | Prev:%v", headNode3.Next, headNode3.Next.Next, headNode3.Next.Previous)
+	// fmt.Printf("\nNode1:%v | Next:%v | Prev:%v", headNode3.Next.Next, headNode3.Next.Next.Next, headNode3.Next.Next.Previous)
 
 	lruCache.Put(4, 4)
-	lruCache.PrintAllListNode()
-	lruCache.PrintAllCacheMap()
+	// headNode4 := lruCache.Head
+	// fmt.Printf("\nHead4:%v | Next:%v | Prev:%v", headNode4, headNode4.Next, headNode4.Previous)
+	// fmt.Printf("\nNode3:%v | Next:%v | Prev:%v", headNode4.Next, headNode4.Next.Next, headNode4.Next.Previous)
+	// fmt.Printf("\nNode2:%v | Next:%v | Prev:%v", headNode4.Next.Next, headNode4.Next.Next.Next, headNode4.Next.Next.Previous)
 
-	fmt.Println("Get(1):", lruCache.Get(1))
-	fmt.Println("Get(3):", lruCache.Get(3))
 	fmt.Println("Get(4):", lruCache.Get(4))
+	headNode4 := lruCache.Head
+	fmt.Printf("\nHead4:%v | Next:%v | Prev:%v", headNode4, headNode4.Next, headNode4.Previous)
+	fmt.Printf("\nNode3:%v | Next:%v | Prev:%v", headNode4.Next, headNode4.Next.Next, headNode4.Next.Previous)
+	fmt.Printf("\nNode2:%v | Next:%v | Prev:%v", headNode4.Next.Next, headNode4.Next.Next.Next, headNode4.Next.Next.Previous)
+
+	// lruCache.PrintAllListNode()
+
+	fmt.Println("Get(3):", lruCache.Get(3))
+	headNode3 := lruCache.Head
+	fmt.Printf("\nHead3:%v | Next:%v | Prev:%v", headNode3, headNode3.Next, headNode3.Previous)
+	fmt.Printf("\nNode4:%v | Next:%v | Prev:%v", headNode3.Next, headNode3.Next.Next, headNode3.Next.Previous)
+	fmt.Printf("\nNode2:%v | Next:%v | Prev:%v", headNode3.Next.Next, headNode3.Next.Next.Next, headNode3.Next.Next.Previous)
+
+	fmt.Println("Get(2):", lruCache.Get(2))
+	headNode2 := lruCache.Head
+	fmt.Printf("\nHead2:%v | Next:%v | Prev:%v", headNode2, headNode2.Next, headNode2.Previous)
+	fmt.Printf("\nNode3:%v | Next:%v | Prev:%v", headNode2.Next, headNode2.Next.Next, headNode2.Next.Previous)
+	fmt.Printf("\nNode4:%v | Next:%v | Prev:%v", headNode2.Next.Next, headNode2.Next.Next.Next, headNode2.Next.Next.Previous)
+
+	// lruCache.PrintAllListNode()
+
+	// fmt.Println("Get(1):", lruCache.Get(1))
+	// lruCache.PrintAllListNode()
+
+	lruCache.Put(5, 5)
+	headNode5 := lruCache.Head
+	fmt.Printf("\nHead2:%v | Next:%v | Prev:%v", headNode5, headNode5.Next, headNode5.Previous)
+	fmt.Printf("\nNode3:%v | Next:%v | Prev:%v", headNode5.Next, headNode5.Next.Next, headNode5.Next.Previous)
+	fmt.Printf("\nNode4:%v | Next:%v | Prev:%v", headNode5.Next.Next, headNode5.Next.Next.Next, headNode5.Next.Next.Previous)
 }
