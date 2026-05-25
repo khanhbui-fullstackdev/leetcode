@@ -262,6 +262,7 @@ func (l *LinkedList) DesignateNodeAsHead(nodeId string) (*Node, error) {
 		foundNode.Prev = nil         // node17.Prev = nil
 		foundNode.Next = currentHead // node17.Next = node1
 		l.First = foundNode
+		currentHead.Prev = l.First
 	}
 	return foundNode, nil
 }
