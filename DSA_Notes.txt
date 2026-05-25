@@ -10,6 +10,9 @@ go mod init 4.Sort
 
 ✅ ❌
 
+----------------------------------------- The Algorithms in Go -------------------------------------------
+https://github.com/TheAlgorithms/Go
+
 --------------------------------------- Slides ------------------------------------------------------------
 Buổi 1 Slice array:https://docs.google.com/presentation/d/1UXq3HTFCA-0hGWPFiu620wBJg0E7VGg-/edit#slide=id.p1
 Buổi 2 String:https://docs.google.com/presentation/d/1-9V6zRv-4YXR6XelNh4Qnu4ijF6QE93H/edit?slide=id.p1#slide=id.p1
@@ -184,3 +187,23 @@ func main() {
 
 ------------------------------------------------------ Review progress ------------------------------------------
 https://docs.google.com/spreadsheets/d/1N-Ed0GlvUXyxB0kgFbjuejUNZeNx58BLw4Hsz9iHVtQ/edit?gid=0#gid=0
+
+
+----------------------------------------------------- Pointer in Golang -----------------------------------------
+Trong Golang, toán tử & dùng để lấy ĐỊA CHỈ(Address) của chính biến đó(address of the variable/pointer itself), chứ không phải là giá trị vùng nhớ mà con trỏ đó đang trỏ tới (the memory address it points to).
+
+headA.Next.Next là một biến con trỏ nằm trên Stack/Heap thuộc node a2. Bản thân cái con trỏ này phải nằm ở một vị trí nào đó trong bộ nhớ để lưu giá trị. Khi bạn dùng &headA.Next.Next, bạn đang lấy địa chỉ vùng nhớ của chính cái hộp lưu trữ con trỏ đó.
+Tương tự, headB.Next.Next.Next là một biến con trỏ nằm ở node b3. Vì node a2 và node b3 là hai node hoàn toàn nằm ở hai vị trí khác nhau, nên địa chỉ của hai biến Next nằm bên trong chúng bắt buộc phải khác nhau (0x3b288ca9c068 và 0x3b288ca9c078 như trong hình console của bạn).
+
+Để kiểm tra xem chúng có đang trỏ chung vào một node c1 hay không, bạn cần in ra giá trị con trỏ (địa chỉ vùng nhớ của node mục tiêu) chứ không phải địa chỉ của con trỏ.
+
+fmt.Printf("\nPrint memory address shared node A: %p\n", headA.Next.Next)
+fmt.Printf("\nPrint memory address shared node B: %p\n", headB.Next.Next.Next)
+
+TÓM LẠI in ra địa chỉ con trỏ 
+fmt.Printf("...", &headA.Next.Next)
+fmt.Printf("...", &headB.Next.Next.Next)
+
+In ra địa chỉ vùng nhớ 
+fmt.Printf("...", headA.Next.Next)
+fmt.Printf("...", headB.Next.Next.Next)

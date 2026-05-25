@@ -1,0 +1,181 @@
+listA = [4,1,8,4,5], listB = [5,6,1,8,4,5]
+
+currentNodeA := listA
+currentNodeB := listB
+
+for currentNodeA!=currentNodeB (node4!=node5) ✅ {
+	if currentNodeA == nil (node4==nil)❌//currentNodeA chưa đi hết danh sách
+	else ✅ {
+		currentNodeA = currentNodeA.Next // node1
+	}
+	
+	if currentNodeB == nil (node5!=nil)❌//currentNodeB chưa đi hết danh sách
+	else{
+		currentNodeB =  currentNodeB.Next // node6
+	}
+}
+
+for currentNodeA!=currentNodeB (node1!=node6) ✅ {
+	if currentNodeA == nil (node1==nil)❌//currentNodeA chưa đi hết danh sách
+	else {
+		currentNodeA = currentNodeA.Next // node8
+	}
+	
+	if currentNodeB == nil (node6==nil)❌//currentNodeB chưa đi hết danh sách
+	else{
+		currentNodeB =  currentNodeB.Next // node1
+	}
+}
+
+for currentNodeA!=currentNodeB (node8!=node1) ✅ {
+	if currentNodeA == nil (node8==nil)❌//currentNodeA chưa đi hết danh sách
+	else {
+		currentNodeA = currentNodeA.Next // node4
+	}
+	
+	if currentNodeB == nil (node1==nil)❌//currentNodeB chưa đi hết danh sách
+	else{
+		currentNodeB =  currentNodeB.Next // node8
+	}
+}
+
+for currentNodeA!=currentNodeB (node4!=node8) ✅ {
+	if currentNodeA == nil (node4==nil)❌//currentNodeA chưa đi hết danh sách
+	else {
+		currentNodeA = currentNodeA.Next // node5
+	}
+	
+	if currentNodeB == nil (node8==nil)❌//currentNodeB chưa đi hết danh sách
+	else{
+		currentNodeB =  currentNodeB.Next // node4
+	}
+}
+
+for currentNodeA!=currentNodeB (node5!=node4) ✅ {
+	if currentNodeA == nil (node5==nil)❌//currentNodeA chưa đi hết danh sách
+	else {
+		currentNodeA = currentNodeA.Next // nil
+	}
+	
+	if currentNodeB == nil (node8==nil)❌//currentNodeB chưa đi hết danh sách
+	else{
+		currentNodeB =  currentNodeB.Next // node5
+	}
+}
+
+for currentNodeA!=currentNodeB (nil!=node5) ✅ {
+	if currentNodeA == nil (nil==nil)✅//currentNodeA đi hết con đường của mình
+	{
+		currentNodeA = headB  // currentNodeA bắt đầu con đường mới node5
+	}
+	if currentNodeB == nil (node4==nil)❌
+	else {
+		currentNodeB = currentNodeB.Next // nil
+	}
+}
+
+for currentNodeA!=currentNodeB (node5!=nil) ✅ {
+	if currentNodeA == nil (node5==nil)❌
+	else{
+		currentNodeA=currentNodeA.Next = node6
+	}
+	if currentNodeB == nil (nil == nil)✅{
+		currentNodeB = headA //  node4
+	}
+}
+
+for currentNodeA!=currentNodeB (node6!=node4) ✅ {
+	if currentNodeA == nil (node6==nil)❌
+	else{
+		currentNodeA=currentNodeA.Next = node1
+	}
+	if currentNodeB == nil (node4 == nil)❌
+	else{
+		currentNodeB = currentNodeB.Next // node1
+	}
+}
+
+for currentNodeA!=currentNodeB (node1!=node1) ✅ {
+	if currentNodeA == nil (node1==nil)❌
+	else{
+		currentNodeA=currentNodeA.Next = node8
+	}
+	if currentNodeB == nil (node1 == nil)❌
+	else{
+		currentNodeB = currentNodeB.Next // node8
+	}
+}
+
+for currentNodeA!=currentNodeB (node8!=node8) ❌ 
+
+return currentNodeA // node8
+
+// Test case does not have any interaction node
+
+listA = [2,6,4], listB = [1,5]
+currentNodeA := listA
+currentNodeB := listB
+
+for currentNodeA!=currentNodeB (node2!=node1) ✅ {
+	if currentNodeA!=nil (node2!=nil)✅{
+		currentNodeA = currentNodeA.Next //node6
+	}
+	
+	if currentNodeB!=nil (node1!=nil)✅{
+		currentNodeB = currentNodeB.Next //node5
+	}
+}
+
+for currentNodeA!=currentNodeB (node6!=node5) ✅ {
+	if currentNodeA!=nil (node6!=nil)✅{
+		currentNodeA = currentNodeA.Next //node4
+	}
+	
+	if currentNodeB!=nil (node5!=nil)✅{
+		currentNodeB = currentNodeB.Next //nil
+	}
+}
+
+for currentNodeA!=currentNodeB (node4!=nil) ✅ {
+	if currentNodeA!=nil (node4!=nil)✅{
+		currentNodeA = currentNodeA.Next //nil
+	}
+	
+	if currentNodeB!=nil (nil!=nil)❌
+	else{
+		currentNodeB = listA // node2 B đã đi hết chặng đường của mình, B start 1 chặng đường mới
+	}
+}
+
+for currentNodeA!=currentNodeB (nil!=node2) ✅ {
+	if currentNodeA!=nil ❌
+	else ✅ {
+		currentNodeA = listB // node1
+	}
+	if currentNodeB!=nil (node2!=nil)✅{
+		currentNodeB=currentNodeB.Next // node6
+	}
+}
+
+for currentNodeA!=currentNodeB (node1!=node6) ✅ {
+	if currentNodeA!=nil (node1!=nil)✅{
+		currentNodeA=currentNodeA.Next // node5
+	}
+	if currentNodeB!=nil (node6!=nil)✅{
+		currentNodeB=currentNodeB.Next // node4
+	}
+}
+
+for currentNodeA!=currentNodeB (node5!=node4) ✅ {
+ 
+	if currentNodeA!=nil (node5!=node4)✅{
+		currentNodeA=currentNodeA.Next // nil
+	}
+	if currentNodeB!=nil (node6!=nil)✅{
+		currentNodeB=currentNodeB.Next // nil
+	}
+}
+
+for currentNodeA!=currentNodeB (nil!=nil) ❌ 
+
+return nil

@@ -1,0 +1,80 @@
+head = [1,2,3,4,5] -> output = [5,4,3,2,1]
+
+prevNode:=nil
+currentNode:=node1
+nextNode:=nil
+
+for currentNode!=nil (node1!=nil) ✅{
+	nextNode = currentNode.Next // nextNode = node1.Next = node2 -> {val:2,next:node3}
+	// nextNode.Next = currentNode // node2.Next = node1
+	currentNode.Next = prevNode // node1.Next = nil
+	
+	prevNode = currentNode // node1 -> {val:1,next:nil}
+	currentNode = nextNode // node2	
+}
+
+for currentNode!=nil (node2!=nil) ✅{
+	nextNode = currentNode.Next // nextNode = node2.Next = node3 -> {val:3,next: {val:4, next: {val:5, next:nil} } }
+	// nextNode.Next = currentNode // node3.Next = node2
+	currentNode.Next = prevNode // node2.Next = node1 
+	
+	prevNode = currentNode // node2 -> {val:2,next:{val:1,next:nil}}
+	currentNode = nextNode // node3	
+}
+
+for currentNode!=nil (node3!=nil) ✅{
+	nextNode = currentNode.Next // nextNode = node3.Next = node4 -> {next: {val:4, next: {val:5, next:nil} } }
+	//nextNode.Next = currentNode // node4.Next = node3
+	currentNode.Next = prevNode // node3.Next = node2
+	
+	prevNode = currentNode // node3 -> {val:3, next: { val:2, next: { val:1, next:nil } } }
+	currentNode = nextNode // node4
+}
+
+
+for currentNode!=nil (node4!=nil) ✅{
+	nextNode = currentNode.Next //  node5	           node5 -> {next: {val:5, next:nil}} 
+	currentNode.Next = prevNode // node4.Next = node3
+	
+	prevNode = currentNode // node4 -> {val:4, next: {node3}}
+	currentNode = nextNode // node5
+}
+
+
+for currentNode!=nil (node5!=nil) ✅{
+	nextNode = currentNode.Next //  nil	
+	currentNode.Next = prevNode // node5.Next = node4
+	
+	prevNode = currentNode // node5 -> {val:5, next: {node4}}
+	currentNode = nextNode // nil
+}
+
+currentNode.PrintAllNodes() // nil
+nextNode.PrintAllNodes() // nil
+prevNode.PrintAllNodes() // 
+
+
+--------------------------------------------------
+head = [2,1] -> output = [1,2]
+
+prevNode:=nil
+currentNode:=node1
+nextNode:=nil
+
+for curentNode!=nil (node2!=nil)✅ {
+	nextNode = curentNode.Next // node1
+	
+	curentNode.Next = prevNode // node2.Next = nil
+	
+	prevNode = currentNode // node2 {val:2,next:nil}
+	curentNode = nextNode // node1	
+}
+
+for curentNode!=nil (node1!=nil)✅ {
+	nextNode = curentNode.Next // nil
+	
+	curentNode.Next = prevNode // node1.Next = node2
+	
+	prevNode = currentNode // node1 {val:1,next: {val:2,next:nil} }
+	curentNode =  nextNode
+}

@@ -1,0 +1,119 @@
+-------------------------------------------- 876. Middle of the Linked List --------------------------------------------
+
+head  = [1,2,3,4,5]
+
+currentNode: = head // node1
+fastNode = head// node1
+
+while currentNode!=nil (node1!=nil) ✅  {
+	
+	if fastNode.Next == nil (node2==nil) ❌
+	
+	currentNode = currentNode.Next // node2
+	fastNode = fastNode.Next.Next // node3
+}
+
+while currentNode!=nil (node2!=nil) ✅ {
+	if fastNode.Next == nil (node5==nil) ❌
+	
+	currentNode = currentNode.Next // node3
+	fastNode = fastNode.Next.Next // node5
+}
+
+while currentNode!=nil (node3!=nil)  ✅
+{
+	 if fastNode.Next == nil (node5==nil) ✅{
+		 return currentNode // node3
+	 }
+}
+
+return currentNode//node3
+
+-----------------------------------------------------------------------------------------------------------------------------
+head  = [1,2,3]
+
+currentNode: = head // node1
+fastNode = head // node1
+
+while currentNode!=nil (node1!=nil)  ✅
+{
+	 if fastNode.Next == nil (node2==nil) ❌
+	 
+	 currentNode=currentNode.Next // node2
+	 fastNode = fastNode.Next.Next // node3
+}
+
+while currentNode!=nil (node2!=nil)  ✅
+{
+	 if fastNode == nil || fastNode.Next == nil (node3.Next == nil ) ✅
+	 {
+			return currentNode // node2
+	 }	  
+}
+
+return currentNode//node3
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+head  = [1,2]
+
+currentNode: = head // node1
+fastNode = head // node1
+
+while currentNode!=nil (node1!=nil)  ✅
+{
+	 if fastNode == nil (node1==nil) ❌ || fastNode.Next == nil (node2==nil) ❌
+	 
+	 currentNode=currentNode.Next // node2
+	 fastNode = fastNode.Next.Next // nil
+}
+
+while currentNode!=nil (node2!=nil)  ✅
+{
+	 if fastNode == nil (nil == nil✅) 
+	 {
+			return currentNode // node2
+	 }	  
+}
+
+ 
+
+-----------------------------------------------------------------------------------------------------------------------------
+head = [1,2,3,4,5,6]
+
+currentNode:= head // node1
+fastNode = currentNode.Next.Next // node3
+
+while currentNode!=nil (node1!=nil) && fastNode!=nil (node3!=nil)✅ {
+	fastNode = fastNode.Next // node4
+	if fastNode == nil ❌ 
+	currentNode = currentNode.Next // node2
+}
+
+while currentNode!=nil (node2!=nil) && fastNode!=nil (node4!=nil)✅ {
+	fastNode = fastNode.Next // node5
+	if fastNode == nil ❌ 
+	currentNode = currentNode.Next // node3
+}
+
+while currentNode!=nil (node3!=nil) && fastNode!=nil (node5!=nil)✅ {
+	fastNode = fastNode.Next // node6
+	if fastNode == nil ❌ 
+	currentNode = currentNode.Next // node4
+}
+
+while currentNode!=nil (node4!=nil) && fastNode!=nil (node6!=nil)✅ {
+	fastNode = fastNode.Next // nil
+	if fastNode == nil ✅ {
+		return currentNode
+	}
+}
+
+head  = [1,2,3]
+currentNode: = head // node1
+fastNode = currentNode.Next.Next // node3
+while currentNode!=nil (node1!=nil) && fastNode!=nil (node3!=nil)✅ {
+	fastNode = fastNode.Next // nil
+	if fastNode == nil ❌ 
+	currentNode = currentNode.Next // node2
+}
