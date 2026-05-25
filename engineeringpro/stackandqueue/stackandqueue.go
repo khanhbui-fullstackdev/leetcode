@@ -495,54 +495,50 @@ func RunBasicCalculatorII() {
 	fmt.Println()
 }
 
-// +:43 -:45 *:42 /:47
+// +:43 -:45 *:42 /:47  32: space
 func calculateII(s string) int {
 	s = strings.TrimSpace(s)
-	lenS := len(s)
-	if lenS == 1 {
-		return int(s[0])
-	}
-	// loop through string s,
-	// step 1 check if charS is empty space 32 -> ' ' -> continue
-	// step 2 build number
-	// step 3 when charS is a signedOperation '+', '-', '*', '/' then we prioritize * and / then we execute the operation and push the result into stack
-	currentSign := 43
-	buildNumber := 0
+	sLength := len(s)
 	stack := models.Stack{}
+	currentSign := 43
+	buildNum := 0
+
 	for index, charS := range s {
 		if charS == 32 {
 			continue
 		}
 		if isANumber(charS) {
+			// focus on build number
 			digit := int(charS - '0')
-			buildNumber = buildNumber*10 + digit
+			buildNum = buildNum*10 + digit
 		}
-		if !isANumber(charS) || index == lenS-1 {
+		if !isANumber(charS) || index == sLength-1 {
 			switch currentSign {
 			case 43:
-				stack.Push(buildNumber)
+				// push build number into stack
+				stack.Push(buildNum)
+
 			case 45:
-				stack.Push(-buildNumber)
+				stack.Push(-buildNum)
+
 			case 42:
-				preNumber, _ := stack.Pop()
-				stack.Push(preNumber * buildNumber)
+				numA, _ := stack.Pop()
+				stack.Push(buildNum * numA)
+
 			case 47:
-				preNumber, _ := stack.Pop()
-				stack.Push(preNumber / buildNumber)
+				numA, _ := stack.Pop()
+				stack.Push(numA / buildNum)
 			}
-			// set current sign to default '+'
+			buildNum = 0
 			currentSign = int(charS)
-			buildNumber = 0
 		}
 	}
-
-	fmt.Println("Stack:", stack)
-
 	total := 0
 	for stack.Count > 0 {
 		item, _ := stack.Pop()
 		total += item
 	}
+
 	return total
 }
 
