@@ -546,9 +546,8 @@ func isANumber(charS rune) bool {
 	return charS != 43 && charS != 45 && charS != 42 && charS != 47 && charS != 40 && charS != 41
 }
 
+// +:43 -:45 (:40 ):41 32: empty space
 func RunCalculate() {
-	// +:43 -:45 (:40 ):41
-
 	s1 := "1 + 1" // 2 ✅
 	fmt.Printf("Basic calculator of %s  = %d", s1, calculate(s1))
 	fmt.Println()
@@ -568,52 +567,46 @@ func RunCalculate() {
 
 func calculate(s string) int {
 	s = strings.TrimSpace(s)
-	sLen := len(s)
-	if sLen == 1 {
-		return int(s[0] - '0')
-	}
-	currentSign := 1 // 1 means '+'; -1 means '-'
-	buildNumber := 0
+	sLength := len(s)
+	sign := 1 // 1 means '+'
+	buildingNumber := 0
 	total := 0
 	stack := models.Stack{}
+
 	for index, charS := range s {
 		if charS == 32 {
 			continue
 		}
-
 		if isANumber(charS) {
 			digit := int(charS - '0')
-			buildNumber = buildNumber*10 + digit
-			if index == len(s)-1 {
-				total += buildNumber * currentSign
+			buildingNumber = buildingNumber*10 + digit
+			if index == sLength-1 {
+				total += buildingNumber * sign
 			}
 		} else {
 			switch charS {
+			case 43: // +
+				total += buildingNumber * sign
+				sign = 1
 
-			case 43: // '+'
-				total += buildNumber * currentSign
-				currentSign = 1
+			case 45: // -
+				total += buildingNumber * sign
+				sign = -1
 
-			case 45: // '-'
-				total += buildNumber * currentSign
-				currentSign = -1
-
-			case 40: // '('
+			case 40: // (
 				stack.Push(total)
-				stack.Push(currentSign)
+				stack.Push(sign)
 				total = 0
-				currentSign = 1
+				sign = 1
 
-			case 41: // ')'
-				total = total + (currentSign * buildNumber)
-
-				// first pop to get sign
-				signItem, _ := stack.Pop()
-				// second pop to get total
-				previousTotal, _ := stack.Pop()
-				total = total*signItem + previousTotal
+			case 41: // )
+				total += buildingNumber * sign
+				currentSign, _ := stack.Pop()
+				total = currentSign * total
+				number, _ := stack.Pop()
+				total += number
 			}
-			buildNumber = 0
+			buildingNumber = 0
 		}
 	}
 

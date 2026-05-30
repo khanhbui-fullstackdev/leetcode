@@ -567,3 +567,45 @@ func RunLRUCache() {
 	fmt.Printf("\nNode3:%v | Next:%v | Prev:%v", headNode5.Next, headNode5.Next.Next, headNode5.Next.Previous)
 	fmt.Printf("\nNode4:%v | Next:%v | Prev:%v", headNode5.Next.Next, headNode5.Next.Next.Next, headNode5.Next.Next.Previous)
 }
+
+func RunBrowserHistory() {
+	browserHistory := models.NewBrowserHistory("leetcode.com")
+
+	browserHistory.Visit("google.com")
+	browserHistory.Visit("facebook.com")
+	browserHistory.Visit("youtube.com")
+	browserHistory.PrintAllBrowserNodes()
+
+	back := 1
+	currentPage := browserHistory.Back(back) // Back(1) -> return "facebook.com" ✅
+	fmt.Printf("\nBack(%d) -> page:%s \n", back, currentPage)
+	browserHistory.PrintAllBrowserNodes()
+
+	back = 1
+	currentPage = browserHistory.Back(back) // Back(1) -> return "google.com" ✅
+	fmt.Printf("\nBack(%d) -> page:%s \n", back, currentPage)
+	browserHistory.PrintAllBrowserNodes()
+
+	forward := 1
+	currentPage = browserHistory.Forward(forward) // return "facebook.com" ✅
+	fmt.Printf("\nForward(%d) -> page:%s \n", forward, currentPage)
+	browserHistory.PrintAllBrowserNodes()
+
+	browserHistory.Visit("linkedin.com")
+	browserHistory.PrintAllBrowserNodes()
+
+	forward = 2
+	currentPage = browserHistory.Forward(forward) //  stays at linkedin.com ✅
+	fmt.Printf("\nForward(%d) -> page:%s \n", forward, currentPage)
+	browserHistory.PrintAllBrowserNodes()
+
+	back = 2
+	currentPage = browserHistory.Back(back)
+	fmt.Printf("\nBack(%d) -> page:%s \n", back, currentPage)
+	browserHistory.PrintAllBrowserNodes()
+
+	back = 7
+	currentPage = browserHistory.Back(back)
+	fmt.Printf("\nBack(%d) -> page:%s \n", back, currentPage)
+	browserHistory.PrintAllBrowserNodes()
+}
