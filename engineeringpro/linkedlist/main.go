@@ -41,7 +41,9 @@ func main() {
 
 		case 9:
 			RunLRUCache()
+
 		case 10:
+			RunBrowserHistory()
 
 		case 11:
 
@@ -68,8 +70,8 @@ func showMenu() {
 	fmt.Println("7. 234. Palindrome Linked List")
 	fmt.Println("8. Build Double Linked List")
 	fmt.Println("9. 146. LRU Cache")
-	fmt.Println("10. ")
-	fmt.Println("11. ")
+	fmt.Println("10. 1472. Design Browser History")
+	fmt.Println("11. 1472. Design Browser History - V2")
 	fmt.Print("Enter your choice: ")
 }
 
