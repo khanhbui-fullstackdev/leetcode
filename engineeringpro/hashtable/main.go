@@ -29,7 +29,9 @@ func main() {
 
 		case 5:
 			RunCountBalls()
+
 		case 6:
+			RunNumJewelsInStones()
 
 		case 7:
 

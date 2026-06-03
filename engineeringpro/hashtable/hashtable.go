@@ -248,3 +248,34 @@ func calculateNumberedBox(num int, remainer int) int {
 	num = num / 10
 	return calculateNumberedBox(num, remainer)
 }
+
+func RunNumJewelsInStones() {
+	jewels := "aA"
+	stones := "aAAbbbb"
+	fmt.Printf("Number of stones in jewels:%d", numJewelsInStones(jewels, stones))
+	fmt.Println()
+
+	jewels = "z"
+	stones = "ZZ"
+	fmt.Printf("Number of stones in jewels:%d", numJewelsInStones(jewels, stones))
+	fmt.Println()
+}
+
+func numJewelsInStones(jewels string, stones string) int {
+	lenStones := len(stones)
+	stoneMaps := make(map[rune]int, lenStones)
+
+	for _, runeS := range stones {
+		stoneMaps[runeS]++
+	}
+	numberofStones := 0
+
+	for _, runeJ := range jewels {
+		frequency, existed := stoneMaps[runeJ]
+		if existed {
+			numberofStones += frequency
+		}
+	}
+	clear(stoneMaps)
+	return numberofStones
+}
