@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"slices"
 )
 
 func RunTwoRun() {
@@ -278,4 +279,37 @@ func numJewelsInStones(jewels string, stones string) int {
 	}
 	clear(stoneMaps)
 	return numberofStones
+}
+
+func RunGroupAnagrams() {
+	strs := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
+	groupStr := groupAnagrams(strs)
+
+	fmt.Printf("Group strs:%v", groupStr)
+	fmt.Println()
+}
+
+func groupAnagrams(strs []string) [][]string {
+	lenStrs := len(strs)
+	groupStr := make([][]string, 0, lenStrs)
+	anagramMap := make(map[string][]string, lenStrs)
+	for _, str := range strs {
+		runeArr := []rune(str)
+		slices.Sort(runeArr)
+
+		sortedStr := string(runeArr)
+		arrStrs, existed := anagramMap[sortedStr]
+		if existed {
+			arrStrs = append(arrStrs, str)
+			anagramMap[sortedStr] = arrStrs
+		} else {
+			anagramMap[sortedStr] = []string{str}
+		}
+	}
+
+	for _, strs := range anagramMap {
+		groupStr = append(groupStr, strs)
+	}
+
+	return groupStr
 }

@@ -1,0 +1,38 @@
+strs = ["eat","tea","tan","ate","nat","bat"]
+mapStr:= make(map[str][]string,len(strs))
+
+index = 0, str = "eat"
+{
+	sort(str) -> "aet"
+	mapStr["aet"].Append(str)	
+}
+
+index = 1, str = "tea"
+{
+	sort(str) -> "aet"
+	mapStr["aet"].Append(str) // mapStr ["aet":["eat","tea"]]
+}
+
+index = 2, str = "tan"
+{
+	sort(str) -> "ant"
+	mapStr["aet"].Append(str) // mapStr ["aet":["eat","tea"],"ant":["tan"]]
+}
+
+index = 3, str = "ate"
+{
+	sort(str) -> "aet"
+	mapStr["aet"].Append(str) // mapStr ["aet":["eat","tea","at"],"ant":["tan"]]
+}
+
+index = 4, str = "nat"
+{
+	sort(str) -> "ant"
+	mapStr["aet"].Append(str) // mapStr ["aet":["eat","tea","at"],"ant":["tan","nat"]]
+}
+
+index = 5, str = "bat"
+{
+	sort(str) -> "abt"
+	mapStr["aet"].Append(str) // mapStr ["aet":["eat","tea","at"],"ant":["tan","nat"],"abt":["bat"]]
+}

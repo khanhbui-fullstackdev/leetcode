@@ -34,6 +34,7 @@ func main() {
 			RunNumJewelsInStones()
 
 		case 7:
+			RunGroupAnagrams()
 
 		case 8:
 
