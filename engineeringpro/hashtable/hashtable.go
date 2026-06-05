@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"slices"
+	"strings"
 )
 
 func RunTwoRun() {
@@ -312,4 +313,51 @@ func groupAnagrams(strs []string) [][]string {
 	}
 
 	return groupStr
+}
+
+func RunPartitionString() {
+	s := "abacaba"
+	fmt.Printf("Minium number of substrings:%d", partitionString(s))
+	fmt.Println()
+
+	s = "ssssss"
+	fmt.Printf("Minium number of substrings:%d", partitionString(s))
+	fmt.Println()
+
+	s = "cuieokbs"
+	fmt.Printf("Minium number of substrings:%d", partitionString(s))
+	fmt.Println()
+}
+
+func partitionString(s string) int {
+	sLength := len(s)
+	if sLength <= 2 {
+		return sLength
+	}
+
+	strBuilder := strings.Builder{}
+	strBuilder.Grow(sLength)
+	subStrMap := make(map[string]int, sLength)
+
+	for _, runeS := range s {
+		if strings.ContainsRune(strBuilder.String(), runeS) {
+			keyStr := strBuilder.String()
+			subStrMap[keyStr]++
+			strBuilder.Reset()
+		}
+		strBuilder.WriteRune(runeS)
+	}
+
+	if strBuilder.Len() > 0 {
+		keyStr := strBuilder.String()
+		subStrMap[keyStr]++
+		strBuilder.Reset()
+	}
+
+	minimumNumberOfSubStrings := 0
+	for _, frequencies := range subStrMap {
+		minimumNumberOfSubStrings += frequencies
+	}
+	clear(subStrMap)
+	return minimumNumberOfSubStrings
 }

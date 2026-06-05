@@ -37,6 +37,7 @@ func main() {
 			RunGroupAnagrams()
 
 		case 8:
+			RunPartitionString()
 
 		case 9:
 

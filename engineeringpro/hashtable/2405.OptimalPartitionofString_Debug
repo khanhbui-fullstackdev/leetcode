@@ -1,0 +1,65 @@
+s = "abacaba" 
+strBuilder:=string.stringBuilder
+
+index = 0, charS = 'a'
+{
+	!if strBuilder.Contains('a')✅{
+		strBuilder.Append('a')
+	}
+}
+
+index = 1, charS = 'b'
+{
+	!if strBuilder.Contains('b')✅{
+		strBuilder.Append('b') // ["ab"]
+	}
+}
+
+index = 2, charS = 'a'
+{
+	 !if strBuilder.Contains('a')❌{
+		 mapStr[strBuilder.toString()]++ // mapStr = ["ab":1]
+		 strBuilder.Clear()
+		 strBuilder.Append('a')
+	 }
+}
+
+index = 3, charS = 'c'
+{
+	!if strBuilder.Contains('c') ✅{
+		strBuilder.Append('c') // ["ac"]
+	}
+}
+
+index = 4, charS = 'a'
+{
+	!if strBuilder.Contains('a') ❌
+	else{
+		mapStr[strBuilder.toString()]++ // mapStr = ["ab":1,"ac":1]
+		strBuilder.Clear()
+		strBuilder.Append('a') 	// ["a"]	
+	}
+}
+
+index = 5, charS = 'b'
+{
+	!if strBuilder.Contains('b') ✅{
+		strBuilder.Append('b') // ["ab"]
+	}
+}
+
+index = 6, charS = 'a'
+{
+	!if strBuilder.Contains('a')❌
+	else ✅{
+		mapStr[strBuilder.ToString()]++ // mapStr["ab":2,"ac":1]
+		strBuilder.Clear()
+		strBuilder.Append('a')
+	}
+}
+
+if strBuilder.length>0{
+	for charS in strBuilder.tostring(){
+		mapStr["ab":2,"ac":1,"a":1]
+	}
+}
