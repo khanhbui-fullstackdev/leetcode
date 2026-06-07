@@ -1,0 +1,73 @@
+nums = [2,7,11,15], target = 9
+numLength:= len(nums) = 4
+
+numMaps:= make(map[int][int],4)
+twoSums:= make([]int, 4)
+
+index = 0, num = 2
+{
+	offset = target - num = 9 - 2 = 7
+	if numMaps[offset] (numMaps[7]) ❌
+	else {
+		numMaps[num] = index <=> numMaps[2] = 0
+	}
+}
+
+index = 1, num = 7
+{
+	offset = target - num = 9 - 7 = 2
+	if numMaps[offset] (numMaps[2])✅{
+		prevIndex = numMaps[2]
+		twoSums.Append(prevIndex,index)
+	}
+}
+
+index = 2, num = 11
+{
+	offset = target - num = 9 - 11 = -2
+	if numMaps[offset] (numMaps[-2])❌
+	else {
+		numMaps[11] = index <=> numMaps[11] = 2
+	}
+}
+
+index = 3, num = 15
+{
+	offset = target - num = 9 - 15 = -6
+	if numMaps[offset] (numMaps[-2])❌
+	else {
+		numMaps[15] = index <=> numMaps[15] = 3
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+nums = [3,2,4], target = 6
+numLength:= len(nums) = 3
+
+index = 0, num = 3 
+{
+	offset = target - num = 6 - 3 = 3
+	if numsMap[offset] (numMaps[3])❌
+	else {
+		numsMap[num] = index <=> numsMap[3] = 0 
+	}
+}
+
+index = 1, num = 2 
+{
+	offset = target - num = 6 - 2 = 4
+	if numsMap[offset] (numMaps[4])❌
+	else {
+		numsMap[num] = index <=> numsMap[2] = 1 
+	}
+}
+
+index = 2, num = 4 
+{
+	offset = target - num = 6 - 4 = 2
+	if numsMap[offset] (numMaps[2])✅
+	{
+		preIndex:= numsMap[2] = 1
+		twoSums.Append(prevIndex,index) // [1,2]
+	}
+}
