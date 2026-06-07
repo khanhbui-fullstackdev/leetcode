@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"leetcode/engineeringpro/hashtable/models"
 	"slices"
 	"strings"
 )
@@ -360,4 +361,41 @@ func partitionString(s string) int {
 	}
 	clear(subStrMap)
 	return minimumNumberOfSubStrings
+}
+
+func RunLruCache() {
+	// Test case 1 (standard)
+	// lruCache := models.Constructor(2)
+	// lruCache.Put(1, 1)
+	// lruCache.Put(2, 2)
+	// lruCache.PrintAllNodes()
+
+	// fmt.Println("Get(1):", lruCache.Get(1))
+	// lruCache.PrintAllNodes()
+
+	// lruCache.Put(3, 3)
+	// lruCache.PrintAllNodes()
+
+	// fmt.Println("Get(2):", lruCache.Get(2))
+
+	// lruCache.Put(4, 4)
+	// lruCache.PrintAllNodes()
+
+	// fmt.Println("Get(1):", lruCache.Get(1))
+	// fmt.Println("Get(3):", lruCache.Get(3))
+	// lruCache.PrintAllNodes()
+	// fmt.Println("Get(4):", lruCache.Get(4))
+	// lruCache.PrintAllNodes()
+
+	//   Test case 6
+	lruCache := models.Constructor(1)
+	lruCache.Put(2, 1)
+	lruCache.PrintAllNodes()
+
+	fmt.Println("Get(2):", lruCache.Get(2))
+	lruCache.Put(3, 2)
+	lruCache.PrintAllNodes()
+
+	fmt.Println("Get(2):", lruCache.Get(2))
+	fmt.Println("Get(3):", lruCache.Get(3))
 }

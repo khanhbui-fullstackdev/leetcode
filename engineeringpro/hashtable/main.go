@@ -40,6 +40,7 @@ func main() {
 			RunPartitionString()
 
 		case 9:
+			RunLruCache()
 
 		case 0:
 			fmt.Println("Exit...")
