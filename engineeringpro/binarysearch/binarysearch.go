@@ -17,9 +17,10 @@ func search(nums []int, target int) int {
 		middleIndex := (leftIndex + rightIndex) / 2
 		if nums[middleIndex] == target {
 			return middleIndex
-		}
-		if nums[middleIndex] < target {
-
+		} else if nums[middleIndex] < target {
+			leftIndex = middleIndex + 1
+		} else if nums[middleIndex] > target {
+			rightIndex = middleIndex - 1
 		}
 	}
 
