@@ -19,12 +19,13 @@ func main() {
 			RunBinarySearch()
 
 		case 2:
+			RunGuessNumber()
 
 		case 3:
 			RunIsPerfectSquare()
 
 		case 4:
-
+			RunArrangeCoins()
 		case 5:
 
 		case 6:
@@ -45,7 +46,7 @@ func main() {
 }
 
 func showMenu() {
-	fmt.Println("===== Review 10.Graph =====")
+	fmt.Println("===== Review 6.Binary Search =====")
 	fmt.Println("0. Exit")
 	fmt.Println("1. 704. Binary Search")
 	fmt.Println("2. 374. Guess Number Higher or Lower")

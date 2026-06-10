@@ -1,0 +1,108 @@
+💰                         row = 1 -> coins = 1  → totalCoins(1) = 1
+💰  💰                     row = 2 -> coins = 2  → totalCoins(2) = 1 + 2 = 3
+💰  💰  💰                 row = 3 -> coins = 3  → totalCoins(3) = 1 + 2 + 3 = 6
+💰  💰  💰  💰             row = 4 -> coins = 4  → totalCoins(4) = 1 + 2 + 3 + 4 = 10
+💰  💰  💰  💰  💰         row = 5 -> coins = 5  → totalCoins(5) = 1 + 2 + 3 + 4 = 15
+💰  💰  💰  💰  💰  💰     row = 6 -> coins = 6  → totalCoins(6) = 1 + 2 + 3 + 4 = 21
+
+Vì đề bài chỉ cho số coin n, không cho số hàng k, nên ta giả sử k(số hàng) nằm trong khoảng [1..n]. 
+Binary Search sẽ giúp chúng ta “thử” hàng ở giữa trước.
+
+
+// ⚠️ Total coins là tổng số coin cần cho k hàng
+Trong toán học, công thức tính tổng Sn của n số hạng đầu tiên của một cấp số cộng là:
+Sn = ((Số hạng đầu + Số hạng cuối) x Số lượng số hạng) / 2
+
+=> totalCoins(6) = ((1 + n)*n ) / 2 = ((1+6)*6)/2 = 21
+ n = 5 => totalcoins(5) = 15
+
+
+ 
+
+Input: n = 5 (coins)
+Output: 2
+Explanation: Because the 3rd row is incomplete, we return 2.
+
+left:=1 // số hàng tối thiểu
+right:=5 // số hàng tối đa
+while (left<=right) (1<=5)✅
+{
+	// Số hàng thử nghiệm
+	mid= (left+right)/2 = (1+5)/2 = 3
+	// tổng số coins ứng với số hàng thử nghiệm
+	totalCoins:=calculateNeededCoins(3) = ((1+3)*3) / 2 = 6
+	if totalCoins == n (6 == 5) ❌
+	else if totalCoins < n (6<5)❌
+	else ✅ {
+		right = mid - 1 = 2
+	}
+}
+
+while (left<=right) (1<=2)✅
+{
+	// Số hàng thử nghiệm
+	mid= (left+right)/2 = (1+2)/2 = 1
+	// tổng số coins ứng với số hàng thử nghiệm
+	totalCoins:=calculateNeededCoins(1) = ((1+1)*3) / 2 = 3
+	if totalCoins == n (3 == 5) ❌
+	else if totalCoins < n (3<5) ✅{
+		left = mid + 1 = 2
+	}
+}
+
+while (left<=right) (2<=2)✅
+{
+	// Số hàng thử nghiệm
+	mid= (left+right)/2 = (2+2)/2 = 2
+	// tổng số coins ứng với số hàng thử nghiệm
+	totalCoins:=calculateNeededCoins(2) = ((1+2)*3) / 2 = 4
+	if totalCoins == n (4 == 5) ❌
+	else if totalCoins < n (4<5) ✅{
+		left = mid + 1 = 3
+	}
+}
+
+while (left<=right) (3<=2)❌
+
+
+return right // 2 right = giá trị cuối cùng mà coinsNeeded(right) ≤ n 
+
+
+Input: n = 8 (coins)
+
+minRow:= 1
+maxRow:=8
+
+while (minRow <= maxRow) (1<=8)✅
+{
+	midRow:= (1 + 8) / 2 = 4
+	totalCoins:=calculateNeededCoins(4) = 10
+	if totalCoins == n (10 == 8)❌
+	else if totalCoins>n (10>8)✅{
+		maxRow = midRow - 1 = 3
+	}
+}
+
+while (minRow <= maxRow) (1<=3)✅
+{
+	midRow:= (1 + 3) / 2 = 2
+	totalCoins:=calculateNeededCoins(2) = 4
+	if totalCoins == n (4 == 8)❌
+	else if totalCoins>n (4>8)❌
+	else {
+		minRow=midRow+1 = 3
+	}
+}
+
+while (minRow <= maxRow) (3<=3)✅
+{
+	midRow:= (3 + 3) / 2 = 3
+	totalCoins:=calculateNeededCoins(3) = 6
+	if totalCoins == n (6 == 8)❌
+	else if totalCoins>n (6>8)❌
+	else {
+		minRow=midRow+1 = 4
+	}
+}
+
+return maxRow // 3

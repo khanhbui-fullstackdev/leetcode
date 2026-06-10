@@ -27,6 +27,53 @@ func search(nums []int, target int) int {
 	return -1
 }
 
+var _pickedNumber int
+
+func RunGuessNumber() {
+	n := 10
+	_pickedNumber = 6
+	fmt.Printf("Return picked number:%d", guessNumber(n))
+	fmt.Println()
+
+	n = 1
+	_pickedNumber = 1
+	fmt.Printf("Return picked number:%d", guessNumber(n))
+	fmt.Println()
+
+	n = 2
+	_pickedNumber = 1
+	fmt.Printf("Return picked number:%d", guessNumber(n))
+	fmt.Println()
+}
+
+func guessNumber(n int) int {
+	left := 1
+	right := n
+
+	for left <= right {
+		middle := (left + right) / 2
+		guessRes := guess(middle)
+		switch guessRes {
+		case 0:
+			return middle
+		case -1:
+			right = middle - 1
+		case 1:
+			left = middle + 1
+		}
+	}
+	return -1
+}
+
+func guess(num int) int {
+	if num == _pickedNumber {
+		return 0
+	} else if num > _pickedNumber {
+		return -1
+	}
+	return 1
+}
+
 func RunIsPerfectSquare() {
 	num := 16
 	fmt.Printf("%d is perfect square:%v", num, isPerfectSquare(num))
@@ -52,4 +99,36 @@ func isPerfectSquare(num int) bool {
 		}
 	}
 	return false
+}
+
+func RunArrangeCoins() {
+	n := 5
+	fmt.Printf("Coin:%d => number of complete rows:%d", n, arrangeCoins(n))
+	fmt.Println()
+
+	n = 8
+	fmt.Printf("Coin:%d => number of complete rows:%d", n, arrangeCoins(n))
+	fmt.Println()
+}
+
+func arrangeCoins(n int) int {
+	minRow := 1
+	maxRow := n
+
+	for minRow <= maxRow {
+		midRow := (minRow + maxRow) / 2
+		totalCoins := calculateNeededCoinsFromRow(midRow)
+		if totalCoins == n {
+			return totalCoins
+		} else if totalCoins > n {
+			maxRow = midRow - 1
+		} else {
+			minRow = midRow + 1
+		}
+	}
+	return maxRow
+}
+
+func calculateNeededCoinsFromRow(coin int) int {
+	return ((1 + coin) * coin) / 2
 }
