@@ -26,7 +26,9 @@ func main() {
 
 		case 4:
 			RunArrangeCoins()
+
 		case 5:
+			RunSearchInsert()
 
 		case 6:
 

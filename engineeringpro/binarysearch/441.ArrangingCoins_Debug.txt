@@ -17,8 +17,6 @@ Sn = ((Số hạng đầu + Số hạng cuối) x Số lượng số hạng) / 2
  n = 5 => totalcoins(5) = 15
 
 
- 
-
 Input: n = 5 (coins)
 Output: 2
 Explanation: Because the 3rd row is incomplete, we return 2.

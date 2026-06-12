@@ -132,3 +132,41 @@ func arrangeCoins(n int) int {
 func calculateNeededCoinsFromRow(coin int) int {
 	return ((1 + coin) * coin) / 2
 }
+
+func RunSearchInsert() {
+	nums := []int{1, 3, 5, 6}
+	target := 5
+	insertedPosition := searchInsert(nums, target)
+	fmt.Printf("Nums:%v with target:%d => inserted position:%d", nums, target, insertedPosition)
+	fmt.Println()
+
+	nums = []int{1, 3, 5, 6}
+	target = 2
+	insertedPosition = searchInsert(nums, target)
+	fmt.Printf("Nums:%v with target:%d => inserted position:%d", nums, target, insertedPosition)
+	fmt.Println()
+
+	nums = []int{1, 3, 5, 6}
+	target = 7
+	insertedPosition = searchInsert(nums, target)
+	fmt.Printf("Nums:%v with target:%d => inserted position:%d", nums, target, insertedPosition)
+	fmt.Println()
+}
+
+func searchInsert(nums []int, target int) int {
+	leftIndex := 0
+	rightIndex := len(nums) - 1
+
+	for leftIndex <= rightIndex {
+		middleIndex := (leftIndex + rightIndex) / 2
+		middleVal := nums[middleIndex]
+		if middleVal == target {
+			return middleIndex
+		} else if middleVal > target {
+			rightIndex = middleIndex - 1
+		} else {
+			leftIndex = middleIndex + 1
+		}
+	}
+	return leftIndex
+}
