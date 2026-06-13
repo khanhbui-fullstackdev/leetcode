@@ -31,6 +31,7 @@ func main() {
 			RunSearchInsert()
 
 		case 6:
+			RunSearchRange()
 
 		case 7:
 

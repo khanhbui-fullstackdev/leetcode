@@ -170,3 +170,68 @@ func searchInsert(nums []int, target int) int {
 	}
 	return leftIndex
 }
+
+func RunSearchRange() {
+	nums := []int{5, 7, 7, 8, 8, 10}
+	target := 8
+	fmt.Printf("Nums:%v and target:%d -> search range:%v", nums, target, searchRange(nums, target))
+	fmt.Println()
+
+	nums = []int{5, 7, 7, 8, 8, 10}
+	target = 6
+	fmt.Printf("Nums:%v and target:%d -> search range:%v", nums, target, searchRange(nums, target))
+	fmt.Println()
+
+	nums = []int{}
+	target = 0
+	fmt.Printf("Nums:%v and target:%d -> search range:%v", nums, target, searchRange(nums, target))
+	fmt.Println()
+}
+
+func searchRange(nums []int, target int) []int {
+	rangingIndexes := make([]int, 0, 2)
+	minimumIndex := findMinimumIndex(nums, target)
+	maximumIndex := findMaximumIndex(nums, target)
+
+	fmt.Println("Minimum index:", minimumIndex)
+	fmt.Println("Maximum index:", maximumIndex)
+
+	if minimumIndex > maximumIndex {
+		// Nếu minimumIndex > maximumIndex ta return -1, -1 lý do ko tìm thấy target trong array
+		minimumIndex = -1
+		maximumIndex = -1
+	}
+
+	rangingIndexes = append(rangingIndexes, minimumIndex, maximumIndex)
+	return rangingIndexes
+}
+
+func findMinimumIndex(nums []int, target int) int {
+	minimumIndex := 0
+	maximunIndex := len(nums) - 1
+
+	for minimumIndex <= maximunIndex {
+		middleIndex := (minimumIndex + maximunIndex) / 2
+		if nums[middleIndex] >= target {
+			maximunIndex = middleIndex - 1
+		} else {
+			minimumIndex = middleIndex + 1
+		}
+	}
+	return minimumIndex
+}
+
+func findMaximumIndex(nums []int, target int) int {
+	minimumIndex := 0
+	maximunIndex := len(nums) - 1
+
+	for minimumIndex <= maximunIndex {
+		middleIndex := (minimumIndex + maximunIndex) / 2
+		if nums[middleIndex] <= target {
+			minimumIndex = middleIndex + 1
+		} else {
+			maximunIndex = middleIndex - 1
+		}
+	}
+	return maximunIndex
+}
