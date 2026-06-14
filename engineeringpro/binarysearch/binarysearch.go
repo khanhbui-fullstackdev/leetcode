@@ -235,3 +235,40 @@ func findMaximumIndex(nums []int, target int) int {
 	}
 	return maximunIndex
 }
+
+func RunSingleNonDuplicate() {
+	nums := []int{1, 1, 2, 3, 3, 4, 4, 8, 8}
+	fmt.Printf("Nums:%v => single element without duplication:%d", nums, singleNonDuplicate(nums))
+	fmt.Println()
+
+	nums = []int{3, 3, 7, 7, 10, 11, 11}
+	fmt.Printf("Nums:%v => single element without duplication:%d", nums, singleNonDuplicate(nums))
+	fmt.Println()
+}
+
+func singleNonDuplicate(nums []int) int {
+	leftIndex := 0
+	rightIndex := len(nums) - 1
+	for leftIndex <= rightIndex {
+		if leftIndex == rightIndex {
+			return nums[leftIndex]
+		}
+
+		midleIndex := (leftIndex + rightIndex) / 2
+		if midleIndex%2 != 0 {
+			midleIndex = midleIndex - 1
+		}
+		middleVal := nums[midleIndex]
+		nextIndex := midleIndex + 1
+		nextVal := nums[nextIndex]
+
+		// a valid pair
+		if middleVal == nextVal {
+			leftIndex = nextIndex + 1
+		} else {
+			rightIndex = midleIndex
+		}
+	}
+
+	return -1
+}

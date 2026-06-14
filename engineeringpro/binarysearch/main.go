@@ -34,6 +34,7 @@ func main() {
 			RunSearchRange()
 
 		case 7:
+			RunSingleNonDuplicate()
 
 		case 8:
 
