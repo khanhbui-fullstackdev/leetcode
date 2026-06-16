@@ -37,6 +37,7 @@ func main() {
 			RunSingleNonDuplicate()
 
 		case 8:
+			RunSearchMatrix()
 
 		case 0:
 			fmt.Println("Exit...")

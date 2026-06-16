@@ -272,3 +272,71 @@ func singleNonDuplicate(nums []int) int {
 
 	return -1
 }
+
+func RunSearchMatrix() {
+	matrix := [][]int{
+		{1, 3, 5, 7},
+		{10, 11, 16, 20},
+		{23, 30, 34, 60},
+	}
+	target := 3
+	fmt.Printf("Target:%d is in matrix:%v -> %v", target, matrix, searchMatrixV2(matrix, target))
+	fmt.Println()
+
+	matrix = [][]int{
+		{1, 3, 5, 7},
+		{10, 11, 16, 20},
+		{23, 30, 34, 60},
+	}
+	target = 13
+	fmt.Printf("Target:%d is in matrix:%v -> %v", target, matrix, searchMatrixV2(matrix, target))
+	fmt.Println()
+}
+
+// Step 1: Loop each of row of matrix -> O(m) m is number of rows
+// Step 2: Apply binary search to array O(logn) n is number of array
+// Step 3: Check if middleValue == target -> return true; return false
+// => Time complexity O(m) * O(logn)
+func searchMatrixV1(matrix [][]int, target int) bool {
+	for _, nums := range matrix {
+		leftIndex := 0
+		righIndex := len(nums) - 1
+
+		for leftIndex <= righIndex {
+			middleIndex := (leftIndex + righIndex) / 2
+			middleValue := nums[middleIndex]
+			if middleValue == target {
+				return true
+			} else if middleValue > target {
+				righIndex = middleIndex - 1
+			} else {
+				leftIndex = middleIndex + 1
+			}
+		}
+	}
+	return false
+}
+
+func searchMatrixV2(matrix [][]int, target int) bool {
+	rows := len(matrix)
+	cols := len(matrix[0])
+
+	leftIndex := 0
+	rightIndex := rows*cols - 1
+
+	for leftIndex <= rightIndex {
+		middleIndex := (leftIndex + rightIndex) / 2
+		rowIndex := middleIndex / cols
+		colIndex := middleIndex % cols
+		middleValue := matrix[rowIndex][colIndex]
+		if middleValue == target {
+			return true
+		} else if middleValue > target {
+			rightIndex = middleIndex - 1
+		} else {
+			leftIndex = middleIndex + 1
+		}
+	}
+
+	return false
+}
