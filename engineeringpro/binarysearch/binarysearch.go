@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+	"sort"
+)
 
 func RunBinarySearch() {
 	nums := []int{-1, 0, 3, 5, 9, 12}
@@ -339,4 +343,52 @@ func searchMatrixV2(matrix [][]int, target int) bool {
 	}
 
 	return false
+}
+
+func RunSuccessfulPairs() {
+	spells := []int{5, 1, 3}
+	potions := []int{1, 2, 3, 4, 5}
+	success := 7
+
+	pairs := successfulPairs(spells, potions, int64(success))
+	fmt.Printf("Sucessfull pairs:%v", pairs)
+	fmt.Println()
+
+	spells = []int{3, 1, 2}
+	potions = []int{8, 5, 8}
+	success = 16
+
+	pairs = successfulPairs(spells, potions, int64(success))
+	fmt.Printf("Sucessfull pairs:%v", pairs)
+	fmt.Println()
+}
+
+func successfulPairs(spells []int, potions []int, success int64) []int {
+	lenSpells := len(spells)
+	if !sort.IntsAreSorted(potions) {
+		slices.Sort(potions)
+	}
+
+	lenPotions := len(potions)
+	pairs := make([]int, 0, lenSpells)
+
+	for _, spell := range spells {
+		leftIndex := 0
+		rightIndex := lenPotions - 1
+		for leftIndex <= rightIndex {
+			middleIndex := (leftIndex + rightIndex) / 2
+			strength := (int64)(potions[middleIndex] * spell)
+			if strength >= success {
+				rightIndex = middleIndex - 1
+			} else {
+				leftIndex = middleIndex + 1
+			}
+			if leftIndex > rightIndex {
+				validLength := lenPotions - leftIndex
+				pairs = append(pairs, validLength)
+			}
+		}
+	}
+
+	return pairs
 }

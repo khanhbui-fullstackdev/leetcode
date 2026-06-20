@@ -39,6 +39,9 @@ func main() {
 		case 8:
 			RunSearchMatrix()
 
+		case 9:
+			RunSuccessfulPairs()
+
 		case 0:
 			fmt.Println("Exit...")
 			return
