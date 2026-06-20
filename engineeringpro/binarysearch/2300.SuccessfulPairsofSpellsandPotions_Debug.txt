@@ -1,0 +1,200 @@
+spells = [5,1,3]
+
+           0 1 2 3 4
+potions = [1,2,3,4,5] => len(potions)  = 5, success = 7
+
+var succesfullPairs []int{}
+
+index = 0, spell = 5 {
+	leftIndex:=0
+	rightIndex:=len(potions) - 1 = 4
+	for leftIndex<=rightIndex (0<=4){
+		middleIndex:= (0+ 4) / 2 = 2
+		middleVal:= potions[2] = 3
+		strength:= spell * middleVal = 5 * 3 = 15
+		if strength>= success (15>=7)✅{
+			// if the middleIndex = 2 matches the condition middleVal * spell >= success, 
+			// all of indexes stay behind middleIndex returning correct
+			rightIndex = middleIndex - 1 = 2 - 1 = 1
+		}
+		
+		if leftIndex>rightIndex (0>1)❌
+	}
+	
+	for leftIndex<=rightIndex (0<=1){
+		middleIndex:= (0+ 1) / 2 = 0
+		middleVal:= potions[0] = 0
+		strength:= spell * middleVal = 5 * 1 =  5
+		if strength>= success (5>=7)❌			
+		else {
+			leftIndex=middleIndex+1= 1
+		}
+	}
+	
+	for leftIndex<=rightIndex (1<=1){
+		middleIndex:= (1+ 1) / 2 = 1
+		middleVal:= potions[1] = 2
+		strength:= spell * middleVal = 5 * 2 =  10
+		if strength>= success (10>=7)✅{
+			rightIndex = middleIndex - 1 = 1 - 1 = 0			
+		}
+		if leftIndex>rightIndex (1>0)✅{
+			validIndex:= len(potions) - leftIndex = 5 - 1 = 4
+			succesfullPairs = append(succesfullPairs,validIndex) // succesfullPairs = [4]
+		}
+	}
+}
+
+index = 1, spell = 1 {
+	leftIndex:=0
+	rightIndex:=4
+	
+	for leftIndex<=rightIndex (0<=4){
+		middleIndex:= (0+4) / 2 = 2
+		middleVal:= potions[2] = 3
+		strength:= spell * middleVal = 1* 3 = 3
+		if strength>= success (3>=7)❌
+		else{
+			leftIndex = middleIndex + 1 =  3
+		}
+	}
+	for leftIndex<=rightIndex (3<=4){
+		middleIndex:= (3+4) / 2 = 3
+		middleVal:= potions[3] = 4
+		strength:= spell * middleVal = 1 * 4 = 4
+		if strength>= success (4>=7)❌
+		else{
+			leftIndex = middleIndex + 1 =  4
+		}
+	}
+	for leftIndex<=rightIndex (4<=4){
+		middleIndex:= (4+4) / 2 = 4
+		middleVal:= potions[4] = 5
+		strength:= spell * middleVal = 1 * 5 = 5
+		if strength>= success (5>=7)❌
+		else{
+			leftIndex = middleIndex + 1 =  5
+		}
+		if leftIndex>rightIndex{
+			validIndex:= len(potions) - middleIndex = 5 - 5 = 0
+			succesfullPairs = append(succesfullPairs,validIndex) // succesfullPairs = [4,0]
+		}
+	}
+}
+
+index = 2, spell = 3 {
+	leftIndex:=0
+	rightIndex:=len(potions) - 1 = 4
+	
+	for leftIndex<=rightIndex (0<=4){
+		middleIndex = 2
+		middleVal=3
+		strength = 3 * 3 = 9
+		if strength>=success (9>=7)✅ {
+			rightIndex = middleIndex - 1 = 2 - 1 = 1	
+		}
+	}
+	
+	for leftIndex<=rightIndex (0<=1){
+		middleIndex = 0
+		middleVal=1
+		strength = 3 * 1 = 3
+		if strength>=success (3>=7)❌ 
+		else{
+			leftIndex = middleIndex + 1 = 0 + 1 = 1
+		}
+	}
+	for leftIndex<=rightIndex (1<=1){
+		middleIndex = 1
+		middleVal=2
+		strength:= 3 * 2 = 6
+		if strength>=success (6>=7)❌
+		else{
+			leftIndex = middleIndex + 1 = 2
+		}
+		if leftIndex>rightIndex (2>1)✅ {
+			validIndex = 5 - leftIndex = 3
+			succesfullPairs = append(succesfullPairs,validIndex) = [4,0,3]
+		}
+	}
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+spells = [3,1,2], potions = [8,5,8], success = 16
+                 0 1 2  index
+sortedPotions = [5,8,8] len = 3
+
+index = 0, spell = 3 {
+	leftIndex:= 0
+	rightIndex:= 2
+	for leftIndex<=righIndex (0<=2)✅{
+		middleIndex = (0+2)/2 = 1 
+		strength:= potions[1] * spell = 8*3 = 24
+		if strength>=success (24>=16)✅{
+			rightIndex = middleIndex - 1 = 0
+		}
+	}
+	for leftIndex<=righIndex (0<=0)✅{
+		middleIndex = (0+0)/2 = 0 
+		strength:= potions[0] * spell = 5*3 = 15
+		if strength>=success (15>=16)❌
+		else{
+			leftIndex = middleIndex + 1 = 1
+		}
+		if leftIndex>righIndex (1>0)✅{
+			validIndex = len(sortedPotions) - leftIndex = 2
+			succesfullPairs = append(succesfullPairs,validIndex) = [2]
+		}
+	}
+}
+
+index = 1,spell = 1{
+	leftIndex:= 0
+	rightIndex:= 2
+	for leftIndex<=rightIndex (0<=2)✅{
+		middleIndex = (0+2)/2 = 1 
+		strength:= potions[1] * spell = 8*1 = 8
+		if strength>=success (24>=16)❌
+		else {
+			leftIndex = middleIndex + 1 = 2
+		}
+	}
+	for leftIndex<=rightIndex (2<=2){
+		middleIndex = (2+2)/2=2
+		strength:= potions[2] * spell = 8*1 = 8
+		if strength>=success (8>=16)❌
+		else {
+			leftIndex = middleIndex + 1 = 3
+		}
+		if leftIndex>righIndex{
+			validIndex = 3 - leftIndex=0
+			succesfullPairs = append(succesfullPairs,validIndex) = [2,0]
+		}
+	}
+}
+
+index = 2,spell = 2{
+	leftIndex = 0
+	righIndex = 2
+	for leftIndex<=righIndex(0<=2)
+	{
+		middleIndex = 1
+		strength := potions[1] * spell = 8*2=16
+		if strength>=sucess(16>=16){
+			rightIndex = middleIndex - 1 = 0		
+		}
+	}
+	for leftIndex<=righIndex(0<=0){
+		middleIndex = 0
+		strength := potions[0] * spell = 5*2=10
+		if strength>=sucess(10>=16)❌
+		else{
+			leftIndex = middleIndex + 1 = 1
+		}
+		if leftIndex>righIndex{
+			validIndex = len(potions) - leftIndex = 3 - 1 = 2
+			succesfullPairs = append(succesfullPairs,validIndex) = [2,0,2]
+		}
+	}
+}

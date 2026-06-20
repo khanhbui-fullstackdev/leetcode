@@ -1,0 +1,141 @@
+ 0 1 2 3 4 5
+[5,7,7,8,8,10] target = 8
+
+Index nhỏ nhất thỏa điều kiện >=8 -> mininumIndex = 3
+Index lớn nhất thỏa điều kiện <=8 -> maximunIndex = 4
+
+
+findStartingIndex (nums []int, target){
+	leftIndex := 0
+	rightIndex :=len(nums) -1 = 4
+	
+	for leftIndex <= rightIndex (0<=4) ✅{
+		middleIndex:= (leftIndex+rightIndex)/2 = (0+4) / 2 =2
+		middleVal:= nums[2] = 7
+		if middleVal >= target (7>=8)❌
+		else {
+			leftIndex = middleIndex + 1 = 2 + 1 = 3
+		}
+	}
+	
+	for leftIndex <= rightIndex (3<=4)✅{
+		middleIndex:= (leftIndex+rightIndex)/2 = (3+4) / 2 = 3
+		middleVal:= nums[3] = 8
+		if middleVal >= target (8>=8)✅{
+			rightIndex = middleIndex - 1  = 3 - 1 = 2
+		}
+	}
+	for leftIndex <= rightIndex (3<=2)❌
+	
+	return leftIndex // 3  find the mininum index that satisfies the condition nums[leftIndex]>= target  
+}
+
+findEndingIndex (nums []int, target){
+	leftIndex := 0
+	rightIndex :=len(nums) -1 = 4
+	
+	for leftIndex <= rightIndex (0<=4) ✅{
+		middleIndex:= (leftIndex+rightIndex)/2 = (0+4) / 2 = 2
+		middleVal:= nums[2] = 7
+		
+		if middleVal<=target (7<=8) ✅{
+			leftIndex = middleIndex + 1 = 2 + 1 = 3
+		}
+	}
+	
+	for leftIndex <= rightIndex (3<=4) ✅{
+		middleIndex:= (leftIndex+rightIndex)/2 = (3+4) / 2 = 3
+		middleVal:= nums[3] = 8
+		
+		if middleVal<=target (8<=8) ✅{
+			leftIndex = middleIndex + 1 = 3 + 1 = 4
+		}
+	}
+	
+	for leftIndex <= rightIndex (4<=4) ✅{
+		middleIndex:= (leftIndex+rightIndex)/2 = (4+4) / 2 = 4
+		middleVal:= nums[4] = 8
+		
+		if middleVal<=target (8<=8) ✅{
+			leftIndex = middleIndex + 1 = 4 + 1 = 5
+		}
+	}
+	
+	for leftIndex <= rightIndex (5<=4) ❌
+	
+	return rightIndex // 4 find the maximum index that satisfies condition nums[index]<=target
+}
+
+        0 1 2 3 4 5
+nums = [5,7,7,8,8,10], target = 6
+
+findMinimumIndex(nums,target) {
+	startingIdx:= 0
+	endingInx:=5
+	
+	for startingIdx<=endingInx (0<=5)✅{
+		middleIndex = (startingIdx + endingInx) / 2 = (0 + 5)/2 = 2
+		middleVal = nums[2] = 7
+		if middleVal >= target (6>=6)✅
+		{
+			endingInx = middleIndex - 1 = 2 - 1 = 1
+		}
+	}
+	
+	for startingIdx<=endingInx (0<=1)✅{
+		middleIndex = (startingIdx + endingInx) / 2 = (0 + 1)/2 = 0
+		middleVal = nums[0] = 5
+		if middleVal >= target (5>=6)❌
+		else{
+			startingIdx = middleIndex + 1 = 1
+		}
+	}
+	
+	for startingIdx<=endingInx (1<=1)✅{
+		middleIndex = (startingIdx + endingInx) / 2 = (1 + 1)/2 = 1
+		middleVal = nums[1] = 7
+		if middleVal >= target (7>=6)✅
+		{
+			endingInx = middleIndex - 1 = 1 - 1 = 0
+		}
+	}
+	for startingIdx<=endingInx (1<=0)❌
+	
+	return startingIdx // 1
+}
+
+findMaximumIndex(nums,target) int {
+	startingIdx:= 0
+	endingInx:=5
+	
+	for startingIdx<=endingInx (0<=5)✅{
+		middleIndex = (startingIdx + endingInx) / 2 = (0 + 5)/2 = 2
+		middleVal = nums[2] = 7
+		if middleVal <= target (7<=6)❌
+		else {
+			endingInx = middleIndex - 1 = 2 - 1 = 1
+		}
+	}
+	
+	for startingIdx<=endingInx (0<=1)✅{
+		middleIndex = (startingIdx + endingInx) / 2 = (0 + 1)/2 =0
+		middleVal = nums[0] = 5
+		if middleVal <= target (5<=6)✅
+		{
+			startingIdx = middleIndex + 1 = 1
+		}
+	}
+	
+	for startingIdx<=endingInx (1<=1)✅{
+		middleIndex = (startingIdx + endingInx) / 2 = (1 + 1)/2 =1
+		middleVal = nums[1] = 7
+		if middleVal <= target (7<=6)❌
+		else {
+			endingInx = middleIndex - 1 = 1 - 1 =0
+		}
+	}
+	
+	for startingIdx<=endingInx (1<=0)❌
+	
+	return endingInx // 0
+}

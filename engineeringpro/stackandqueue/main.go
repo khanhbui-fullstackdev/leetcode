@@ -60,7 +60,7 @@ func main() {
 }
 
 func showMenu() {
-	fmt.Println("===== Review 10.Graph =====")
+	fmt.Println("===== Review 9.Stack and Queue =====")
 	fmt.Println("0. Exit")
 	fmt.Println("1. 20. Valid Parentheses")
 	fmt.Println("2. 844. Backspace String Compare")
