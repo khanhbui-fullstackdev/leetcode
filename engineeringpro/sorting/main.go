@@ -19,6 +19,7 @@ func main() {
 			RunTargetIndicates()
 
 		case 2:
+			RunSmallerNumbersThanCurrent()
 
 		case 3:
 

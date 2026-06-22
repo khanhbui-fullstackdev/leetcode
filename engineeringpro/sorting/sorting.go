@@ -110,3 +110,46 @@ func findMaximumIndex(nums []int, target int) int {
 	}
 	return rightIndex
 }
+
+func RunSmallerNumbersThanCurrent() {
+	nums := []int{8, 1, 2, 2, 3}
+	countSmallerNumbers := smallerNumbersThanCurrent(nums)
+	fmt.Printf("Count smaller numbers:%v", countSmallerNumbers)
+	fmt.Println()
+
+	nums = []int{6, 5, 4, 8}
+	countSmallerNumbers = smallerNumbersThanCurrent(nums)
+	fmt.Printf("Count smaller numbers:%v", countSmallerNumbers)
+	fmt.Println()
+
+	nums = []int{7, 7, 7, 7}
+	countSmallerNumbers = smallerNumbersThanCurrent(nums)
+	fmt.Printf("Count smaller numbers:%v", countSmallerNumbers)
+	fmt.Println()
+}
+
+func smallerNumbersThanCurrent(nums []int) []int {
+	lenNums := len(nums)
+	// Copy all data from slice nums -> slices sortedNums
+	sortedNums := append([]int(nil), nums...)
+
+	if !slices.IsSorted(sortedNums) {
+		slices.SortFunc(sortedNums, func(a, b int) int {
+			return cmp.Compare(a, b)
+		})
+	}
+	sortedMapNums := make(map[int]int, lenNums)
+
+	for index, num := range sortedNums {
+		_, existed := sortedMapNums[num]
+		if !existed {
+			sortedMapNums[num] = index
+		}
+	}
+
+	for index, num := range nums {
+		nums[index] = sortedMapNums[num]
+	}
+
+	return nums
+}
