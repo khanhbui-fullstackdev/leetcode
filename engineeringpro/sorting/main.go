@@ -22,6 +22,7 @@ func main() {
 			RunSmallerNumbersThanCurrent()
 
 		case 3:
+			RunRelativeSortArray()
 
 		case 4:
 

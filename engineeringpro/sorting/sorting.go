@@ -153,3 +153,55 @@ func smallerNumbersThanCurrent(nums []int) []int {
 
 	return nums
 }
+
+func RunRelativeSortArray() {
+	arr1 := []int{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}
+	arr2 := []int{2, 1, 4, 3, 9, 6}
+	sortedArray := relativeSortArrayUsingMap(arr1, arr2)
+	fmt.Printf("Relative sort array:%v", sortedArray)
+	fmt.Println()
+
+	arr1 = []int{28, 6, 22, 8, 44, 17}
+	arr2 = []int{22, 28, 8, 6}
+	sortedArray = relativeSortArrayUsingMap(arr1, arr2)
+	fmt.Printf("Relative sort array:%v", sortedArray)
+	fmt.Println()
+}
+
+func relativeSortArrayUsingMap(arr1 []int, arr2 []int) []int {
+	lenArr1 := len(arr1)
+
+	outputArr := make([]int, 0, lenArr1)
+	numFrequencies := make(map[int]int, lenArr1)
+
+	for _, num := range arr1 {
+		numFrequencies[num]++
+	}
+
+	for _, item := range arr2 {
+		frequencies, existed := numFrequencies[item]
+		if existed {
+			for index := 1; index <= frequencies; index++ {
+				outputArr = append(outputArr, item)
+				delete(numFrequencies, item)
+			}
+		}
+	}
+
+	notExistedElements := make([]int, 0, len(numFrequencies))
+
+	for key, frequencies := range numFrequencies {
+		for index := 1; index <= frequencies; index++ {
+			notExistedElements = append(notExistedElements, key)
+
+		}
+	}
+
+	slices.SortFunc(notExistedElements, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+
+	outputArr = append(outputArr, notExistedElements...)
+
+	return outputArr
+}
