@@ -233,3 +233,156 @@ func relativeSortArrayUsingArr(arr1 []int, arr2 []int) []int {
 
 	return outputArr
 }
+
+func RunMerge() {
+	nums1 := []int{1, 2, 3, 0, 0, 0}
+	m := 3
+	nums2 := []int{2, 5, 6}
+	n := 3
+	merge(nums1, m, nums2, n)
+	fmt.Println()
+
+	nums1 = []int{1}
+	m = 1
+	nums2 = []int{}
+	n = 0
+	merge(nums1, m, nums2, n)
+	fmt.Println()
+
+	nums1 = []int{0}
+	m = 0
+	nums2 = []int{1}
+	n = 1
+	merge(nums1, m, nums2, n)
+	fmt.Println()
+}
+
+func merge(nums1 []int, m int, nums2 []int, n int) {
+	copy(nums1[m:], nums2)
+	fmt.Printf("After coping nums2 to nums1 with starting m = %d -> nums1:%v", m, nums1)
+	slices.SortFunc(nums1, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+	fmt.Printf("\nAfter sorting:%v", nums1)
+}
+
+func RunHeightChecker() {
+	heights := []int{1, 1, 4, 2, 1, 3}
+	numberofIndicies := heightChecker(heights)
+	fmt.Printf("Not match number of indicies:%d", numberofIndicies)
+	fmt.Println()
+
+	heights = []int{5, 1, 2, 3, 4}
+	numberofIndicies = heightChecker(heights)
+	fmt.Printf("Not match number of indicies:%d", numberofIndicies)
+	fmt.Println()
+
+	heights = []int{1, 2, 3, 4, 5}
+	numberofIndicies = heightChecker(heights)
+	fmt.Printf("Not match number of indicies:%d", numberofIndicies)
+	fmt.Println()
+}
+
+func heightChecker(heights []int) int {
+	sortedHeights := make([]int, len(heights))
+	// Time complexity = O(n)
+	copy(sortedHeights[0:], heights)
+
+	// Time complexity = O (N*LogN)
+	slices.SortFunc(sortedHeights, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+	numberofIndicies := 0
+	for index, height := range heights {
+		sortedHeight := sortedHeights[index]
+		if sortedHeight != height {
+			numberofIndicies++
+		}
+	}
+	return numberofIndicies
+}
+
+func RunMinimumCost() {
+	cost := []int{1, 2, 3}
+	fmt.Printf("=>Minimum cost:%d", minimumCost(cost))
+	fmt.Println()
+
+	cost = []int{6, 5, 7, 9, 2, 2}
+	fmt.Printf("=>Minimum cost:%d", minimumCost(cost))
+	fmt.Println()
+
+	cost = []int{5, 5}
+	fmt.Printf("=>Minimum cost:%d", minimumCost(cost))
+	fmt.Println()
+}
+
+func minimumCost(cost []int) int {
+	slices.SortFunc(cost, func(a, b int) int {
+		return cmp.Compare(b, a)
+	})
+	minimumCost := 0
+	countBoughtCandies := 0
+	for _, element := range cost {
+		if countBoughtCandies == 2 {
+			fmt.Printf(" Take the candy with cost %d for free \n", element)
+			countBoughtCandies = 0
+			continue
+		}
+		minimumCost += element
+		countBoughtCandies++
+	}
+	if countBoughtCandies > 0 {
+		fmt.Printf(" There is not a third candy we can take for free \n")
+	}
+	return minimumCost
+}
+
+func RunMinimumOperations() {
+	nums := []int{1, 5, 0, 3, 5}
+	fmt.Printf("Minimum operations:%d", minimumOperations(nums))
+	fmt.Println()
+
+	nums = []int{0}
+	fmt.Printf("Minimum operations:%d", minimumOperations(nums))
+	fmt.Println()
+}
+
+func minimumOperations(nums []int) int {
+	// Sorting -> O N*LogN
+	slices.SortFunc(nums, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+	minimumOperations := 0
+	total := calculateSum(nums)
+	for total != 0 {
+		minimumNumExpeptZero := findMinimumNumExpeptZero(nums)
+		for index, num := range nums {
+			if num != 0 {
+				nums[index] = nums[index] - minimumNumExpeptZero
+				total -= minimumNumExpeptZero
+			}
+		}
+		minimumOperations++
+	}
+
+	return minimumOperations
+}
+
+func findMinimumNumExpeptZero(nums []int) int {
+	minimumNum := 0
+	for _, num := range nums {
+		if num != 0 {
+			minimumNum = num
+			break
+		}
+	}
+	return minimumNum
+}
+
+func calculateSum(nums []int) int {
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	return total
+}

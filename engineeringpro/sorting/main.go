@@ -14,24 +14,20 @@ func main() {
 		choice := readInput()
 
 		switch choice {
-
 		case 1:
 			RunTargetIndicates()
-
 		case 2:
 			RunSmallerNumbersThanCurrent()
-
 		case 3:
 			RunRelativeSortArray()
-
 		case 4:
-
+			RunMerge()
 		case 5:
-
+			RunHeightChecker()
 		case 6:
-
+			RunMinimumCost()
 		case 7:
-
+			RunMinimumOperations()
 		case 8:
 
 		case 9:
