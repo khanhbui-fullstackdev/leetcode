@@ -1,0 +1,95 @@
+        0 1 2 3 4 5 6 7 8 9 10
+arr1 = [2,3,1,3,2,4,6,7,9,2,19]
+
+               0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18 19
+frequencies = [0  1  3  2  1  0  1  1  0  1  0   0   0   0   0   0   0   0   0  1  0  0...]
+
+arr2 = [2,1,4,3,9,6]
+// loop through arr2
+index = 0, element = 2 
+{
+	while frequencies[element] > 0 (frequencies[2] > 0 <=> 3 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(2) // outputArr = [2]
+		frequencies[2]--// 2
+	}
+	
+	while frequencies[element] > 0 (frequencies[2] > 0 <=> 2 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(2) // outputArr = [2,2]
+		frequencies[2]--// 1
+	}
+	
+	while frequencies[element] > 0 (frequencies[2] > 0 <=> 1 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(2) // outputArr = [2,2,2]
+		frequencies[2]--// 0
+	}
+	
+	while frequencies[element] > 0 (frequencies[2] > 0 <=> 0 >0) ❌	
+}
+
+index = 1, element = 1 
+{
+	while frequencies[element] > 0 (frequencies[1] > 0 <=> 1 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(1) // outputArr = [2,2,2,1]
+		frequencies[1]--// 0
+	}
+	
+	while frequencies[element] > 0 (frequencies[1] > 0 <=> 0 >0) ❌
+}
+
+index = 2, element = 4 
+{
+	while frequencies[element] > 0 (frequencies[4] > 0 <=> 1 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(4) // outputArr = [2,2,2,1,4]
+		frequencies[4]--// 0
+	}	
+	while frequencies[element] > 0 (frequencies[4] > 0 <=> 0 >0) ❌
+}
+
+index = 3, element = 3
+{
+	while frequencies[element] > 0 (frequencies[3] > 0 <=> 2 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(3) // outputArr = [2,2,2,1,4,3]
+		frequencies[3]--// 1
+	}
+	while frequencies[element] > 0 (frequencies[3] > 0 <=> 1 >0) ✅
+	{
+		outputArr.Add(element) = outputArr.Add(3) // outputArr = [2,2,2,1,4,3,3]
+		frequencies[3]--// 0
+	}
+}
+
+// continue this process 
+outputArr = [2,2,2,1,4,3,3,9,6]
+               0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18 19
+frequencies = [0  0  0  0  0  0  0  1  0  0  0   0   0   0   0   0   0   0   0  1  0  0...]
+
+// we loop through frequencies
+// the remaining indexes having frequencies[index] > 0
+for index, _:= range frequencies
+{
+	index = 7 {
+		while frequencies[index] > 0 (index =7, frequencies[7] = 1 > 0 ✅){
+			outputArr.Add(7) =  // outputArr = [2,2,2,1,4,3,3,7]
+			frequencies[7] -- // 0
+		}
+		
+		while frequencies[index] > 0 (index =7, frequencies[7] = 0 > 0 ❌)
+	}
+	
+	...
+	index = 19 {
+		while frequencies[index] > 0 (index =19, frequencies[19] = 1 > 0 ✅){
+			outputArr.Add(19) =  // outputArr = [2,2,2,1,4,3,3,7,19]
+			frequencies[19] -- // 0
+		}
+		while frequencies[index] > 0 (index =19, frequencies[19] = 0 > 0 ❌)
+	}
+}
+
+return frequencies //  outputArr = [2,2,2,1,4,3,3,7,19]

@@ -157,13 +157,13 @@ func smallerNumbersThanCurrent(nums []int) []int {
 func RunRelativeSortArray() {
 	arr1 := []int{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}
 	arr2 := []int{2, 1, 4, 3, 9, 6}
-	sortedArray := relativeSortArrayUsingMap(arr1, arr2)
+	sortedArray := relativeSortArrayUsingArr(arr1, arr2)
 	fmt.Printf("Relative sort array:%v", sortedArray)
 	fmt.Println()
 
 	arr1 = []int{28, 6, 22, 8, 44, 17}
 	arr2 = []int{22, 28, 8, 6}
-	sortedArray = relativeSortArrayUsingMap(arr1, arr2)
+	sortedArray = relativeSortArrayUsingArr(arr1, arr2)
 	fmt.Printf("Relative sort array:%v", sortedArray)
 	fmt.Println()
 }
@@ -202,6 +202,34 @@ func relativeSortArrayUsingMap(arr1 []int, arr2 []int) []int {
 	})
 
 	outputArr = append(outputArr, notExistedElements...)
+
+	return outputArr
+}
+
+func relativeSortArrayUsingArr(arr1 []int, arr2 []int) []int {
+	lenArr1 := len(arr1)
+	outputArr := make([]int, 0, lenArr1)
+	frequencies := make([]int, 1001)
+
+	// Step 1: Count frequency each of element in arr1
+	for _, element := range arr1 {
+		frequencies[element]++
+	}
+
+	// Step 2: Add element to output arr that is followed by order of arr2
+	for _, element := range arr2 {
+		for frequencies[element] > 0 {
+			outputArr = append(outputArr, element)
+			frequencies[element]--
+		}
+	}
+
+	for index := range frequencies {
+		for frequencies[index] > 0 {
+			outputArr = append(outputArr, index)
+			frequencies[index]--
+		}
+	}
 
 	return outputArr
 }
