@@ -3,6 +3,7 @@ package main
 import (
 	"cmp"
 	"fmt"
+	"leetcode/engineeringpro/sorting/models"
 	"slices"
 )
 
@@ -339,11 +340,11 @@ func minimumCost(cost []int) int {
 
 func RunMinimumOperations() {
 	nums := []int{1, 5, 0, 3, 5}
-	fmt.Printf("Minimum operations:%d", minimumOperations(nums))
+	fmt.Printf("Minimum operations:%d", minimumOperationsUsingMap(nums))
 	fmt.Println()
 
 	nums = []int{0}
-	fmt.Printf("Minimum operations:%d", minimumOperations(nums))
+	fmt.Printf("Minimum operations:%d", minimumOperationsUsingMap(nums))
 	fmt.Println()
 }
 
@@ -366,6 +367,17 @@ func minimumOperations(nums []int) int {
 	}
 
 	return minimumOperations
+}
+
+func minimumOperationsUsingMap(nums []int) int {
+	countOperations := make(map[int]bool, len(nums))
+	for _, num := range nums {
+		if num != 0 {
+			countOperations[num] = true
+		}
+	}
+
+	return len(countOperations)
 }
 
 func findMinimumNumExpeptZero(nums []int) int {
@@ -435,4 +447,50 @@ func maxWidthOfVerticalArea(points [][]int) int {
 	}
 
 	return maximumWidth
+}
+
+func RunSortTheStudent() {
+	score := [][]int{{10, 6, 9, 1}, {7, 5, 11, 2}, {4, 8, 3, 15}}
+	k := 2
+	sortingStudents := sortTheStudents(score, k)
+	fmt.Printf("Sorting students:%v", sortingStudents)
+	fmt.Println()
+
+	score = [][]int{{3, 4}, {5, 6}}
+	k = 0
+	sortingStudents = sortTheStudents(score, k)
+	fmt.Printf("Sorting students:%v", sortingStudents)
+	fmt.Println()
+}
+
+func sortTheStudents(score [][]int, k int) [][]int {
+	// Step 1: Create struct/map to store student score at kth's column index
+	/*                                                     0  1   2
+	[[10,6,9,1],[7,5,11,2],[4,8,3,15]] => studentScores = [9, 11, 3]
+	*/
+	studentScores := make([]*models.StudentScore, 0, k)
+	for index, s := range score {
+		score := s[k]
+		studentScore := &models.StudentScore{
+			RowIndex: index,
+			Score:    score,
+		}
+		studentScores = append(studentScores, studentScore)
+	}
+
+	// Step 2: Sort score student by desc
+	slices.SortFunc(studentScores, func(a, b *models.StudentScore) int {
+		return cmp.Compare(b.Score, a.Score) // studentScores = [11, 9, 3]
+	})
+
+	// Step 3: Create output matrix called sortedScores then append sortedScore to output sortedScores
+	sortedScores := make([][]int, 0, len(score))
+
+	for index := range studentScores {
+		rowIndex := studentScores[index].RowIndex
+		newScore := score[rowIndex]
+		sortedScores = append(sortedScores, newScore)
+	}
+
+	return sortedScores
 }

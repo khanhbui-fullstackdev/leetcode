@@ -31,7 +31,7 @@ func main() {
 		case 8:
 			RunMaxWidthOfVerticalArea()
 		case 9:
-
+			RunSortTheStudent()
 		case 0:
 			fmt.Println("Exit...")
 			return
