@@ -386,3 +386,53 @@ func calculateSum(nums []int) int {
 	}
 	return total
 }
+
+func RunMaxWidthOfVerticalArea() {
+	points := [][]int{
+		{8, 7},
+		{9, 9},
+		{7, 4},
+		{9, 7},
+	}
+	fmt.Printf("Max width of vertical area:%d", maxWidthOfVerticalArea(points))
+	fmt.Println()
+
+	points = [][]int{
+		{3, 1},
+		{9, 0},
+		{1, 0},
+		{1, 4},
+		{5, 3},
+		{8, 8},
+	}
+	fmt.Printf("Max width of vertical area:%d", maxWidthOfVerticalArea(points))
+	fmt.Println()
+}
+
+func maxWidthOfVerticalArea(points [][]int) int {
+	horizontalAreaLength := len(points[0])
+	pointXs := make([]int, 0, horizontalAreaLength)
+
+	for _, point := range points {
+		pointXs = append(pointXs, point[0])
+	}
+
+	if !slices.IsSorted(pointXs) {
+		slices.SortFunc(pointXs, func(a, b int) int {
+			return cmp.Compare(a, b)
+		})
+	}
+	maximumWidth := 0
+
+	for index, pointX := range pointXs {
+		if index != len(pointXs)-1 {
+			nextPointX := pointXs[index+1]
+			currentWidth := nextPointX - pointX
+			if maximumWidth < currentWidth {
+				maximumWidth = currentWidth
+			}
+		}
+	}
+
+	return maximumWidth
+}

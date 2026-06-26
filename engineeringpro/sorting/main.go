@@ -29,7 +29,7 @@ func main() {
 		case 7:
 			RunMinimumOperations()
 		case 8:
-
+			RunMaxWidthOfVerticalArea()
 		case 9:
 
 		case 0:

@@ -1,0 +1,72 @@
+[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]
+
+1)The widest vertical area is the one with the maximum width.
+=> Chỉ quan tâm đến trục tung (X) ko cần care trục hoành
+
+2) Return the widest vertical area between two points such that no points are inside the area.
+=> Trả về chiều rộng lớn nhất giữa 2 điều sao cho không có điểm nào nằm bên trong
+Ví dụ: Vùng từ x = 1 đến x = 9 chứa các điểm có x = 3, x = 5, và x = 8 ở bên trong => Invalid required condition (no points are inside the area.)
+
+
+           0 1 2 3 4 5  (index)
+pointXs = [1,1,3,5,8,9]
+
+maximumWidth = [1-1] = 0
+maximumWidth = [3-1] = 2
+maximumWidth = [5-3] = 2
+maximumWidth = [8-5] = 3 => output
+maximumWidth = [9-8] = 1 
+
+maximumWidth:=0
+index = 0, pointX = 1
+{
+	if index != len(pointXs)-1 (0!=5)✅
+	{
+		nextPointX = pointXs[index+1] = pointXs[1] = 1
+		width = nextPointX-pointX = 1 - 1 = 0
+		if maximumWidth<width (0<0) ❌
+	}
+}
+
+index = 1, pointX = 1
+{
+	if index != len(pointXs)-1 (1!=5)✅
+	{
+		nextPointX = pointXs[index+1] = pointXs[2] = 3
+		width = nextPointX-pointX = 3 - 1 = 2
+		if maximumWidth<width (0<2)✅{
+			maximumWidth = width = 2
+		}
+	}
+}
+
+index = 2, pointX = 3{
+	if index != len(pointXs)-1 (2!=5)✅{
+		nextPointX = pointXs[index+1] = pointXs[3] = 5
+		width = nextPointX-pointX = 5 - 3 = 2
+		if maximumWidth<width (2<2)❌
+	}
+}
+
+index = 3, pointX = 5{
+	if index != len(pointXs)-1 (3!=5)✅{
+		nextPointX = pointXs[index+1] = pointXs[4] = 8
+		width = nextPointX-pointX = 8 - 5 = 3
+		if maximumWidth<width (2<3)✅{
+			maximumWidth = width = 3
+		}
+	}
+}
+
+index = 4, pointX = 8{
+	if index != len(pointXs)-1 (4!=5)✅{
+		nextPointX = pointXs[index+1] = pointXs[5] = 9
+		width = nextPointX-pointX = 9 - 8 = 1
+		if maximumWidth<width (3<1)❌
+	}
+}
+index = 5, pointX = 9{
+	if index != len(pointXs)-1 (5!=5)❌
+}
+
+return maximumWidth = 3
