@@ -1,0 +1,58 @@
+nums = []int{1, 2, 5, 2, 3}; target = 2
+                       0  1  2  3  4
+-> sortedNums =  []int{1, 2, 2, 3, 5}
+
+findMininumIndex
+{
+    leftIndex:=0
+    rightIndex= 4
+    for leftIndex<=rightIndex (0<=4)✅{
+        middleIndex:= (leftIndex+rightIndex)/2 = (0+4)/2 = 2
+        middleVal:=sortedNums[2] = 2
+        if middleVal >= target (2>=2) ✅{
+            rightIndex = middleIndex - 1 = 2 - 1 = 1
+        }
+    }
+
+    for leftIndex<=rightIndex (0<=1)✅{
+        middleIndex:= (leftIndex+rightIndex)/2 = (0+1)/2 = 0
+        middleVal:=sortedNums[0] = 1
+        if middleVal >= target (1>=2) ❌
+        else {
+            leftIndex = middleIndex + 1 = 1
+        }
+    }
+    for leftIndex<=rightIndex (1<=1)✅{
+        middleIndex:= (leftIndex+rightIndex)/2 = (1+1)/2 =1
+        middleVal:=sortedNums[1] = 2
+        if middleVal >= target (2>=2) ✅{
+            rightIndex = middleIndex - 1 = 0
+        }
+    }
+    for leftIndex<=rightIndex (1<=0)❌
+}
+return leftIndex = 1
+
+findMaximumIndex
+{
+    leftIndex:=0
+    rightIndex= 4
+    for leftIndex<=rightIndex (0<=4)✅{
+        middleIndex:= (leftIndex+rightIndex)/2 = (0+4)/2 = 2
+        middleVal:=sortedNums[2] = 2
+        if middleVal <= target (2<=2) ✅{
+            leftIndex = middleIndex + 1 = 3
+        }
+    }
+
+    for leftIndex<=rightIndex (3<=4)✅{
+        middleIndex:= (leftIndex+rightIndex)/2 = (3+4)/2 = 3
+        middleVal:=sortedNums[3] = 3
+        if middleVal <= target (3<=2) ❌
+        else {
+            rightIndex=middleIndex-1 = 2
+        }
+    }
+    for leftIndex<=rightIndex (3<=2)❌
+    return rightIndex = 2
+}

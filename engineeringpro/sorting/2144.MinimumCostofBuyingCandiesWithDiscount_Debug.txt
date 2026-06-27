@@ -1,0 +1,52 @@
+cost = [6,5,7,9,2,2]
+-> sortedCostDesc = [9,7,6,5,2,2]
+
+minimumCost:=0
+countBoughtCandies:=0
+index = 0,cost = 9
+{
+	if countBoughtCandies == 2 (0==2) ❌
+	minimumCost+= cost// minimumCost = 9
+	countBoughtCandies++ // 1
+}
+
+index = 1,cost = 7
+{	
+	if countBoughtCandies == 2 (1==2) ❌
+	minimumCost+= cost // minimumCost = 16
+	countBoughtCandies++ // 2
+}
+
+index = 2,cost = 6
+{	
+	if countBoughtCandies == 2 (2==2) ✅{
+		countBoughtCandies = 0
+		fmt.Printf("Take the candy with cost 6 for free")
+		continue
+	}
+}
+
+index = 3,cost = 5
+{
+	if countBoughtCandies == 2 (0==2) ❌
+	minimumCost+= cost // minimumCost = 21
+	countBoughtCandies++ // 1
+}
+
+index = 3,cost = 2
+{
+	if countBoughtCandies == 2 (1==2) ❌
+	minimumCost+= cost // minimumCost = 23
+	countBoughtCandies++ // 2
+}
+
+index = 4,cost = 2
+{
+	if countBoughtCandies == 2 (2==2) ✅{
+		countBoughtCandies = 0
+		fmt.Printf("Take the candy with cost 2 for free")
+		continue
+	}
+	minimumCost+= cost // minimumCost = 23
+	countBoughtCandies++ // 2
+}

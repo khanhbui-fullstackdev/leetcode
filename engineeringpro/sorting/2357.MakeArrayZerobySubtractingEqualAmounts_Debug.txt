@@ -1,0 +1,86 @@
+nums = [1,5,0,3,5]
+sortedNums = [0,1,3,5] 
+
+totalSum:=9
+minimumOperations:=0
+
+for totalSum!=0{
+	minimum = findSmallestNonZeroElement(sortedNums) // 1
+	for index,num:=range sortedNums) {
+		index = 0, num = 0{
+			if num!=0 (0!=0)❌
+		}
+		index = 1, num = 1{
+			if num!=0 (1!=0)✅{
+				sortedNums[index] = sortedNums[index] - minimum 
+				<=> sortedNums[1] = sortedNums[1] - 1 = 1 - 1 = 0 // [0,0,3,5] 
+				totalSum = totalSum - minimum = 9 - 1 = 8
+			}
+		}
+		index = 2, num = 3 {
+			if num!=0 (3!=0)✅{
+				sortedNums[index] = sortedNums[index] - minimum 
+				<=> sortedNums[2] = sortedNums[2] - 1 = 3 - 1 = 2 // [0,0,2,5] 
+				totalSum = totalSum - minimum = 8 - 1 = 7
+			}
+		}
+		index = 3, num = 5 {
+			if num!=0 (5!=0)✅{
+				sortedNums[index] = sortedNums[index] - minimum 
+				<=> sortedNums[3] = sortedNums[3] - 1 = 5 - 1 = 4 // [0,0,2,4] 
+				totalSum = totalSum - minimum = 7 - 1 = 6
+			}
+		}	
+	}
+	minimumOperations++ // 1
+	minimum = findSmallestNonZeroElement(sortedNums) // 2
+	
+	index = 0, num = 0
+	{
+		if num!=0 (0!=0) ❌
+	}
+	index = 1, num = 0
+	{
+		if num!=0 (0!=0) ❌
+	}
+	index = 2, num = 2 
+	{
+		if num!=0 (2!=0)✅{
+			sortedNums[index] = sortedNums[index] - minimum 
+			<=> sortedNums[2] = sortedNums[2] - 2 = 2 - 2 = 0 // [0,0,0,4] 
+			totalSum = totalSum - minimum = 6 - 2 = 4
+		}
+	}
+	index = 3, num = 4 {
+		if num!=0 (4!=0)✅{
+			sortedNums[index] = sortedNums[index] - minimum 
+			<=> sortedNums[3] = sortedNums[3] - 1 = 4 - 2 = 2 // [0,0,0,2] 
+			totalSum = totalSum - minimum = 4 - 2 = 2
+		}
+	}
+	
+	minimumOperations++ // 2
+	minimum = findSmallestNonZeroElement(sortedNums) // 2
+	index = 0, num = 0
+	{
+		if num!=0 (0!=0) ❌
+	}
+	index = 1, num = 0
+	{
+		if num!=0 (0!=0) ❌
+	}
+	index = 2, num = 0
+	{
+		if num!=0 (0!=0) ❌
+	}
+	index = 3, num = 2
+	{
+		if num!=0 (2!=0)✅{
+			sortedNums[index] = sortedNums[index] - minimum
+			<=> sortedNums[3] = sortedNums[3] - 1 = 2 - 2 = 0 // [0,0,0,0]
+			totalSum = totalSum - minimum = 2 - 2 = 0			
+		}
+	}
+	minimumOperations++ // 3
+}
+return minimumOperations

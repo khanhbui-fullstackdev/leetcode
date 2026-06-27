@@ -1,0 +1,65 @@
+--------------- slices.SortFunc (Callback Function) -----------------------------
+ 👉 Khi nào xài: Cho mọi loại slice (struct, int, string, float...).
+
+package main
+
+import (
+	"fmt"
+	"cmp"
+	"slices"
+)
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func main() {
+	users := []User{
+		{"Anh", 25},
+		{"Bình", 18},
+		{"Chián", 30},
+	}
+
+	// Xài callback function ở đây (Dùng gói cmp để so sánh cho nhanh và chuẩn)
+	slices.SortFunc(users, func(a, b User) int {
+		return cmp.Compare(a.Age, b.Age) 
+		// Hoặc viết tay: if a.Age < b.Age { return -1 }; ...
+	})
+
+	fmt.Println(users) // Output: [{Bình 18} {Anh 25} {Chián 30}]
+}
+
+
+Mẹo nhỏ: > * Nếu chỉ sắp xếp int, string, float tăng dần cơ bản, bạn xài luôn slices.Sort(yourSlice) cho lẹ, không cần truyền callback.
+Nếu muốn giảm dần hoặc cấu trúc phức tạp, cứ slices.SortFunc mà giã.
+
+package main
+
+import (
+	"cmp"
+	"fmt"
+	"slices"
+)
+
+func main() {
+	// Mảng int ban đầu
+	numbers := []int{5, 2, 6, 3, 1, 4}
+
+	// 1. Sắp xếp GIẢM DẦN bằng slices.SortFunc (Dùng callback)
+	slices.SortFunc(numbers, func(a, b int) int {
+		return cmp.Compare(b, a) // Đảo ngược b và a để thành giảm dần
+	})
+	fmt.Println("Giảm dần:", numbers) // Output: [6 5 4 3 2 1]
+
+	// 2. Sắp xếp TĂNG DẦN bằng slices.SortFunc (Dùng callback)
+	slices.SortFunc(numbers, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+	fmt.Println("Tăng dần (SortFunc):", numbers) // Output: [1 2 3 4 5 6]
+}
+
+Để bạn dễ nhớ quy tắc viết callback function cho slices.SortFunc
+Trả về số âm (ví dụ -1): Phần tử a sẽ đứng trước b.
+Trả về số dương (ví dụ 1): Phần tử a sẽ đứng sau b.
+Trả về 0: Giữ nguyên vị trí (hai số bằng nhau).
