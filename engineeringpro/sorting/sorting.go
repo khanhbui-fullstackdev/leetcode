@@ -452,21 +452,25 @@ func maxWidthOfVerticalArea(points [][]int) int {
 func RunSortTheStudent() {
 	score := [][]int{{10, 6, 9, 1}, {7, 5, 11, 2}, {4, 8, 3, 15}}
 	k := 2
-	sortingStudents := sortTheStudents(score, k)
+	sortingStudents := sortTheStudentsByKthColumn(score, k)
 	fmt.Printf("Sorting students:%v", sortingStudents)
 	fmt.Println()
 
 	score = [][]int{{3, 4}, {5, 6}}
 	k = 0
-	sortingStudents = sortTheStudents(score, k)
+	sortingStudents = sortTheStudentsByKthColumn(score, k)
 	fmt.Printf("Sorting students:%v", sortingStudents)
 	fmt.Println()
 }
 
 func sortTheStudents(score [][]int, k int) [][]int {
 	// Step 1: Create struct/map to store student score at kth's column index
-	/*                                                     0  1   2
-	[[10,6,9,1],[7,5,11,2],[4,8,3,15]] => studentScores = [9, 11, 3]
+	/*
+		   type struct StudentScore {
+				RowIndex int
+				Score    int
+			}
+			[[10,6,9,1],[7,5,11,2],[4,8,3,15]] => studentScores = [{0 9}, {1 11}, {2 3}]
 	*/
 	studentScores := make([]*models.StudentScore, 0, k)
 	for index, s := range score {
@@ -493,4 +497,12 @@ func sortTheStudents(score [][]int, k int) [][]int {
 	}
 
 	return sortedScores
+}
+
+func sortTheStudentsByKthColumn(score [][]int, k int) [][]int {
+	slices.SortFunc(score, func(a, b []int) int {
+		return cmp.Compare(b[k], a[k])
+	})
+
+	return score
 }
