@@ -159,18 +159,5 @@ func isHappy(n int) bool {
 	if n == 1 {
 		return true
 	}
-	happyNumbers := make([]int, 0, n)
-	return isHappyNumber(n, happyNumbers)
-}
-
-func isHappyNumber(n int, happyNumbers []int) bool {
-	if n == 1 {
-		return true
-	}
-	firstNumber := n % 10
-	secondNumber := n / 10
-	n = firstNumber*firstNumber + secondNumber*secondNumber
-	happyNumbers = append(happyNumbers, n)
-
-	return isHappyNumber(n, happyNumbers)
+	return false
 }
