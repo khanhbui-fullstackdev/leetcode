@@ -1,0 +1,124 @@
+n = 19
+squareOfDigits:=make(map[int]bool, n)
+
+// stack = [isHappy(19), calculateSquareOfDigits(19, squareOfDigits)]
+calculateSquareOfDigits(19, squareOfDigits)
+{
+	if n == 1 ❌
+	_,existed:=squareOfDigits[n] = squareOfDigits[19]
+	if existed ❌
+	squareOfDigits[19] = true // squareOfDigits= [19:true]
+	
+	total:=0
+	for n >0  {
+		(19>0)✅ {
+			digit:=n%10=9
+			total+= total + (digit*digit) = 0 + 9*9 = 81
+			n = n / 10 = 1
+		}
+		(1>0)✅{
+			digit:=n%10=1
+			total+= total + (digit*digit) = 81 + 1*1 = 82
+			n = n / 10 = 0
+		}
+	}
+	return calculateSquareOfDigits(82, squareOfDigits) // squareOfDigits[]
+}
+
+// stack = [isHappy(19), calculateSquareOfDigits(19, squareOfDigits), calculateSquareOfDigits(82, squareOfDigits)]
+calculateSquareOfDigits(82, squareOfDigits)
+{
+	if n == 1 ❌
+	_,existed:=squareOfDigits[n] = squareOfDigits[82]
+	if existed ❌
+	squareOfDigits[82] = true // squareOfDigits= [19:true,82:true]
+	
+	total:=0
+	for n >0 {
+		(82>0)✅ {
+			digit:=n%10=2
+			total+=total + (digit*digit) = 0 + 2*2 = 4
+			n = n / 10 = 8
+		}
+		(8>0)✅{
+			digit:=n%10=8
+			total+=total + (digit*digit) = 4 + 8*8 = 68
+			n = n / 10 = 0
+		}
+	}
+	return calculateSquareOfDigits(68, squareOfDigits)
+}
+
+// stack = [isHappy(19), calculateSquareOfDigits(19, squareOfDigits), calculateSquareOfDigits(82, squareOfDigits),calculateSquareOfDigits(68, squareOfDigits)]
+calculateSquareOfDigits(68, squareOfDigits)
+{
+	if n == 1 ❌
+	_,existed:=squareOfDigits[n] = squareOfDigits[68]
+	if existed ❌
+	squareOfDigits[68] = true // squareOfDigits= [19:true,82:true,68:true]
+	
+	total:=0
+	for n >0 {
+		(68>0)✅ {
+			digit:=n%10=8
+			total+=total + (digit*digit) = 0 + 8*8 = 64
+			n = n / 10 = 6
+		}
+		(6>0)✅ {
+			digit:=n%10=6
+			total+=total + (digit*digit) = 64 + 6*6 = 100
+			n = n / 10 = 10
+		}
+		(10>0)✅{
+			digit:=n%10=0
+			total+=total + (digit*digit) = 100 + 0*0 = 100
+			n = n / 10 = 1
+		}
+		(1>0)✅{
+			digit:=n%10=1
+			total+=total + (digit*digit) = 100 + 1*1 = 100
+			n = n / 10 = 0
+		}
+	}
+	return calculateSquareOfDigits(100, squareOfDigits)
+}
+
+// stack = [isHappy(19), calculateSquareOfDigits(19, squareOfDigits), calculateSquareOfDigits(82, squareOfDigits),calculateSquareOfDigits(68, squareOfDigits),calculateSquareOfDigits(100, squareOfDigits)]
+calculateSquareOfDigits(100, squareOfDigits){
+	if n == 1 ❌
+	_,existed:=squareOfDigits[n] = squareOfDigits[68]
+	if existed ❌
+	squareOfDigits[100] = true // squareOfDigits= [19:true,82:true,68:true,100:true]
+	
+	total:=0
+	for n >0 {
+		(100>0)✅ {
+			digit:=n%10=0
+			total+=total + (digit*digit) = 0 + 0 = 0
+			n = n / 10 = 10
+		}
+		(10>0)✅ {
+			digit:=n%10=0
+			total+=total + (digit*digit) = 0 + 0 = 0
+			n = n / 10 = 1
+		}
+		(1>0)✅ {
+			digit:=n%10=1
+			total+=total + (digit*digit) = 0 + 1 = 1
+			n = n / 10 = 0
+		}
+		(0>0)❌
+	}
+	return calculateSquareOfDigits(1, squareOfDigits)
+}
+/*stack = [isHappy(19), 
+calculateSquareOfDigits(19, squareOfDigits), 
+calculateSquareOfDigits(82, squareOfDigits),
+calculateSquareOfDigits(68, squareOfDigits),
+calculateSquareOfDigits(100, squareOfDigits),
+calculateSquareOfDigits(1,squareOfDigits)]
+*/
+calculateSquareOfDigits(1,squareOfDigits)
+{
+	if n == 1 ✅return true
+}

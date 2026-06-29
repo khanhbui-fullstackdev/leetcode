@@ -153,11 +153,43 @@ func RunIsHappy() {
 	n = 2
 	fmt.Printf("%d is a happy number:%v", n, isHappy(n))
 	fmt.Println()
+
+	n = 199
+	fmt.Printf("%d is a happy number:%v", n, isHappy(n))
+	fmt.Println()
+
+	n = 52
+	fmt.Printf("%d is a happy number:%v", n, isHappy(n))
+	fmt.Println()
+
+	n = 2705
+	fmt.Printf("%d is a happy number:%v", n, isHappy(n))
+	fmt.Println()
 }
 
 func isHappy(n int) bool {
 	if n == 1 {
 		return true
 	}
-	return false
+
+	squareOfDigits := make(map[int]bool, n)
+	return calculateSquareOfDigits(n, squareOfDigits)
+}
+
+func calculateSquareOfDigits(n int, squareOfDigits map[int]bool) bool {
+	if n == 1 {
+		return true
+	}
+	_, existed := squareOfDigits[n]
+	if existed {
+		return false
+	}
+	squareOfDigits[n] = true
+	total := 0
+	for n > 0 {
+		digit := n % 10
+		total = total + digit*digit
+		n = n / 10
+	}
+	return calculateSquareOfDigits(total, squareOfDigits)
 }
