@@ -97,3 +97,80 @@ func finDynamicProgrammingBottomup(n int, fibonacies []int) int {
 	}
 	return fibonacies[n]
 }
+
+func RunPowerOfThree() {
+	n := 27
+	fmt.Printf("Is power of three:%v", isPowerOfThree(n))
+	fmt.Println()
+
+	n = 0
+	fmt.Printf("Is power of three:%v", isPowerOfThree(n))
+	fmt.Println()
+
+	n = -1
+	fmt.Printf("Is power of three:%v", isPowerOfThree(n))
+	fmt.Println()
+}
+
+func isPowerOfThree(n int) bool {
+	if n == 1 {
+		return true
+	}
+	if n <= 0 || n%3 != 0 {
+		return false
+	}
+	return isPowerOfThree(n / 3)
+}
+
+func RunPowerOfFour() {
+	n := 16
+	fmt.Printf("Is power of four:%v", isPowerOfFour(n))
+	fmt.Println()
+
+	n = 5
+	fmt.Printf("Is power of four:%v", isPowerOfFour(n))
+	fmt.Println()
+
+	n = 1
+	fmt.Printf("Is power of four:%v", isPowerOfFour(n))
+	fmt.Println()
+}
+
+func isPowerOfFour(n int) bool {
+	if n == 1 {
+		return true
+	} else if n == 0 || n%4 != 0 {
+		return false
+	}
+	return isPowerOfFour(n / 4)
+}
+
+func RunIsHappy() {
+	n := 19
+	fmt.Printf("%d is a happy number:%v", n, isHappy(n))
+	fmt.Println()
+
+	n = 2
+	fmt.Printf("%d is a happy number:%v", n, isHappy(n))
+	fmt.Println()
+}
+
+func isHappy(n int) bool {
+	if n == 1 {
+		return true
+	}
+	happyNumbers := make([]int, 0, n)
+	return isHappyNumber(n, happyNumbers)
+}
+
+func isHappyNumber(n int, happyNumbers []int) bool {
+	if n == 1 {
+		return true
+	}
+	firstNumber := n % 10
+	secondNumber := n / 10
+	n = firstNumber*firstNumber + secondNumber*secondNumber
+	happyNumbers = append(happyNumbers, n)
+
+	return isHappyNumber(n, happyNumbers)
+}

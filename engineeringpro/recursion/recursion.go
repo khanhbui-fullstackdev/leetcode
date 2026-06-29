@@ -17,11 +17,15 @@ func main() {
 
 		case 1:
 			RunFib()
+
 		case 2:
+			RunPowerOfThree()
 
 		case 3:
+			RunPowerOfFour()
 
 		case 4:
+			RunIsHappy()
 
 		case 5:
 
@@ -49,7 +53,7 @@ func main() {
 }
 
 func showMenu() {
-	fmt.Println("===== Review 8.Linked List =====")
+	fmt.Println("===== Review 3.Recursion =====")
 	fmt.Println("0. Exit")
 	fmt.Println("1. 509. Fibonacci Number")
 	fmt.Println("2. 326. Power of Three")
