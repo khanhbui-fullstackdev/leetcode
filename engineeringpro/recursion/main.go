@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -173,6 +174,7 @@ func isHappy(n int) bool {
 	}
 
 	squareOfDigits := make(map[int]bool, n)
+	fmt.Println(squareOfDigits)
 	return calculateSquareOfDigits(n, squareOfDigits)
 }
 
@@ -192,4 +194,99 @@ func calculateSquareOfDigits(n int, squareOfDigits map[int]bool) bool {
 		n = n / 10
 	}
 	return calculateSquareOfDigits(total, squareOfDigits)
+}
+
+func RunSumBase() {
+	n := 34
+	k := 6
+	sum := sumBaseV2(n, k)
+	fmt.Printf("Sum of digits %d in Base K:%d", sum, k)
+	fmt.Println()
+
+	n = 10
+	k = 10
+	sum = sumBaseV2(n, k)
+	fmt.Printf("Sum of digits %d in Base K:%d", sum, k)
+	fmt.Println()
+}
+
+func sumBase(n int, k int) int {
+	digits := make([]int, 0, n)
+	calculateSumBaseV1(n, k, &digits)
+	total := 0
+	for _, digit := range digits {
+		total += digit
+	}
+	return total
+}
+
+func calculateSumBaseV1(n, k int, digits *[]int) {
+	if n == 0 {
+		return
+	}
+	digit := (int)(n / k)
+	remaining := (int)(n % k)
+	*digits = append(*digits, remaining)
+	calculateSumBaseV1(digit, k, digits)
+}
+
+func sumBaseV2(n int, k int) int {
+	total := 0
+	return calculateSumBaseV2(n, k, total)
+}
+
+func calculateSumBaseV2(n, k, total int) int {
+	if n == 0 {
+		return total
+	}
+	digit := (int)(n / k)
+	remaining := (int)(n % k)
+	total += remaining
+
+	return calculateSumBaseV2(digit, k, total)
+}
+
+func RunConvertToBase7() {
+	n := 100
+	fmt.Printf("n = %d -> convert to base 7 = %s", n, convertToBase7(n))
+	fmt.Println()
+
+	n = -7
+	fmt.Printf("n = %d -> convert to base 7:%s", n, convertToBase7(n))
+	fmt.Println()
+}
+
+func convertToBase7(num int) string {
+	if num == 0 {
+		return "0"
+	}
+
+	isNegative := false
+	if num < 0 {
+		isNegative = true
+		num = -num
+	}
+	runes := make([]rune, 0, num)
+	runes = calculateBase7(num, runes)
+
+	var strBuilder strings.Builder
+	strBuilder.Grow(len(runes))
+
+	for index := len(runes) - 1; index >= 0; index-- {
+		strBuilder.WriteRune(runes[index])
+	}
+	if isNegative {
+		return "-" + strBuilder.String()
+	}
+	return strBuilder.String()
+}
+
+func calculateBase7(num int, runes []rune) []rune {
+	if num == 0 {
+		return runes
+	}
+	digit := num / 7
+	remain := num % 7
+	runes = append(runes, rune('0'+remain))
+	return calculateBase7(digit, runes)
 }

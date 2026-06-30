@@ -28,18 +28,16 @@ func main() {
 			RunIsHappy()
 
 		case 5:
+			RunSumBase()
 
 		case 6:
+			RunConvertToBase7()
 
 		case 7:
 
 		case 8:
 
 		case 9:
-
-		case 10:
-
-		case 11:
 
 		case 0:
 			fmt.Println("Exit...")
