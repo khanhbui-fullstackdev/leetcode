@@ -1,0 +1,155 @@
+n represents number of rows
+k represents (1st-index)
+
+Row1: 0
+0 -> 01
+Combine:01 => Row2 = 01
+
+0 -> 01
+1 -> 10
+Combine: 0110 => Row3 = 0110
+
+0 -> 01
+1 -> 10
+1 -> 10
+0 -> 01
+Combine: 01101001 => Row4 = 01101001         => length = 8
+
+
+0  -> 01
+1  -> 10
+1  -> 10
+0  -> 01
+1  -> 10
+0  -> 01
+0  -> 01
+1  -> 10
+Combine: 0110100110010110 => Row5 = 0110100110010110 => length = 16
+
+sLength(n):= 2^(n-1)
+
+Ta có n = 4, k = 6
+       12345678 (1st-index)  
+Row4 = 01101001 Length = 8
+
+
+ 0110   + 1001          = 01101001
+ Row(3) + Invert(Row(3)) = Row4
+
+Vị trí nửa đầu:     1    2    3    4  (Giá trị: 0  1  1  0) Row3
+                    |    |    |    |
+Vị trí nửa sau:     5    6    7    8  (Giá trị: 1  0  0  1) Invert(Row3)
+
+						 
+Hoặc vị trí nửa sau:     1    2    3    4  (Giá trị: 1  0  0  1) Invert(Row3)
+                         1    0    0    1  (index = 2 k=6 chính là vị trí thứ 2 của 1/2 sau)
+
+Vị trí 5 tương ứng với vị trí 1 (vì 5 - 4 = 1)
+Vị trí 6 tương ứng với vị trí 2 (vì 6 - 4 = 2)
+Vị trí 7 tương ứng với vị trí 3 (vì 7 - 4 = 3)
+Vị trí 8 tương ứng với vị trí 4 (vì 8 - 4 = 4)
+=> ko phải đối xưng gương mà là đối xứng tịnh tiến (copy y nguyên) rồi đảo bit!
+
+// Stack = [kthGrammar(4,6)]
+kthGrammar(4,6)
+{
+	sLength(4) = 2^(4-1) = 8
+	midIndex := sLength/2 = 4
+	
+	// k is located on the right
+	if midIndex < k (4<=6)✅{
+		// cho dù k ở phía trc midIndex hay sau midIndex thì ký tự đó luôn dc sinh ra từ một ký tự trong hàng trước 
+		// nghĩa là n = 4 k = 6 => thì ta phải tìm hàng thứ 3
+		// nếu midIndex<=k thì k đang nằm ở nửa sau middleIndex vị trị invert(row(n))
+		/*
+		12345678 (1st-index)
+		01101001
+		   m k
+		*/
+		
+		
+		n = n - 1 = 4 - 1 = 3
+		k = k - mid = 6 - 4 = 2 // vì 6 đối xứng với 2(đối xứng tịnh tiến)
+		return 1 - kthGrammar(3,2)
+	}
+}
+
+// Stack = [kthGrammar(4,6), kthGrammar(3,2)]
+kthGrammar(3,2) 
+{
+	sLength(3) = 2^(n-1) = 2^(3-1) = 4
+	midIndex := sLength/2 = 2
+	
+	if middleIndex < k (2<2)  ❌
+	
+	n = n - 1 = 3 - 1 = 2
+	return (2,2)
+}
+
+// Stack = [kthGrammar(4,6), kthGrammar(3,2),kthGrammar(2,2)]
+kthGrammar(2,2) 
+{
+	sLength(2) =   2^(2-1) = 2
+	midIndex := sLength/2 = 1
+	
+	if middleIndex < k (1<2)  ✅{
+		n = n - 1 = 2 - 1 = 1
+		k = k - middleIndex = 2 - 1 = 1
+		return 1 - kthGrammar(1,1)
+	}
+}
+
+// Stack = [kthGrammar(4,6), kthGrammar(3,2),kthGrammar(2,2),kthGrammar(1,1)]
+kthGrammar(1,1)
+{
+	if n == 1 return 0
+}
+
+// Stack = [kthGrammar(4,6), kthGrammar(3,2),kthGrammar(2,2)]
+kthGrammar(2,2) 
+{
+	sLength(2) =   2^(2-1) = 2
+	midIndex := sLength/2 = 1
+	
+	if middleIndex < k (1<2)  ✅{
+		n = n - 1 = 2 - 1 = 1
+		k = k - middleIndex = 2 - 1 = 1
+		return 1 - 0 = 1 //
+	}
+}
+
+// Stack = [kthGrammar(4,6), kthGrammar(3,2)]
+kthGrammar(3,2) 
+{
+	sLength(3) = 2^(n-1) = 2^(3-1) = 4
+	midIndex := sLength/2 = 2
+	
+	if middleIndex < k (2<2)  ❌
+	
+	n = n - 1 = 3 - 1 = 2
+	return 1
+}
+
+// Stack = [kthGrammar(4,6)]
+kthGrammar(4,6)
+{
+	sLength(4) = 2^(4-1) = 8
+	midIndex := sLength/2 = 4
+	
+	// k is located on the right
+	if midIndex < k (4<=6)✅{
+		// cho dù k ở phía trc midIndex hay sau midIndex thì ký tự đó luôn dc sinh ra từ một ký tự trong hàng trước 
+		// nghĩa là n = 4 k = 6 => thì ta phải tìm hàng thứ 3
+		// nếu midIndex<=k thì k đang nằm ở nửa sau middleIndex vị trị invert(row(n))
+		/*
+		12345678 (1st-index)
+		01101001
+		   m k
+		*/
+		
+		
+		n = n - 1 = 4 - 1 = 3
+		k = k - mid = 6 - 4 = 2 // vì 6 đối xứng với 2(đối xứng tịnh tiến)
+		return 1 - kthGrammar(3,2) = 1 - 1 = 0
+	}
+}

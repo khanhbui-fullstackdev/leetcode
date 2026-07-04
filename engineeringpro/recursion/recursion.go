@@ -34,6 +34,7 @@ func main() {
 			RunConvertToBase7()
 
 		case 7:
+			RunKthGrammar()
 
 		case 8:
 

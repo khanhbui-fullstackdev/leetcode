@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
 	"time"
 )
@@ -289,4 +290,115 @@ func calculateBase7(num int, runes []rune) []rune {
 	remain := num % 7
 	runes = append(runes, rune('0'+remain))
 	return calculateBase7(digit, runes)
+}
+
+func RunKthGrammar() {
+	n := 1
+	k := 1
+	fmt.Printf("At kth:%d and row(%d) is char:%d", k, n, kthGrammar(n, k))
+	fmt.Println()
+
+	n = 2
+	k = 1
+	fmt.Printf("At kth:%d and row(%d) is char:%d", k, n, kthGrammar(n, k))
+	fmt.Println()
+
+	n = 2
+	k = 2
+	fmt.Printf("At kth:%d and row(%d) is char:%d", k, n, kthGrammar(n, k))
+	fmt.Println()
+
+	n = 5
+	k = 6
+	fmt.Printf("At kth:%d and row(%d) is char:%d", k, n, kthGrammar(n, k))
+	fmt.Println()
+
+	n = 4
+	k = 8
+	fmt.Printf("At kth:%d and row(%d) is char:%d", k, n, kthGrammar(n, k))
+	fmt.Println()
+}
+
+/*
+	kthGrammar là bài đối xứng tịnh tiến
+	row(1)=0
+	  0 -> 10
+	  combine = 10 = row(2)
+
+	row(2)=10
+      1 -> 10
+	  0 -> 01
+	  combine = 1001 = row(3)
+
+	row(3)=1001
+     1  -> 10
+     0  -> 01
+	 0  -> 01
+	 1  -> 10
+	 combine = 1001       0110           = row(4) => length = 8
+   => row(4) = row(3)     invert(row(3))
+	 Để xác định dc 1/2 & 1/2 sau ta phải xác định dc midIndex = sLength/2
+     Để tính toán dc midIndex ta phải tính dc sLength
+     sLength(N) = 2^(n-1) = sLength(5) = 2^(5-1) = 16
+
+	 khi ta tính dc middleIndex ở hàng n
+	 ta so sánh middleIndex với k
+
+	 if middleIndex < k {
+	    // k is located on the rightside of middleIndex
+        // k nằm ở vị trí ĐẢO NGƯỢC BIT (1/2 phải)
+		// theo tính chất đối xứng tịnh tiến k = 6(input) đang đối xứng k = 2
+index	1234
+		1001
+        ||||
+index   5678
+		0110
+
+		// dù k nằm ở vị trí 1/2 trc hay 1/2 sau thì ký tự ở vị trí thứ kth index đề nằm ở hàng trc đó n-1
+		=> n = n - 1 = 4 - 1 = 3
+		// đối với k > middleIndex => ta lấy k = k - middleIndex = 6 - 4 = 2 (index=2 đối  xứng index=6)
+		// Ở 1/2 trái ta thấy index = 2 có ký tự 0, 1/2 phải index = 6 có ký tự 1
+		=> 1 - 0 (1/2 trái) = 1 (1/2 phải) => 1 - (n,k)
+	 }
+
+k=2,n=3 {
+         1234 (index)
+row(3) = 1001
+    	middleIndex = 2
+		if middleIndex < k (2<2) ❌
+}
+		n = n - 1 = 2
+		return kthGrammar(2,2)
+
+k = 2, n = 2 {
+         12 (index)
+row(2) = 10
+	middleIndex = 1
+	if middleInex < k (1<2) ✅{
+		n = n - 1 = 1
+		k = k - middleIndex = 2 - 1 = 1
+		return 1 - kthGrammar(1,1)
+	}
+}
+
+k = 1, n = 1 {
+	if n == 1 {
+	  	return 0
+	}
+}
+*/
+
+func kthGrammar(n int, k int) int {
+	if n == 1 {
+		return 0
+	}
+	sLength := int(math.Pow(2, float64(n-1)))
+	middleIndex := sLength / 2
+	if middleIndex < k {
+		n = n - 1
+		k = k - middleIndex
+		return 1 - kthGrammar(n, k)
+	}
+	n = n - 1
+	return kthGrammar(n, k)
 }
