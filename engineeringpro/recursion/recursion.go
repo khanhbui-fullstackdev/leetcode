@@ -37,6 +37,7 @@ func main() {
 			RunKthGrammar()
 
 		case 8:
+			RunFindKthBit()
 
 		case 9:
 

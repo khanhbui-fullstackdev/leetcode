@@ -402,3 +402,61 @@ func kthGrammar(n int, k int) int {
 	n = n - 1
 	return kthGrammar(n, k)
 }
+
+func RunFindKthBit() {
+	n := 3
+	k := 1
+	fmt.Printf("n = %d and k = %d => kthBit:%c", n, k, findKthBit(n, k))
+	fmt.Println()
+
+	n = 4
+	k = 11
+	fmt.Printf("n = %d and k = %d => kthBit:%c", n, k, findKthBit(n, k))
+	fmt.Println()
+
+	n = 3
+	k = 5
+	fmt.Printf("n = %d and k = %d => kthBit:%c", n, k, findKthBit(n, k))
+	fmt.Println()
+
+	n = 3
+	k = 7
+	fmt.Printf("n = %d and k = %d => kthBit:%c", n, k, findKthBit(n, k))
+	fmt.Println()
+
+	n = 5
+	k = 16
+	fmt.Printf("n = %d and k = %d => kthBit:%c", n, k, findKthBit(n, k))
+	fmt.Println()
+
+	n = 20
+	k = 1048576 - 1
+	fmt.Printf("n = %d and k = %d => kthBit:%c", n, k, findKthBit(n, k))
+	fmt.Println()
+}
+
+func findKthBit(n int, k int) byte {
+	if n == 1 || k == 1 {
+		return '0'
+	}
+	if 2 <= k && k <= 4 {
+		return '1'
+	}
+	sLength := int(math.Pow(2, float64(n)) - 1)
+	mirrorIndex := sLength/2 + 1
+	if mirrorIndex < k {
+		// k is located on the right side of mirrorIndex
+		reflectedIndex := sLength - k + 1
+		n = n - 1
+		return invertBit(findKthBit(n, reflectedIndex))
+	}
+	n = n - 1
+	return findKthBit(n, k)
+}
+
+func invertBit(bit byte) byte {
+	if bit == '0' {
+		return '1'
+	}
+	return '0'
+}
