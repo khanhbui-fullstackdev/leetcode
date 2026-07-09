@@ -1,0 +1,94 @@
+S1 = "0"
+
+S2 = S(1) + "1" + reverse(invert(S(1)))  = "0" + "1" + reverse(1) = "011"
+S3 = S(2) + "1" + reverse(invert(S(2)))  = "011" + "1" + reverse(invert("011")) = "0111" + reverse("100") =  "0111001"  
+S4 = S(3) + "1" + reverse(invert(S(3)))  = "0111001" + "1" + reverse(invert("0111001")) = "01110011" + reverse("1000110") = "01110011 0110001" = "011100110110001"
+
+Si = S(i - 1) + "1" + reverse(invert(S(i - 1)))
+sLength:= (2^n - 1)
+
+// Đối xứng gương + đảo bit
+k = 5; n = 3
+      123 4 567  (index)
+S3 = "011 1 001" length = 7
+
+Ta có:
+left =  011
+right = 001 => right = reverse(invert("001")) = reverse("110") = "011" = left = 011
+Si = S(i - 1) +      "1"       + reverse(invert(S(i - 1)))
+                miror/midIndex
+
+		123                123
+Left    011                011
+		|||                |||      
+Right	567                567
+		001                011
+
+=> midIndex chính là miror 
+👉 Index = 1 đối xứng index = 7  👉 Vị trí cuối cùng (sLength) sẽ về vị trí index = 1
+👉 Index = 2 đối xứng index = 6  👉 Vị trí áp cuối (sLength - 1) sẽ về vị trí index = 2
+👉 Index = 3 đối xứng index = 5 
+
+ findKthBit(n int, k int)
+
+// stack = [findKthBit(3,5)]
+n = 3, k = 5{
+	sLength(3) = 2^3 - 1 = 7
+	midIndex = sLength/2 + 1 = 7/2 + 1 = 4
+	if midIndex<k (4<5) ✅{
+		reflectedPosition:= sLength - k + 1 = 7 - 5 + 1 = 3
+		n = n - 1 = 3 - 1 = 2
+		return 1 - findKthBit(n,reflectedPosition) = 1 - findKthBit(2,3)
+	}
+}
+
+// stack = [findKthBit(3,5), findKthBit(2,3)]
+n = 2, k = 3
+{
+	sLength(2) = 2^2 - 1 = 3
+	midIndex = sLength/2 + 1 = 3/2 + 1 = 2
+ 	
+	index   123  
+	S2 = 	011
+			       
+	if midIndex<k (2<3) ✅{
+		reflectedPosition:= sLength - k + 1 = 3 - 3 + 1 = 1
+		n = n - 1 =  2 - 1 = 1
+		return 1 - findKthBit(n,reflectedPosition) = 1 - findKthBit(1,1)
+	}	
+}
+
+// stack = [findKthBit(3,5),findKthBit(2,3),findKthBit(1,1)]
+n = 1, k = 1
+{
+	if n == 1 return 0 // pop stack = [findKthBit(3,5),findKthBit(2,3)]
+}
+
+
+// stack = [findKthBit(3,5), findKthBit(2,3)]
+n = 2, k = 3
+{
+	sLength(2) = 2^2 - 1 = 3
+	midIndex = sLength/2 + 1 = 3/2 + 1 = 2
+ 	
+	index   123  
+	S2 = 	011
+			       
+	if midIndex<k (2<3) ✅{
+		reflectedPosition:= sLength - k + 1 = 3 - 3 + 1 = 1
+		n = n - 1 =  2 - 1 = 1
+		return 1 - findKthBit(n,reflectedPosition) = 1 - findKthBit(1,1) = 1 - 0 = 1 // stack = [findKthBit(3,5)]
+	}	
+}
+
+// stack = [findKthBit(3,5)]
+n = 3, k = 5{
+	sLength(3) = 2^3 - 1 = 7
+	midIndex = sLength/2 + 1 = 7/2 + 1 = 4
+	if midIndex<k (4<5) ✅{
+		reflectedPosition:= sLength - k + 1 = 7 - 5 + 1 = 3
+		n = n - 1 = 3 - 1 = 2
+		return 1 - findKthBit(n,reflectedPosition) = 1 - findKthBit(2,3) = 1 - 1 = 0 ///stack = []
+	}
+}
+
