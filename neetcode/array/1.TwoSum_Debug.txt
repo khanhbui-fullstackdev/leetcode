@@ -1,0 +1,75 @@
+Ý tưởng 1. Two Sum
+- Đây là bài toán đi tìm partner (cộng sự) sao cho số báo danh người A + số báo danh người B = target
+- mapNums giống như máy đánh dấu checkedin những người tham dự bữa tiệc
+- Vd người có label = 2 đến tiệc. Tôi là 'Nguyễn Văn A' với số báo danh = 2 và tôi đang kiếm người có số báo danh = 7 là partner của tôi. 
+Xin hỏi hiện tại số báo danh = 7 đang ngồi ở đâu?
+
+- System sẽ check xem người có số báo danh = 7 đã đến chưa 
+  👉 Nếu đã đến rồi thì chốt sổ ghép cặp
+  👉 Nếu chưa thì chứng tỏ người số báo danh = 7 chưa đến thì system note lại người số báo danh 2 và vị trí(index) của người 2 trước.
+  
+- Tương tự cho đến khi người có số báo danh = 7 đến sẽ hỏi hệ thống kiểm tra người có số báo danh = 2 đang ngồi ở đâu
+Và vì số báo danh = 2 đã đến rùi nên chốt sổ.
+----------------------------------------------------- Test case 1 ----------------------------------------------------
+nums = [2,7,11,15], target = 9
+
+mapNums:=make(map[int]int, len(nums))
+indicies:=make([]int,0,2)
+index = 0, num = 2
+{
+	partner:= target - num = 9 - 2 = 7
+	_,hasExisted:= mapNums[partner] = mapNums[7]
+	if hasExisted ❌
+	else{
+		mapNums[num] = index <=> mapNums[2] = 0 // mapNums = [{2:0}]
+	}
+}
+
+index = 1, num = 7
+{
+	partner:= target - num = 9 - 7 = 2
+	preIndex,hasExisted:= mapNums[partner] = mapNums[2]
+	if hasExisted ✅{
+		indicies=append(indicies,preIndex,index) // indicies = [0,1]
+		break
+	}
+}
+return indicies
+--------------------------------------------------------- Test case 2 --------------------------------------------
+
+nums = [3,2,4], target = 6
+
+mapNums:=make(map[int]int, len(nums))
+indicies:=make([]int,2)
+index = 0 , num = 3
+{	
+	partner:= target - num = 6 - 3 = 3
+	preIndex,hasExisted:= mapNums[partner] = mapNums[3]
+	
+	if hasExisted❌
+	else {
+		mapNums[num] = index <=> mapNums[3] = 0 // mapNums = [{3:0}]
+	}
+}
+
+index = 1 , num = 2
+{
+	partner:= target - num = 6 - 2 = 4
+	preIndex,hasExisted:= mapNums[partner] = mapNums[4]
+	if hasExisted❌
+	else{
+		mapNums[num] = index <=> mapNums[2] = 1 // mapNums = [{3:0},{2:1}]
+	}
+}
+
+index = 2, num = 4{
+	partner:= target - num = 6 - 4 = 2
+	preIndex,hasExisted:= mapNums[partner] = mapNums[2]
+	if hasExisted✅{
+		indicies[0] = preIndex = 1
+		indicies[1] = index = 2
+		break
+	}
+}
+
+return indicies = [1,2]
