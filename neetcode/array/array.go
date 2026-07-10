@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"cmp"
+	"fmt"
+	"slices"
+)
 
 func RunTwoSum() {
 	nums := []int{2, 7, 11, 15}
@@ -46,9 +50,114 @@ func twoSum(nums []int, target int) []int {
 func RunRemoveElement() {
 	nums := []int{3, 2, 2, 3}
 	val := 3
-	removeElement(nums, val)
+	remainingElements := removeElementV1(nums, val)
+	fmt.Printf("Remaining elemements:%d", remainingElements)
+	fmt.Println()
+
+	nums = []int{0, 1, 2, 2, 3, 0, 4, 2}
+	val = 2
+	remainingElements = removeElementV1(nums, val)
+	fmt.Printf("Remaining elemements:%d", remainingElements)
+	fmt.Println()
 }
 
-func removeElement(nums []int, val int) int {
-	return 0
+// Two pointers Ti's solution
+// Using 2 pointers i starting from 0; and j starting from len(nums)-1
+func removeElementV1(nums []int, val int) int {
+	pointerI := 0
+	pointerJ := len(nums) - 1
+
+	for pointerI <= pointerJ {
+		if nums[pointerI] != val {
+			pointerI++
+		} else {
+			temp := nums[pointerJ]
+			nums[pointerI] = nums[pointerJ]
+			nums[pointerJ] = temp
+
+			pointerJ--
+		}
+	}
+
+	return pointerI
+}
+
+func RunMerge() {
+	nums1 := []int{1, 2, 3, 0, 0, 0}
+	m := 3
+	nums2 := []int{2, 5, 6}
+	n := 3
+	mergeUsingCopy(nums1, m, nums2, n)
+	mergeUsingExtraMemory(nums1, m, nums2, n)
+
+	nums1 = []int{1}
+	m = 1
+	nums2 = []int{}
+	n = 0
+	mergeUsingCopy(nums1, m, nums2, n)
+	mergeUsingExtraMemory(nums1, m, nums2, n)
+	nums1 = []int{0}
+	m = 0
+	nums2 = []int{1}
+	n = 1
+	mergeUsingCopy(nums1, m, nums2, n)
+	mergeUsingExtraMemory(nums1, m, nums2, n)
+}
+
+/*
+	  This approach is using copy's api golang
+	  Props: Easy to implement
+		Step 1: Copy all element of array nums2 to nums1
+		Step 2: Sort nums1
+
+=> Time complexity O (nlogn)
+*/
+func mergeUsingCopy(nums1 []int, m int, nums2 []int, n int) {
+	fmt.Println("*** Merge using copy ***")
+
+	// target: nums1
+	copy(nums1[m:], nums2)
+
+	fmt.Printf("\n After executing -> Nums1:%v", nums1)
+
+	// Sorting
+	slices.SortFunc(nums1, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+	fmt.Printf("\n After sorting -> Nums1:%v", nums1)
+	fmt.Println()
+}
+
+func mergeUsingExtraMemory(nums1 []int, m int, nums2 []int, n int) {
+	fmt.Println("*** Merge using extra memory ***")
+	mergedNums := make([]int, 0, len(nums1))
+
+	idx := 0
+	jdx := 0
+
+	for idx < m && jdx < n {
+		num1 := nums1[idx]
+		num2 := nums2[jdx]
+		if num1 <= num2 {
+			mergedNums = append(mergedNums, num1)
+			idx++
+		} else {
+			mergedNums = append(mergedNums, num2)
+			jdx++
+		}
+	}
+
+	for idx < m {
+		mergedNums = append(mergedNums, nums1[idx])
+		idx++
+	}
+
+	for jdx < n {
+		mergedNums = append(mergedNums, nums2[jdx])
+		jdx++
+	}
+
+	nums1 = mergedNums
+	fmt.Println("Merged nums:", nums1)
+	fmt.Println()
 }

@@ -18,10 +18,12 @@ func main() {
 			RunTwoSum()
 
 		case 2:
+			RunRemoveElement()
 
 		case 3:
 
 		case 4:
+			RunMerge()
 
 		case 5:
 
