@@ -3,6 +3,7 @@ package main
 import (
 	"cmp"
 	"fmt"
+	"math"
 	"slices"
 )
 
@@ -199,4 +200,160 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 	}
 	fmt.Println("Merged nums:", nums1)
 	fmt.Println()
+}
+
+func RunThirdMax() {
+	nums := []int{3, 2, 1}
+	theThirdMax := thirdMaxUsing3Loops(nums)
+	fmt.Printf("Nums:%v => Third max using 3 for:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxOnly1Loop(nums)
+	fmt.Printf("Nums:%v => Third max using one loop:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxUsingSort(nums)
+	fmt.Printf("Nums:%v => Third max using sort:%d", nums, theThirdMax)
+	fmt.Println()
+
+	nums = []int{1, -2147483648, 2}
+	theThirdMax = thirdMaxUsing3Loops(nums)
+	fmt.Printf("Nums:%v => Third max using 3 for:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxOnly1Loop(nums)
+	fmt.Printf("Nums:%v => Third max using one loop:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxUsingSort(nums)
+	fmt.Printf("Nums:%v => Third max using sort:%d", nums, theThirdMax)
+	fmt.Println()
+
+	nums = []int{1, 2}
+	theThirdMax = thirdMaxUsing3Loops(nums)
+	fmt.Printf("Nums:%v => Third max using 3 for:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxOnly1Loop(nums)
+	fmt.Printf("Nums:%v => Third max using one loop:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxUsingSort(nums)
+	fmt.Printf("Nums:%v => Third max using sort:%d", nums, theThirdMax)
+	fmt.Println()
+
+	nums = []int{1, 1, 2}
+	theThirdMax = thirdMaxUsing3Loops(nums)
+	fmt.Printf("Nums:%v => Third max using 3 for:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxOnly1Loop(nums)
+	fmt.Printf("Nums:%v => Third max using one loop:%d", nums, theThirdMax)
+	fmt.Println()
+
+	theThirdMax = thirdMaxUsingSort(nums)
+	fmt.Printf("Nums:%v => Third max using sort:%d", nums, theThirdMax)
+	fmt.Println()
+}
+
+// First solution: we sort the array should be desc then we can loop through to find the third number
+// Sort: O(nlogn)
+func thirdMaxUsingSort(nums []int) int {
+	fmt.Println("*** Third max using sort ***")
+	slices.SortFunc(nums, func(a, b int) int {
+		return cmp.Compare(b, a)
+	})
+
+	firstMax := nums[0]
+	if len(nums) <= 2 {
+		return firstMax
+	}
+
+	secondMax := math.MinInt32 - 1
+	thirdMax := math.MinInt32 - 1
+	for _, num := range nums {
+		if secondMax < num && num < firstMax {
+			secondMax = num
+		}
+	}
+
+	for _, num := range nums {
+		if num < secondMax && thirdMax < num {
+			thirdMax = num
+		}
+	}
+
+	// corner case: if the third max does not exist, return the maximum number
+	if thirdMax < math.MinInt32 {
+		thirdMax = firstMax
+	}
+
+	return thirdMax
+}
+
+// We will use 3 loops to find firstMax,secondMax and the thirdMax
+// Time complexity = O(n) + O(n) + O(n) = O(3n) = O(n)
+func thirdMaxUsing3Loops(nums []int) int {
+	fmt.Println("*** Third max using 3 loops ***")
+	firstMax := math.MinInt32 - 1
+	// first loop to find the firstMax
+	for _, num := range nums {
+		if num > firstMax {
+			firstMax = num
+		}
+	}
+	if len(nums) <= 2 {
+		return firstMax
+	}
+
+	secondMax := math.MinInt32 - 1
+	thirdMax := math.MinInt32 - 1
+	//second loop to find the secondMax
+	for _, num := range nums {
+		if num > secondMax && num < firstMax {
+			secondMax = num
+		}
+	}
+
+	//third loop to find the thirdMax
+	for _, num := range nums {
+		if num > thirdMax && num < secondMax {
+			thirdMax = num
+		}
+	}
+
+	//ad-hoc case, if the third maximum does not exist, return the first maximum instead
+	if thirdMax < math.MinInt32 {
+		thirdMax = firstMax
+	}
+
+	return thirdMax
+}
+
+// We only iterate one time O(n)
+func thirdMaxOnly1Loop(nums []int) int {
+	minimumNum := math.MinInt32 - 1
+	firstMax, secondMax, thirdMax := minimumNum, minimumNum, minimumNum
+
+	for _, num := range nums {
+		if num > firstMax {
+			thirdMax = secondMax
+			secondMax = firstMax
+			firstMax = num
+		}
+		if num < firstMax && num > secondMax {
+			thirdMax = secondMax
+			secondMax = num
+		}
+		if num < secondMax && num > thirdMax {
+			thirdMax = num
+		}
+	}
+
+	//adhoc: if third distinct maximum does not exist, we return the first max instead
+	if len(nums) <= 2 || thirdMax < math.MinInt32 {
+		return firstMax
+	}
+
+	return thirdMax
 }
