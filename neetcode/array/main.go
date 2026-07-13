@@ -21,11 +21,13 @@ func main() {
 			RunRemoveElement()
 
 		case 3:
+			RunRunningSum()
 
 		case 4:
 			RunMerge()
 
 		case 5:
+			RunGetConcatenation()
 
 		case 6:
 

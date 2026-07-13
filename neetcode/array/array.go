@@ -357,3 +357,69 @@ func thirdMaxOnly1Loop(nums []int) int {
 
 	return thirdMax
 }
+
+func RunRunningSum() {
+	nums := []int{1, 2, 3, 4}
+	sumofNums := runningSum(nums)
+	fmt.Printf("Nums:%v => Running sum of nums:%d", nums, sumofNums)
+	fmt.Println()
+
+	nums = []int{1, 1, 1, 1, 1}
+	sumofNums = runningSum(nums)
+	fmt.Printf("Nums:%v => Running sum of nums:%d", nums, sumofNums)
+	fmt.Println()
+
+	nums = []int{3, 1, 2, 10, 1}
+	sumofNums = runningSum(nums)
+	fmt.Printf("Nums:%v => Running sum of nums:%d", nums, sumofNums)
+	fmt.Println()
+}
+
+func runningSum(nums []int) []int {
+	for index, num := range nums {
+		if index == 0 {
+			continue
+		}
+		preNum := nums[index-1]
+		sum := num + preNum
+		nums[index] = sum
+	}
+	return nums
+}
+
+func RunGetConcatenation() {
+	nums := []int{1, 2, 1}
+	ans := getConcatenation(nums)
+	fmt.Printf("Nums:%v => Ans:%v", nums, ans)
+	fmt.Println()
+
+	nums = []int{1, 3, 2, 1}
+	ans = getConcatenation(nums)
+	fmt.Printf("Nums:%v => Ans:%v", nums, ans)
+	fmt.Println()
+}
+
+func getConcatenation(nums []int) []int {
+	numsLength := len(nums)
+	ans := make([]int, numsLength*2)
+	for index, num := range nums {
+		ans[index] = num
+		ans[index+numsLength] = num
+	}
+
+	return ans
+}
+
+func RunRemoveDuplicates() {
+	nums := []int{1, 1, 2}
+	uniqueElements := removeDuplicates(nums)
+	fmt.Printf("Nums:%v => Unique elements:%d", nums, uniqueElements)
+
+	nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+	uniqueElements = removeDuplicates(nums)
+	fmt.Printf("Nums:%v => Unique elements:%d", nums, uniqueElements)
+}
+
+func removeDuplicates(nums []int) int {
+	return 0
+}
