@@ -414,12 +414,26 @@ func RunRemoveDuplicates() {
 	nums := []int{1, 1, 2}
 	uniqueElements := removeDuplicates(nums)
 	fmt.Printf("Nums:%v => Unique elements:%d", nums, uniqueElements)
+	fmt.Println()
 
 	nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
 	uniqueElements = removeDuplicates(nums)
 	fmt.Printf("Nums:%v => Unique elements:%d", nums, uniqueElements)
+	fmt.Println()
 }
 
 func removeDuplicates(nums []int) int {
-	return 0
+	// since the array is already sorted, so the first index is always unique number
+	i, j := 1, 1
+	numsLength := len(nums)
+	for j <= (numsLength - 1) {
+		currentNum := nums[j]
+		prevNum := nums[j-1]
+		if currentNum != prevNum {
+			nums[i] = currentNum
+			i++
+		}
+		j++
+	}
+	return i
 }

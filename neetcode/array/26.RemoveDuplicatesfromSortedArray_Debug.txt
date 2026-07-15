@@ -1,0 +1,88 @@
+        0 1 2 3 4 5 6 7 8 9
+nums = [0,0,1,1,1,2,2,3,3,4]
+
+lengthNums:= len(nums) = 10
+
+var i,j int = 1,1
+for j <= (lengthNums - 1) (1<=9) ✅
+{
+	currentNum:= nums[j] = nums[1] = 0
+	prevNum:= nums[j-1] = nums[0] = 0
+	
+	if currentNum!=prevNum (0!=0)❌
+	
+	j++ // 2
+}
+
+for (2<=9){
+	currentNum:= nums[j] = nums[2] = 1
+	preNum:=nums[j-1] = nums[1] = 0
+	if currentNum!=prevNum (1!=0)✅{
+		// write current num at i position   //         0 1 2 3 4 5 6 7 8 9 
+		nums[i] = currentNum <=> nums[1] = 1 // nums = [0,1,1,1,1,2,2,3,3,4]
+		i++ // 2
+	}
+	j++//3
+}
+
+for (3<=9){
+	currentNum:= nums[j] = nums[3] = 1
+	preNum:=nums[j-1] = nums[2] = 1
+	if currentNum!=prevNum (1!=1) ❌
+	j++ // 4
+}
+
+for (4<=9){
+	currentNum:= nums[j] = nums[4] = 1
+	preNum:= nums[j-1] = nums[3] = 1
+	if currentNum!=prevNum (1!=1) ❌
+	j++// 5
+}
+
+for (5<=9){
+	currentNum:= nums[j] = nums[5] = 2
+	preNum:= nums[j-1] = nums[4] = 1
+	if currentNum!=prevNum (2!=1) ✅{
+		// write current num at i position   //         0 1 2 3 4 5 6 7 8 9 
+		nums[i] = currentNum <=> nums[2] = 2 // nums = [0,1,2,1,1,2,2,3,3,4]
+		i++ // 3
+	}
+	j++//6
+}
+
+for (6<=9){
+	currentNum:= nums[j] = nums[6] = 2
+	preNum:= nums[j-1] = nums[5] = 2
+	if currentNum!=prevNum (2!=2) ❌
+	j++//7
+}
+
+for (7<=9){
+	currentNum:= nums[j] = nums[7] = 3
+	preNum:= nums[j-1] = nums[6] = 2
+	if currentNum!=prevNum (3!=2) ✅{
+		// write current num at i position   //         0 1 2 3 4 5 6 7 8 9 
+		nums[i] = currentNum <=> nums[3] = 3 // nums = [0,1,2,3,1,2,2,3,3,4]
+		i++//4
+	}
+	j++//8
+}
+
+for (8<=9){
+	currentNum:= nums[j] = nums[8] = 3
+	preNum:= nums[j-1] = nums[7] = 3
+	if currentNum!=prevNum (3!=3) ❌
+	j++//9
+}
+
+for (9<=9){
+	currentNum:= nums[j] = nums[9] = 4 
+	preNum:= nums[j-1] = nums[8] = 3
+	if currentNum!=prevNum (4!=3) ✅{
+		// write current num at i position   //         0 1 2 3 4 5 6 7 8 9 
+		nums[i] = currentNum <=> nums[4] = 4 // nums = [0,1,2,3,4,2,2,3,3,4]
+		i++//5
+	}
+}
+
+return i//5

@@ -30,6 +30,7 @@ func main() {
 			RunGetConcatenation()
 
 		case 6:
+			RunRemoveDuplicates()
 
 		case 7:
 			RunThirdMax()
