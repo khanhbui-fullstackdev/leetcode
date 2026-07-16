@@ -38,6 +38,7 @@ func main() {
 		case 8:
 
 		case 9:
+			RunMaxArea()
 
 		case 0:
 			fmt.Println("Exit...")

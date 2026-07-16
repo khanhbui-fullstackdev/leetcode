@@ -437,3 +437,59 @@ func removeDuplicates(nums []int) int {
 	}
 	return i
 }
+
+func RunMaxArea() {
+	height := []int{1, 8, 6, 2, 5, 4, 8, 3, 7}
+	fmt.Printf("The maximum amount of water:%d", maxArea(height))
+	fmt.Println()
+
+	height = []int{1, 1}
+	fmt.Printf("The maximum amount of water:%d", maxArea(height))
+	fmt.Println()
+
+	height = []int{8, 2, 1, 1, 2, 8}
+	fmt.Printf("The maximum amount of water:%d", maxArea(height))
+	fmt.Println()
+
+	height = []int{5, 4, 3, 2, 1}
+	fmt.Printf("The maximum amount of water:%d", maxArea(height))
+	fmt.Println()
+
+	height = []int{1, 10, 10, 1}
+	fmt.Printf("The maximum amount of water:%d", maxArea(height))
+	fmt.Println()
+
+	height = []int{4, 4, 4, 4}
+	fmt.Printf("The maximum amount of water:%d", maxArea(height))
+	fmt.Println()
+}
+
+func maxArea(height []int) int {
+	maxArea := 0
+	leftIndex := 0
+	rightIndex := len(height) - 1
+
+	for leftIndex <= rightIndex {
+		widthArea := rightIndex - leftIndex
+		heightArea := findMinimumHeight(height[leftIndex], height[rightIndex])
+		rectangleArea := widthArea * heightArea
+		if rectangleArea > maxArea {
+			maxArea = rectangleArea
+		}
+
+		if height[leftIndex] < height[rightIndex] {
+			leftIndex++
+		} else {
+			rightIndex--
+		}
+	}
+
+	return maxArea
+}
+
+func findMinimumHeight(num1 int, num2 int) int {
+	if num1 < num2 {
+		return num1
+	}
+	return num2
+}

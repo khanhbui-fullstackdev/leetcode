@@ -1,0 +1,139 @@
+          0 1 2 3 4 5 6 7 8
+height = [1,8,6,2,5,4,8,3,7]
+
+leftIndex:=0
+rightIndex:= 8
+maxArea:=0
+
+while leftIndex<= rightIndex 
+(0<=8)
+{
+	widthArea:= rightIndex - leftIndex = 8 - 0 = 8
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[0], height[8]) = 1
+ 
+	square:= widthArea * heightArea = 8 * 1 = 8
+		
+	if square > maxArea (8>0) {
+		maxArea = square <=> maxArea = 8
+	}
+
+	if height[leftIndex]<height[rightIndex] (height[0] < height[8]) (1<7)✅{
+		leftIndex++//1
+	}
+}
+(1<=8)
+{
+	widthArea:= rightIndex - leftIndex = 8 - 1 = 7
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[8]) = min(8,7) = 7
+ 
+	square:= widthArea * heightArea = 7 * 7 = 49
+		
+	if square > maxArea (49>8)✅ {
+		maxArea = square <=> maxArea = 49
+	}
+
+	if height[leftIndex]<height[rightIndex] (height[1] < height[8]) (8<7)❌
+	else{
+		rightIndex-- // 7
+	}
+}
+
+(1<=7)
+{
+	widthArea:= rightIndex - leftIndex = 8 - 1 = 6
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[7]) = min(8,3) = 3
+	square:= widthArea * heightArea = 6 * 3 = 18
+	
+	if square > maxArea (18>49)❌ 
+
+	if height[leftIndex]<height[rightIndex] (height[1] < height[7]) (8<3)❌
+	else {
+		rightIndex-- // 6
+	}
+}
+
+(1<=6){
+	widthArea:= rightIndex - leftIndex = 6 - 1 = 5
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[6]) = min(8,8) = 8
+	square:= widthArea * heightArea = 5 * 8 = 40
+	
+	if square > maxArea (40>49)❌ 
+
+	if height[leftIndex]<height[rightIndex] (height[1] < height[6]) (8<8)❌
+	else {
+		rightIndex-- // 5
+	}
+}
+
+(1<=5){
+	widthArea:= rightIndex - leftIndex = 5 - 1 = 4
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[5]) = min(8,4) = 4
+	square:= widthArea * heightArea = 4 * 4 = 16
+	if square > maxArea (16>49)❌ 
+	
+	if height[leftIndex]<height[rightIndex] (height[1] < height[5]) (8<4)❌
+	else {
+		rightIndex-- // 4
+	}
+}
+
+(1<=4){
+	widthArea:= rightIndex - leftIndex = 4 - 1 = 3
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[4]) = min(8,5) = 5
+	square:= widthArea * heightArea = 3 * 4 = 12
+	if square > maxArea (12>49)❌ 
+	
+	if height[leftIndex]<height[rightIndex] (height[1] < height[4]) (8<5)❌
+	else {
+		rightIndex-- // 3
+	}
+}
+
+(1<=3){
+	widthArea:= rightIndex - leftIndex = 3 - 1 = 2
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[3]) = min(8,2) = 2
+	square:= widthArea * heightArea = 2 * 2 = 4
+	
+	if square > maxArea (4>49)❌ 
+	
+	if height[leftIndex]<height[rightIndex] (height[1] < height[3]) (8<2)❌
+	else {
+		rightIndex-- // 2
+	}
+}
+(1<=2){
+	widthArea:= rightIndex - leftIndex = 2 - 1 = 1
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[2]) = min(8,6) = 6
+	square:= widthArea * heightArea = 1 * 6 = 6
+	if square > maxArea (6>49)❌ 
+	
+	if height[leftIndex]<height[rightIndex] (height[1] < height[3]) (8<2)❌
+	else {
+		rightIndex-- // 1
+	}
+}
+
+(1<=1){
+	widthArea:= rightIndex - leftIndex = 1 - 1 = 0
+	heightArea:= min(height[leftIndex],height[rightIndex])
+	           = min(height[1], height[2]) = min(8,8) = 8
+	square:= widthArea * heightArea = 0 * 8 = 0
+	if square > maxArea (0>49)❌ 
+	
+	if height[leftIndex]<height[rightIndex] (height[1] < height[1]) (8<8)❌
+	else {
+		rightIndex-- // 0
+	}
+}
+
+(1<=0)❌
+
+return maxArea // 49
