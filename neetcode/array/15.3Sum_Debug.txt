@@ -1,0 +1,111 @@
+         0 1 2 3 4 5
+nums = [-1,0,1,2,-1,-4]
+                 0 1  2  3 4 5
+-> sortedNum = [-4,-1,-1,0,1,2]
+
+a + b + c = 0
+-4 + (b+c) = 0 
+<=> (b+c) = 4 ==> target = 4
+
+triplets := make([][]int,3)
+preNum:=0
+
+index = 0, num = -4 ==> target = 4
+{
+	leftIndex:= 1
+	rightIndex:= 5
+	
+	for leftIndex<rightIndex 
+	(1<5){
+		if nums[leftIndex] == nums[leftIndex-1] || nums[rightIndex] == nums[rightIndex-1]{
+			continue
+		}
+		
+		total:= nums[leftIndex]+nums[rightIndex]
+		      = nums[1] + num[5] = -1 + 2 = 1
+		if total > num(1>4)❌ 
+		else {
+			 leftIndex++ //2
+		}
+	}
+	
+	(2<5) {
+		total:= nums[leftIndex]+nums[rightIndex]
+		      = nums[2] + num[5] = -1 + 2 = 1
+		if total > num(1>4)❌ 
+		else {
+			 leftIndex++ //3
+		}
+	}
+	
+	(3<5){
+		total:= nums[leftIndex]+nums[rightIndex]
+		       = nums[3] + num[5] = 0 + 2 = 2
+		if total > num(1>4)❌ 
+		else {
+			 leftIndex++ //4
+		}
+	}
+	
+	(4<5){
+		total:= nums[leftIndex]+nums[rightIndex]
+		       = nums[4] + num[5] = 1 + 2 = 3
+		if total > num(3>4)❌ 
+		else {
+			 leftIndex++ //5
+		}
+	}
+	preNum = num = -4
+}
+
+index = 1, num = -1 => target = 1
+{
+	leftIndex = index + 1 = 2
+	rightIndex = 5
+	while (leftIndex<rightIndex)
+	(2<5) {
+		total:= nums[leftIndex]+nums[rightIndex]
+		      = nums[2] + num[5] = -1 + 2 = 1
+		if total > num(1>1)❌ 
+		else {
+			 leftIndex++ //3
+		}
+	}
+	(3<5){
+		total:= nums[leftIndex]+nums[rightIndex]
+		      = nums[3] + num[5] = 0 + 2 = 2
+			  
+		if total > num(2>1)✅ {
+			rightIndex--//4
+		}
+	}
+	(3<4){
+		total:= nums[leftIndex]+nums[rightIndex]
+		      = nums[3] + num[4] = 0 + 1 = 1
+			  
+		if total == num(1==1)✅ {
+			arr:=make([]int, 3)
+			arr[0] = num 
+			arr[1] = nums[3] = 0
+			arr[2] = nums[4] = 1
+			
+			leftIndex++
+			rightINdex++
+			
+			if nums[left] == nums[left-1] || nums[right] == nums[right+1]{
+				continue
+			}
+			
+			triplets=append(triplets,arr) // triplets = [[-1,0,1]]
+			
+		}
+	}
+	preNum = num = -1
+}
+
+index = 2, num = -1 => target = 1
+{
+	if preNum == num {
+		continue
+	}
+}

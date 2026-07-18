@@ -36,6 +36,7 @@ func main() {
 			RunThirdMax()
 
 		case 8:
+			RunThreeSum()
 
 		case 9:
 			RunMaxArea()

@@ -493,3 +493,73 @@ func findMinimumHeight(num1 int, num2 int) int {
 	}
 	return num2
 }
+
+func RunThreeSum() {
+	nums := []int{-1, 0, 1, 2, -1, -4}
+	fmt.Printf("Three sum:%v", threeSumUsingMap(nums))
+	fmt.Println()
+
+	nums = []int{0, 1, 1}
+	fmt.Printf("Three sum:%v", threeSumUsingMap(nums))
+	fmt.Println()
+
+	nums = []int{0, 0, 0}
+	fmt.Printf("Three sum:%v", threeSumUsingMap(nums))
+	fmt.Println()
+
+	nums = []int{-1, -1, 2}
+	fmt.Printf("Three sum:%v", threeSumUsingMap(nums))
+	fmt.Println()
+}
+
+func threeSumUsingMap(nums []int) [][]int {
+	if len(nums) == 3 {
+		if (nums[0] + nums[1] + nums[2]) == 0 {
+			var arr = []int{nums[0], nums[1], nums[2]}
+			return [][]int{arr}
+		}
+	}
+	if !slices.IsSorted(nums) {
+		slices.SortFunc(nums, func(a, b int) int {
+			return cmp.Compare(a, b)
+		})
+	}
+	tripplets := make([][]int, 0, 3)
+	frequencies := make(map[string]int, 3)
+	//prevNum := -(10 * 10 * 10 * 10 * 10) // 10^5
+	/*
+		             0   1  2   3  4  5
+		sortedNum = [-4,-1, -1, 0, 1, 2]
+		a + b + c = 0
+		-4 + (b + c) = 0
+		<=> (b+c) = 4 ==> target = 4
+	*/
+
+	for index, num := range nums {
+		leftIndex := index + 1
+		rightIndex := len(nums) - 1
+		target := -num
+		for leftIndex < rightIndex {
+			total := nums[leftIndex] + nums[rightIndex]
+			if total == target {
+				// check duplicate
+				key := fmt.Sprintf("%d#%d#%d", num, nums[leftIndex], nums[rightIndex])
+				_, existed := frequencies[key]
+				if !existed {
+					frequencies[key]++
+					var arr = []int{num, nums[leftIndex], nums[rightIndex]}
+					tripplets = append(tripplets, arr)
+				}
+				leftIndex++
+				rightIndex--
+
+			} else if total > target {
+				rightIndex--
+			} else {
+				leftIndex++
+			}
+		}
+	}
+
+	return tripplets
+}

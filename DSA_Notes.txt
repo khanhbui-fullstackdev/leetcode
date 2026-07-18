@@ -207,3 +207,16 @@ fmt.Printf("...", &headB.Next.Next.Next)
 In ra địa chỉ vùng nhớ 
 fmt.Printf("...", headA.Next.Next)
 fmt.Printf("...", headB.Next.Next.Next)
+
+
+--------------------------------------------------- TiCungBim -----------------------------------
+Zoom:
+https://www.zoom.com/en/lp/my-notes?from=web_join_post_meeting&_x_zm_rtaid=7oT6P_qBRLa8MY0rQ8PRFA.1784336648187.eda5b6ff5c273598c343a5b4e89e1933&_x_zm_rhtaid=181
+
+
+---------------------------------------------------
+khanh.buivuong.airforce01@gmail.com
+Gn4tt4tLPZKBDNp
+
+https://stillcoding.vercel.app/course/login
+courseId: b08a2bfd
