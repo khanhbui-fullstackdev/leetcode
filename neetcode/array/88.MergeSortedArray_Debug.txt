@@ -1,0 +1,130 @@
+88. Merged Sorted Array
+
+----------------------------------- Solution 1: Use extra array -----------------------------------
+nums1 = [1,2,8,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+
+mergedArray:=make(int[],0,len(nums1))
+idx:=0
+jdx:=0
+
+for idx < m (0 < 3)✅ && jdx < n (0 < 3) ✅
+{
+	num1:= nums1[idx] = nums1[0] = 1 
+	num2:= nums2[jdx] = nums2[0] = 2
+	if num1<=num2 (1<=2)✅{
+		mergedArray=append(mergedArray,num1) // mergedArray = [1]
+		idx++ // 1
+	}
+}
+
+for idx < m (1 < 3)✅ && jdx < n (0 < 3) ✅
+{
+	num1:= nums1[idx] = nums1[1] = 2 
+	num2:= nums2[jdx] = nums2[0] = 2
+	if num1<=num2 (2<=2)✅{
+		mergedArray=append(mergedArray,num1) // mergedArray = [1,2]
+		idx++ // 2
+	}
+}
+
+for idx < m (2 < 3)✅ && jdx < n (0 < 3) ✅
+{
+	num1:= nums1[idx] = nums1[2] = 8 
+	num2:= nums2[jdx] = nums2[0] = 2
+	if num1<=num2 (8<=2)❌
+	else {
+		mergedArray=append(mergedArray,num2) // // mergedArray = [1,2,2]
+		jdx++//1
+	}
+}
+
+for idx < m (2 < 3)✅ && jdx < n (1 < 3) ✅
+{
+	num1:= nums1[idx] = nums1[2] = 8 
+	num2:= nums2[jdx] = nums2[1] = 5
+	if num1<=num2 (8<=5)❌
+	else {
+		mergedArray=append(mergedArray,num2) // // mergedArray = [1,2,2,5]
+		jdx++//2
+	}
+}
+
+for idx < m (2 < 3)✅ && jdx < n (2 < 3) ✅
+{
+	num1:= nums1[idx] = nums1[2] = 8 
+	num2:= nums2[jdx] = nums2[2] = 6
+	if num1<=num2 (8<=6)❌
+	else {
+		mergedArray=append(mergedArray,num2) // mergedArray = [1,2,2,5,6]
+		jdx++//3
+	}
+}
+
+for idx < m (2 < 3)✅ && jdx < n (3 < 3) ❌
+
+// bruce force technique
+for idx < m (2<3)✅ {
+	mergedArray = append(mergedArray,nums1[idx]) // mergedArray = [1,2,2,5,6,8]
+	idx++
+}
+
+// bruce force technique
+for jdx < n (3 < 3)❌
+
+copy(nums1,mergedArray)
+
+
+----------------------------------- Solution 2: Use 3 pointers -----------------------------------
+         0 1 2 3 4 5                   0 1 2
+nums1 = [1,2,8,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+
+kdx denotes the updated index
+idx denotes the index of nums1
+jdx donotes the index of nums2
+
+kdx := len(nums1) - 1 = 5
+idx := m - 1 = 3 - 1 = 2
+jdx := n - 1 = 3 - 1 = 2
+
+// Tại sao chỉ cần j >= 0?
+// Vì mục tiêu là đưa toàn bộ nums2 vào nums1.
+// Nếu j < 0, nghĩa là nums2 đã dùng hết. Những phần tử còn lại của nums1 vốn đã nằm đúng vị trí rồi, không cần làm gì nữa
+for jdx>=0 
+(2>=0) ✅
+{		
+	if idx>=0 (2>=0)✅ && nums1[idx] >=nums2[jdx] (8>=6)✅{
+		nums1[kdx] = num1 <=>nums1[5] = 8 // nums1 = [1,2,8,0,0,8]
+		idx-- // 1
+		kdx-- // 4
+	}
+}
+
+(2>=0) ✅
+{	
+	if idx>=0 (2>=0)✅ && nums1[idx]>=nums2[jdx] (2>=6)❌
+	else{
+		nums1[kdx] = num2 <=>nums1[4] = 6  // nums1 = [1,2,8,0,6,8]
+		jdx-- // 1
+		kdx-- // 3
+	}
+}
+
+(1>=0) ✅
+{	
+	if idx>=0 (2>=0)✅ && nums1[idx]>= nums2[jdx] (2>=5)❌
+	else{
+		nums1[kdx] = num2 <=>nums1[3] = 5  // nums1 = [1,2,8,5,6,8]
+		jdx-- // 0
+		kdx-- // 2
+	}
+}
+
+(0>=0) ✅{	
+	if idx>=0 (2>=0)✅ && num1>=num2 (2>=2)✅{
+		nums1[kdx] = num1 <=> nums1[2] = 2 // nums1 = [1,2,2,5,6,8]
+	}
+}
+
+
+nums1 = [4,5,6,0,0,0]
+nums2 = [1,2,3]

@@ -1,0 +1,35 @@
+         0 1 2 3
+ nums = [1,2,3,4]
+ 
+ 
+index = 0, num = 1
+{
+	if index != 0 ❌
+}
+
+index = 1, num = 2
+{
+	if index != 0 ✅{
+		preSum:= nums[index-1] = nums[0] = 1
+		sum:= num + preSum = 1 + 2 = 3
+		nums[index] = sum <=> nums[1] = 3 	// nums = [1,3,3,4]
+	}
+}
+
+index = 2 num = 3 
+{
+	if index != 0 ✅{
+		preSum:= nums[index-1] = nums[1] = 3
+		sum:= num + preSum = 3 + 3 = 6
+		nums[index] = sum <=> nums[2] = 6 	// nums = [1,3,6,4]
+	}
+}
+
+index = 3 num = 4
+{
+	if index != 0 ✅{
+		preSum:= nums[index-1] = nums[2] = 6
+		sum:= num + preSum = 4 + 6 = 10
+		nums[index] = sum <=> nums[3] = 10 	// nums = [1,3,6,10]
+	}
+}

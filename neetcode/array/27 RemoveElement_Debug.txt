@@ -1,0 +1,71 @@
+----------------------------------------- Test case 2 -----------------------------------------
+
+        i             j
+nums = [0,1,2,2,3,0,4,6], val = 2; lengthNum = 8
+
+i:=0
+j:=len(nums) - 1 = 7
+
+for i<=j 
+{	
+	(0<=7) ✅
+	{
+		if nums[0]!=val (0!=2)✅{
+			i++ // 1
+		}
+	}
+	(1<=7) ✅
+	{
+		if nums[1]!=val (1!=2)✅{
+			i++ // 2
+		}
+	}
+	(2<=7)✅
+	{
+		if nums[2]!=val (2!=2) ❌
+		else ✅{
+			temp:=nums[j] = nums[7] = 6			
+			nums[j] = nums[i] <=> nums[7] = nums[2] = 2
+											// 0 1 2 3 4 5 6 7
+			nums[i] = temp <=> nums[2] = 6 // [0,1,6,2,3,0,4,2]
+			j-- // 6
+		}
+	}
+	(2<=6)✅
+	{
+		if nums[2]!=val (6!=2) ✅{
+			i++ // 3
+		}
+	}
+	(3<=6)✅
+	{
+		 if nums[3]!=val (2!=2)❌
+		 else
+		 {
+			temp:=nums[j] = nums[6] = 4
+			nums[j] = nums[i] <=> nums[6] = nums[3] <=> nums[6] = 2
+			nums[i] = temp <=> nums[3] = 4 
+			//  0 1 2 3 4 5 6 7
+			// [0,1,6,4,3,0,2,2] 
+			j-- // 5
+		 }
+	}
+	(3<=5)✅
+	{
+		if nums[3]!=val (4!=2)✅{
+			i++ // 4
+		}
+	}
+	(4<=5)✅{
+		if nums[4]!=val (3!=2)✅{
+			i++ // 5
+		}
+	}
+	(5<=5)✅{
+		if nums[5]!=val (0!=2)✅{
+			i++ // 6
+		}
+	}
+	(6<=5)❌
+}
+return i = 6 // there are 6 elements which are not equals to val=2

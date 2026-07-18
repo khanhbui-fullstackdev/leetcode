@@ -1,0 +1,134 @@
+--------------------------------------------------------------- Use sorting technique -----------------------------------
+nums = [7,9,5,1,4,3,9]
+
+sortedNums: = [9,9,7,5,4,3,1]
+firstMax= sortedNums[0] = 9
+secondMax:= math.MinInt32 - 1 // -2,147,483,649
+thirdMax:=math.MinInt32 - 1  // -2,147,483,649
+
+// loop to find second max
+index = 0; num = 9 
+{
+	if num < firstMax (9 < 9)❌ && num > secondMax (9> -2147483649) ✅
+}
+
+index = 0; num = 9 
+{
+	if num < firstMax (9 < 9)❌ && num > secondMax (9> -2147483649) ❌
+}
+
+index = 0; num = 7 
+{
+	if num < firstMax (7 < 9)❌ && num > secondMax (7> -2147483649) ✅{
+		secondNum = num = 7 
+	}
+}
+
+index = 0; num = 5
+{
+	if num < firstMax (5 < 9)✅ && num > secondMax (5> 7) ❌
+}
+
+// similarly to num = 4,3,1 ❌
+
+secondNum = 7
+
+// loop to find the third max
+index = 0; num = 9 
+{
+	if num < secondMax (9 < 7)❌ && num > thirdMax (9> -2147483649) ✅
+}
+
+index = 1; num = 9 
+{
+	if num < secondMax (9 < 7)❌ && num > thirdMax (9> -2147483649) ✅
+}
+
+index = 2; num = 7 
+{
+	if num < secondMax (7 < 7)❌ && num > thirdMax (7> -2147483649) ✅
+}
+
+index = 3; num = 5 
+{
+	if num < secondMax (5 < 7)✅ && num > thirdMax (5> -2147483649) ✅{
+		thirdMax = num = 5
+	}
+}
+
+index = 4; num = 4
+{
+	if num < secondMax (4 < 7)✅ && num > thirdMax (5> 5) ❌
+}
+
+// similarly to num = 4,3,1 ❌
+
+return thirdMax = 5
+
+--------------------------------------------------------------- Use 1 loop only (none sorting) ---------------------------------------------------------------
+// index 0 1 2 3 4 5 6
+nums =  [7,9,5,1,8,3,9]
+minNums:= math.MinInt32 - 1
+firstMax,secondMax,thirdMax:=  minNums,minNums,minNums
+
+index = 0, num = 7
+{
+	if num > firstMax (7>-2147483649)✅{
+		thirdMax = secondMax // -2147483649 
+		secondMax = firstMax // -2147483649
+		firstMax = num // 7
+	}
+	if num < firstMax (7<7)❌ && num>secondMax(7>-2147483649)✅
+	
+	if num < secondMax (7<-2147483649)❌ && num > thirdMax (7>-2147483649)✅
+}
+
+index = 1, num = 9
+{
+	if num > firstMax (9>7)✅{
+		thirdMax = secondMax // -2147483649 
+		secondMax = firstMax // 7
+		firstMax = num // 9
+	}
+	if num < firstMax (9<9)❌ && num>secondMax(9>7)✅
+	if num < secondMax (9<7)❌ && num > thirdMax (9>-2147483649)✅
+}
+
+index = 2, num = 5
+{
+	if num > firstMax (5>9)❌
+	if num < firstMax (5<9)✅ && num>secondMax(5>7)❌
+	if num < secondMax (5<7)✅ && num > thirdMax (5>-2147483649)✅
+	{
+		thirdMax = num //5
+	}
+}
+
+index = 3, num = 1{
+	if num > firstMax (1>9)❌
+	if num < firstMax (1<9)✅ && num>secondMax(1>7)❌
+	if num < secondMax (1<7)✅&& num > thirdMax (1>5)❌
+}
+
+index = 4, num = 8{
+	if num > firstMax (8>9)❌
+	if num < firstMax (8<9)✅ && num>secondMax(8>7)✅{
+		thirdMax = secondMax // 7
+		secondMax = num // 8 
+	}
+	if num < secondMax (8<8)❌ && num > thirdMax (8>7)✅
+}
+
+index = 5, num = 3{
+	if num > firstMax (3>9)❌
+	if num < firstMax (3<9)✅ && num>secondMax(3>8)❌
+	if num < secondMax (3<8)✅ && num > thirdMax (3>7)❌
+}
+
+index = 6, num = 9{
+	if num > firstMax (9>9)❌
+	if num < firstMax (9<9)❌ && num>secondMax(9>8)✅
+	if num < secondMax (9<8)❌ && num > thirdMax (9>7)✅
+}
+
+return thirdMax = 7 // output
