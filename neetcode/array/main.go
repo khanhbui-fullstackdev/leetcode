@@ -53,7 +53,7 @@ func main() {
 }
 
 func showMenu() {
-	fmt.Println("===== Review 1.Array =====")
+	fmt.Println("===== 1.Array =====")
 	fmt.Println("0. Exit")
 	fmt.Println("1. Two Sum")
 	fmt.Println("2. 27. Remove Element")

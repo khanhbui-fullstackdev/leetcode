@@ -25,6 +25,7 @@ func main() {
 		case 5:
 
 		case 6:
+			RunHasCycle()
 
 		case 7:
 
@@ -43,7 +44,7 @@ func main() {
 }
 
 func showMenu() {
-	fmt.Println("===== Review 1.Array =====")
+	fmt.Println("===== 2.Linked List =====")
 	fmt.Println("0. Exit")
 	fmt.Println("1. 21. Merge Two Sorted Lists")
 	fmt.Println("2. 83. Remove Duplicates from Sorted List")
