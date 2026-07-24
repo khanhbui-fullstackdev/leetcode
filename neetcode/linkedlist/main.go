@@ -15,6 +15,7 @@ func main() {
 
 		switch choice {
 		case 1:
+			RunMergeTwoLists()
 
 		case 2:
 
