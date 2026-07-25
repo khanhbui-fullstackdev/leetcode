@@ -98,39 +98,41 @@ func RunMergeTwoLists() {
 
 	return mergedLinkedList.next
 */
+/**
+  mergedLists:={val:-101} // 0x000
+  worker:=mergedLists// 0x000
+  vì mergedLists & worker đều có chung 1 vùng nhớ là 0x00
+
+*/
 func mergeTwoLists(list1 *models.ListNode, list2 *models.ListNode) *models.ListNode {
-	if list1 == nil && list2 == nil {
-		return nil
-	}
+	dummyNode := &models.ListNode{Val: -1, Next: nil}
+	mergedList, workerNode := dummyNode, dummyNode
 
-	// Dòng code này KHÔNG tạo ra ngôi nhà mới, cũng không copy ngôi nhà. Nó chỉ tạo ra 2 mảnh giấy ghi cùng 1 địa chỉ:
-	mergedTwoLinkedList := &models.ListNode{Val: -101, Next: nil} // Mảnh giấy mergedTwoLinkedList ghi: 0x100
-	workerNode := mergedTwoLinkedList                             // Mảnh giấy workerNode ghi: 0x100
-
+	// traverse list1 & list2
 	for list1 != nil && list2 != nil {
 		if list1.Val <= list2.Val {
-			workerNode.Next = &models.ListNode{Val: list1.Val}
+			// add list1 into workernode
+			workerNode.Next = list1
 			list1 = list1.Next
 		} else {
-			workerNode.Next = &models.ListNode{Val: list2.Val}
+			// add list2 into workernode
+			workerNode.Next = list2
 			list2 = list2.Next
 		}
 		workerNode = workerNode.Next
 	}
 
-	for list1 != nil {
+	if list1 != nil {
 		workerNode.Next = list1
-		workerNode = workerNode.Next
-		list1 = list1.Next
 	}
 
-	for list2 != nil {
+	if list2 != nil {
 		workerNode.Next = list2
-		workerNode = workerNode.Next
-		list2 = list2.Next
 	}
 
-	return mergedTwoLinkedList.Next
+	workerNode.PrintAllListNodes()
+
+	return mergedList.Next
 }
 
 func RunHasCycle() {
@@ -217,4 +219,96 @@ func hasCycleUsingTwoPointers(head *models.ListNode) bool {
 	}
 
 	return false
+}
+
+func RunDeleteDuplicates() {
+	head := &models.ListNode{Val: 1}
+	node1 := &models.ListNode{Val: 1}
+	node2 := &models.ListNode{Val: 2}
+
+	head.Next = node1
+	node1.Next = node2
+
+	nodes := deleteDuplicates(head)
+	nodes.PrintAllListNodes()
+
+	head = &models.ListNode{Val: 1}
+	node1 = &models.ListNode{Val: 1}
+	node2 = &models.ListNode{Val: 2}
+	node3 := &models.ListNode{Val: 3}
+	node3_1 := &models.ListNode{Val: 3}
+
+	head.Next = node1
+	node1.Next = node2
+	node2.Next = node3
+	node3.Next = node3_1
+
+	nodes = deleteDuplicates(head)
+	nodes.PrintAllListNodes()
+}
+
+func deleteDuplicates(head *models.ListNode) *models.ListNode {
+	currentNode := head
+	for currentNode != nil {
+		nextNode := currentNode.Next
+		if nextNode != nil && nextNode.Val == currentNode.Val {
+			currentNode.Next = nextNode.Next
+			nextNode = nil
+		} else {
+			currentNode = currentNode.Next
+		}
+	}
+	return head
+}
+
+func RunRemoveElements() {
+	head := &models.ListNode{Val: 1, Next: &models.ListNode{
+		Val: 2,
+		Next: &models.ListNode{
+			Val: 6,
+			Next: &models.ListNode{
+				Val: 3,
+				Next: &models.ListNode{
+					Val: 4,
+					Next: &models.ListNode{
+						Val: 5,
+						Next: &models.ListNode{
+							Val:  6,
+							Next: nil}}}}},
+	}}
+	nodes := removeElements(head, 6)
+	nodes.PrintAllListNodes()
+
+	nodes = removeElements(nil, 6)
+	nodes.PrintAllListNodes()
+
+	head = &models.ListNode{Val: 7, Next: &models.ListNode{
+		Val: 7,
+		Next: &models.ListNode{
+			Val: 7,
+			Next: &models.ListNode{
+				Val:  7,
+				Next: nil},
+		}}}
+
+	nodes = removeElements(head, 7)
+	nodes.PrintAllListNodes()
+}
+
+func removeElements(head *models.ListNode, val int) *models.ListNode {
+	if head == nil {
+		return nil
+	}
+	dummyNode := &models.ListNode{Val: -1, Next: head}
+	currentNode := dummyNode
+	for currentNode != nil {
+		nextNode := currentNode.Next
+		if nextNode != nil && nextNode.Val == val {
+			currentNode.Next = nextNode.Next
+			nextNode = nil
+		} else {
+			currentNode = currentNode.Next
+		}
+	}
+	return dummyNode.Next
 }

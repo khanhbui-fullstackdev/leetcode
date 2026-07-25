@@ -18,8 +18,10 @@ func main() {
 			RunMergeTwoLists()
 
 		case 2:
+			RunDeleteDuplicates()
 
 		case 3:
+			RunRemoveElements()
 
 		case 4:
 
