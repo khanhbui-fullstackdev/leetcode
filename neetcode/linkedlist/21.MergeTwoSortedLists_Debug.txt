@@ -1,0 +1,195 @@
+// list1 = [1,2,4], list2 = [1,3,4]
+mergedList := &ListNode{Val: -1, Next: nil}
+workerNode := mergedList
+
+for list1!=nil && list2!=nil 
+(node1!=nil ✅ && node1!=nil ✅)
+{
+	list1Val:=list1.Val=1
+	list2Val:=list2.Val=1
+	if list1Val<= list2Val(1<=1)✅{
+		workerNode.Next = list1 // [1,2,4]
+/*
+		val:-1,👉 root level {val = -1, next = nil}
+		next:
+		{
+			val: 1,
+			next:
+			{
+				val:2,
+				next:
+				{
+					val:4,
+					next: nil
+				}
+			}
+		}
+*/
+		list1=list1.Next = // node2		
+	}
+	workerNode = workerNode.Next // jump down from root level to val = 1
+	/*
+		val: 1,  👉 current level
+		next:
+		{
+			val:2,
+			next:
+			{
+				val:4,
+				next: nil
+			}
+		}
+	*/
+}
+
+(node2!=nil ✅ && node1!=nil ✅)
+{
+	list1Val:=list1.Val=2
+	list2Val:=list2.Val=1
+	if list1Val<= list2Val(1<=1)❌
+	else{
+		workerNode.Next = list2
+		/*
+		val: 1,👉 current level
+		next:
+		{
+			val:1,
+			next:
+			{
+				val:3,
+				next: 
+				{
+					val:4,
+					next:nil
+				}
+			}
+		}
+	*/
+		list2=list2.Next // node3
+	}
+	workerNode = workerNode.Next
+	/*
+		val:1,
+		next: 👉 current level
+		{
+			val:3,
+			next: 
+			{
+				val:4,
+				next:nil
+			}
+		}
+	*/
+}
+
+(node2!=nil ✅ && node3!=nil ✅)
+{
+	list1Val:=list1.Val=2
+	list2Val:=list2.Val=3
+	if list1Val<= list2Val(2<=3)✅
+	{
+		workerNode.Next = list1 //[2,4]
+		/*
+			val:1,
+			next: 👉 current level
+			{
+				val:2,
+				next: 
+				{
+					val:4,
+					next:nil
+				}
+			}
+		*/
+		list1=list1.Next // node4
+	}
+	workerNode = workerNode.Next 
+	/*	
+		val:2,
+		next: 👉 current level
+		{
+			val:4,
+			next:nil
+		}
+	*/
+}
+
+(node4!=nil ✅ && node3!=nil ✅)
+{
+	list1Val:=list1.Val=4
+	list2Val:=list2.Val=3
+	if list1Val<= list2Val(4<=3)❌
+	else{
+		workerNode.Next = list2 // [3,4]
+		/*	
+			val:2,
+			next: 👉 current level
+			{
+				val:3,
+				next:
+				{
+					val:4,
+					next:nil
+				}
+			}
+	*/
+		list2=list2.Next // node4
+	}
+	workerNode = workerNode.Next 
+	/*	
+		val:3, 👉 current level
+		next:
+		{
+			val:4,
+			next:nil
+		}		
+	*/
+	
+}
+(node4!=nil ✅ && node4!=nil ✅){
+	list1Val:=list1.Val=4
+	list2Val:=list2.Val=4
+	if list1Val<= list2Val(4<=4)✅
+	{
+		workerNode.Next = list1 // [node4]
+		/*	
+			val:3, 👉 current level
+			next:
+			{
+				val:4,
+				next:nil
+			}
+		*/
+		list1=list1.Next = nil
+	}
+	workerNode = workerNode.Next 
+	{
+		/*	
+			val:4, 👉 current level
+			next:nil
+			
+		*/
+	}
+}
+
+(nil!=nil ❌ && node4!=nil ✅) ❌
+
+// vét cạn list1 
+if list1!=nill ❌
+
+// vét cạn list2
+if list2!=nil 
+(node4!=nil) ✅
+{
+	workerNode.Next = list2 // [4]
+	/*	
+		val:4, 👉 current level
+		next: 
+		{
+			val:4,
+			next:nil
+		}			
+	*/
+}
+
+return mergedList.Next

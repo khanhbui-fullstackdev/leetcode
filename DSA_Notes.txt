@@ -213,10 +213,13 @@ fmt.Printf("...", headB.Next.Next.Next)
 Zoom:
 https://www.zoom.com/en/lp/my-notes?from=web_join_post_meeting&_x_zm_rtaid=7oT6P_qBRLa8MY0rQ8PRFA.1784336648187.eda5b6ff5c273598c343a5b4e89e1933&_x_zm_rhtaid=181
 
-
+Link video:https://drive.google.com/drive/folders/10GnRMcxgK8OqNaH_6EK6DIJ7RabYw3le?fbclid=IwY2xjawTe0hRleHRuA2FlbQIxMABicmlkETFXUk90MGMzUjlUbjd5QzNqc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHuuJ5fTmsgExIecfs5s-qsxkLIG-9xUBbXlWmLgUowu6Haa3EUG05J2kRXGI_aem_iZ_FDA3f-RZFzeHxA7IMWw
 ---------------------------------------------------
 khanh.buivuong.airforce01@gmail.com
 Gn4tt4tLPZKBDNp
 
 https://stillcoding.vercel.app/course/login
 courseId: b08a2bfd
+
+
+https://300baicode.com/

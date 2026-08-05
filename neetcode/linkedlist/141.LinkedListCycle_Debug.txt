@@ -1,0 +1,92 @@
+
+head = [3,2,0,-4]  
+          ↑    ↓     
+		  └────┘    node(-4) -> cycle node2
+
+var slowNode *ListNode = head // node3
+var fastNode *ListNode = head // node3
+
+Sách giáo khoa
+1)fast chạy 2 bước
+2)slow chạy 1 bước
+3)So sánh
+
+for fastNode.Next!=nill  && fastNode.Next.Next!=nil 
+{
+	// node3.Next = node2; node3.Next.Next = node0
+	(node2!=nil)✅ && (node0!=nil)✅ 
+	{		
+		fastNode = fastNode.Next.Next // node0
+		slowNode = slowNode.Next // node2
+		if fastNode==slowNode (node0==node2)❌	
+	}
+
+	// node0.Next = node(-4); node0.Next.Next = node2
+	(node(-4)!=nil)✅ && (node2!=nil)✅ 
+	{		
+		fastNode = fastNode.Next.Next // node2
+		slowNode = slowNode.Next // node0
+		if fastNode==slowNode (node2==node0)❌	
+	}
+
+	// node2.Next = node(0); node2.Next.Next = node-4
+	(node0!=nil)✅ && ( node-4!=nil)✅ 
+	{		
+		fastNode = fastNode.Next.Next // node-4
+		slowNode = slowNode.Next // node-4
+		if fastNode==slowNode (node-4==node-4)✅	{
+			return true
+		}
+	}
+}
+
+fast = fast.Next.Next
+slow = slow.Next
+if fast == slow {
+	return true
+}
+
+head = [3 , 2 , 0 ,-4]
+        f
+		s
+
+head = [3 , 2 , 0 ,-4]
+                f
+		    s
+			
+head = [3 , 2 , 0 ,-4]
+            f
+		        s
+				
+head = [3 , 2 , 0 ,-4]
+                   f
+		           s
+				   
+
+Fast chạy 2 bước.
+So sánh.
+Slow chạy 1 bước.
+=> biến thể
+
+head = [3,2,0,-4]  
+          ↑    ↓     
+		  └────┘    node(-4) -> cycle node2
+
+for fastNode.Next!=nill  && fastNode.Next.Next!=nil 
+{
+	// node3.Next = node2; node3.Next.Next = node0
+	(node2!=nil)✅ && (node0!=nil)✅ 
+	{		
+		fastNode = fastNode.Next.Next // node0		
+		if fastNode==slowNode (node0==node3)❌
+		slowNode = slowNode.Next // node2		
+	}
+
+	// node0.Next = node(-4); node0.Next.Next = node2
+	(node(-4)!=nil)✅ && (node2!=nil)✅ 
+	{		
+		fastNode = fastNode.Next.Next // node2
+		if fastNode==slowNode (node2==node2)✅	
+		slowNode = slowNode.Next // node0	
+	}
+}

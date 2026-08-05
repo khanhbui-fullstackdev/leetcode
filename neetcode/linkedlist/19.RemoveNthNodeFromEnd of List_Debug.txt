@@ -1,0 +1,84 @@
+head = [1,2,3,4,5] n = 2
+
+// Dùng dummy node khi thấy có mùi  node đầu tiên (head) bị thay đổi.
+Remove Head ✅
+Insert Before Head ✅
+Reverse cả list ✅
+Merge 2 lists ✅
+
+Nếu head có thể đổi, hãy nghĩ ngay đến dummy.
+
+Ideas
+1>Khởi tạo dummy node
+dummy  1, 2, 3, 4, 5
+s
+f
+
+2>Cho fast node chạy đến n
+dummy -> 1, 2, 3, 4, 5
+s
+	        f
+
+3>Sau đó cho chạy tuần tự as long as f.next== nil thì dừng
+slow = slow.Next
+fast = fast.Next  
+dummy -> 1, 2, 3, 4, 5
+         s
+	           f	  
+
+dummy -> 1, 2, 3, 4, 5
+            s
+	              f
+				  
+dummy -> 1, 2, 3, 4, 5
+               s
+	                 f
+
+
+deletedNode:=s.Next
+s.Next = deletedNode.Next
+
+return dummy.Next // 1, 2, 3, 5
+
+------------------------------------------------------ Test case 3-------------------------------------------------------
+head = [1,2,3,4,5] n = 3 => deletedNode = node3
+
+-1 -> 1 -> 2 -> 3 -> 4 -> 5
+s
+f
+
+1) Move f to 3th position
+-1 -> 1 -> 2 -> 3 -> 4 -> 5
+s               f
+                
+
+2) while f.next!=nil
+-1 -> 1 -> 2 -> 3 -> 4 -> 5
+	  s              f
+                
+-1 -> 1 -> 2 -> 3 -> 4 -> 5
+	       s              f
+
+deletedNode:=s.Next
+s.Next = deletedNode.Next
+
+------------------------------------------------------ Test case 2 ------------------------------------------------------
+
+head = [1] n = 1
+
+1>Khởi tạo dummy node
+dummy  1
+s
+f
+
+2>Cho fast node chạy đến n = 1
+dummy  1
+s      f
+
+3>Transverse  node
+dummy  1
+s      f
+
+deletedNode = s.Next
+s.Next = deletedNode.Next = nil 
+return dummy.next // nil

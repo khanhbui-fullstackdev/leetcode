@@ -15,31 +15,28 @@ func main() {
 
 		switch choice {
 		case 1:
-			RunTwoSum()
+			RunMergeTwoLists()
 
 		case 2:
-			RunRemoveElement()
+			RunDeleteDuplicates()
 
 		case 3:
-			RunRunningSum()
+			RunRemoveElements()
 
 		case 4:
-			RunMerge()
 
 		case 5:
-			RunGetConcatenation()
 
 		case 6:
-			RunRemoveDuplicates()
+			RunHasCycle()
 
 		case 7:
-			RunThirdMax()
+			RunRemoveNthFromEnd()
 
 		case 8:
-			RunThreeSum()
 
 		case 9:
-			RunMaxArea()
+			RunCopyRamdomList()
 
 		case 0:
 			fmt.Println("Exit...")
@@ -49,21 +46,20 @@ func main() {
 			fmt.Println("Invalid choice")
 		}
 	}
-
 }
 
 func showMenu() {
-	fmt.Println("===== 1.Array =====")
+	fmt.Println("===== 2.Linked List =====")
 	fmt.Println("0. Exit")
-	fmt.Println("1. Two Sum")
-	fmt.Println("2. 27. Remove Element")
-	fmt.Println("3. 1480. Running Sum of 1d Array")
-	fmt.Println("4. 88. Merge Sorted Array")
-	fmt.Println("5. 1929. Concatenation of Array")
-	fmt.Println("6. 26. Remove Duplicates from Sorted Array")
-	fmt.Println("7. 414. Third Maximum Number")
-	fmt.Println("8. 15. 3Sum")
-	fmt.Println("9. 11. Container With Most Water")
+	fmt.Println("1. 21. Merge Two Sorted Lists")
+	fmt.Println("2. 83. Remove Duplicates from Sorted List")
+	fmt.Println("3. 203. Remove Linked List Elements")
+	fmt.Println("4. 206. Reverse Linked List")
+	fmt.Println("5. 876. Middle of the Linked List")
+	fmt.Println("6. 141. Linked List Cycle")
+	fmt.Println("7. 19. Remove Nth Node From End of List")
+	fmt.Println("8. 2. Add Two Numbers")
+	fmt.Println("9. 138. Copy List with Random Pointer")
 	fmt.Print("Enter your choice: ")
 }
 
