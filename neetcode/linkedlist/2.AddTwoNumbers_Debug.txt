@@ -1,0 +1,50 @@
+l1 = [2,4,3], l2 = [5,6,4]
+sumLinkedList:={val:-1,next:nil}
+currentNode: = sumLinkedList
+carry:=0
+
+while (l1!=nil && l2!=nil) 
+
+node2!=nil && node5!=nil ✅
+{
+	sum:= l1.Val + l2.Val + carry = 2+5+0 = 7	
+	if sum > 9
+	else{
+		carry = 0
+	}
+	currentNode.Next = &ListNode{Val: sum, Next: nil} // node-1.Next = node7 [-1->7]
+	currentNode=currentNode.Next// node7
+	l1=l1.Next // node4
+	l2=l2.Next // node6
+}
+
+node4!=nil && node6!=nil ✅
+{
+	sum:= l1.Val + l2.Val + carry = 4+6+0 = 10	
+	if sum > 9 ❌
+	{		
+		carry = sum / 10 = 1
+		sum = sum % 10 = 0		
+	}else ❌
+	currentNode.Next = &ListNode{Val: sum, Next: nil} // node7.Next = node0  [-1->7->0]
+	 
+	currentNode=currentNode.Next// node0
+	l1=l1.Next // node3
+	l2=l2.Next // node4
+}
+
+node3!=nil && node4!=nil ✅
+{
+	sum:= l1.Val + l2.Val + carry = 3+4+1 = 8
+	if sum > 9❌
+	else {
+		carry = 0
+	}
+	currentNode.Next = &ListNode{Val: sum, Next: nil} // node7.Next = node8  [-1->7->0->8]
+	 
+	currentNode=currentNode.Next// node8
+	l1=l1.nil // node3
+	l2=l2.nil // node4
+}
+
+return sumLinkedList.Next

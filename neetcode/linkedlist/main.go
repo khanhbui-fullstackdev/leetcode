@@ -31,10 +31,12 @@ func main() {
 			RunHasCycle()
 
 		case 7:
+			RunRemoveNthFromEnd()
 
 		case 8:
 
 		case 9:
+			RunCopyRamdomList()
 
 		case 0:
 			fmt.Println("Exit...")
