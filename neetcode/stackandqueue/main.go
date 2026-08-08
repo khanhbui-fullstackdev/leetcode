@@ -10,18 +10,16 @@ import (
 )
 
 func main() {
-	runQueueTest()
-	runStackTest()
-
 	for {
 		showMenu()
 		choice := readInput()
 
 		switch choice {
 		case 1:
-			RunImplementStackUsingQueue()
+			RunImplementStackUsingQueues()
 
 		case 2:
+			RunImplemenQueueUsingStacks()
 
 		case 3:
 
@@ -51,7 +49,7 @@ func showMenu() {
 	fmt.Println("===== 3.Stack and Queue =====")
 	fmt.Println("0. Exit")
 	fmt.Println("1. 225. Implement Stack using Queues")
-	fmt.Println("2. ")
+	fmt.Println("2. 232. Implement Queue using Stacks")
 	fmt.Println("3. ")
 	fmt.Println("4. ")
 	fmt.Println("5. ")

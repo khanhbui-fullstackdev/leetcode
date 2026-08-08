@@ -60,11 +60,29 @@ func (this *MyStack) Empty() bool {
 	return false
 }
 
-/**
- * Your MyStack object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Push(x);
- * param_2 := obj.Pop();
- * param_3 := obj.Top();
- * param_4 := obj.Empty();
- */
+func (this *MyStack) PushV2(x int) {
+	this.Queue1.Enqueue(x)
+	queueSize := this.Queue1.Size
+	if queueSize > 1 {
+		for index := 0; index < queueSize-1; index++ {
+			item, err := this.Queue1.Dequeue()
+			if err == nil {
+				this.Queue1.Enqueue(item)
+			}
+		}
+	}
+}
+
+func (this *MyStack) PopV2() int {
+	item, _ := this.Queue1.Dequeue()
+	return item
+}
+
+func (this *MyStack) TopV2() int {
+	item, _ := this.Queue1.Peek()
+	return item
+}
+
+func (this *MyStack) EmptyV2() bool {
+	return this.Queue1.IsEmpty()
+}
