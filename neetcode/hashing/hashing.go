@@ -87,3 +87,48 @@ func containsDuplicate(nums []int) bool {
 	}
 	return false
 }
+
+func RunIntersection() {
+	nums1 := []int{1, 2, 2, 1}
+	nums2 := []int{2, 2}
+
+	intersectedArr := intersection(nums1, nums2)
+	fmt.Printf("Intersected arr:%v", intersectedArr)
+	fmt.Println()
+
+	nums1 = []int{4, 9, 5}
+	nums2 = []int{9, 4, 9, 8, 4}
+
+	intersectedArr = intersection(nums1, nums2)
+	fmt.Printf("Intersected arr:%v", intersectedArr)
+	fmt.Println()
+
+	nums1 = []int{1, 2, 2, 1}
+	nums2 = []int{2}
+
+	intersectedArr = intersection(nums1, nums2)
+	fmt.Printf("Intersected arr:%v", intersectedArr)
+	fmt.Println()
+
+}
+
+/*
+ */
+func intersection(nums1 []int, nums2 []int) []int {
+	arrInterSection := make([]int, 0, len(nums1))
+	frequencyNum := make(map[int]int, len(nums1))
+
+	for _, num := range nums1 {
+		frequencyNum[num]++
+	}
+
+	for _, num := range nums2 {
+		_, hasExisted := frequencyNum[num]
+		if hasExisted {
+			arrInterSection = append(arrInterSection, num)
+			delete(frequencyNum, num)
+		}
+	}
+
+	return arrInterSection
+}

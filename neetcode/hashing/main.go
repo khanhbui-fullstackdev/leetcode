@@ -20,6 +20,7 @@ func main() {
 		case 2:
 
 		case 3:
+			RunIntersection()
 
 		case 4:
 
