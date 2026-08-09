@@ -41,3 +41,23 @@ func RunImplemenQueueUsingStacks() {
 	fmt.Printf("\n Pop:%d", myQueue.Pop())
 	fmt.Println()
 }
+
+func RunImplmentMinStack() {
+	minStack := models.NewMinStack()
+	minStack.Push(-2)
+	fmt.Printf("Min value:%d", minStack.GetMin())
+	fmt.Println()
+
+	minStack.Push(0)
+	minStack.Push(-3) // minStack = [-2, 0, -3]
+
+	fmt.Printf("Min value:%d", minStack.GetMin())
+	fmt.Println()
+
+	minStack.Pop()
+	fmt.Printf("Top:%d", minStack.Top())
+	fmt.Println()
+
+	fmt.Printf("Min value:%d", minStack.GetMin())
+	fmt.Println()
+}
