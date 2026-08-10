@@ -28,7 +28,7 @@ func main() {
 		case 5:
 
 		case 6:
-			RunImplmentMinStack()
+			RunImplementMinStack()
 
 		case 7:
 

@@ -42,8 +42,10 @@ func RunImplemenQueueUsingStacks() {
 	fmt.Println()
 }
 
-func RunImplmentMinStack() {
-	minStack := models.NewMinStack()
+func RunImplementMinStack() {
+	// stack = [-2,0,-3]
+	// minStack = [-2,-3]
+	minStack := models.NewMinStackV2()
 	minStack.Push(-2)
 	fmt.Printf("Min value:%d", minStack.GetMin())
 	fmt.Println()
@@ -59,5 +61,67 @@ func RunImplmentMinStack() {
 	fmt.Println()
 
 	fmt.Printf("Min value:%d", minStack.GetMin())
+	fmt.Println()
+
+	minStack = models.NewMinStackV2()
+	minStack.Push(5)
+	fmt.Printf("Min value:%d", minStack.GetMin())
+	fmt.Println()
+
+	minStack.Push(3)
+	minStack.Push(4) // minStack = [-2, 0, -3]
+	minStack.Push(2)
+
+	minStack.PrintAllStackVals()
+	minStack.PrintAllMinStackVals()
+
+	fmt.Println("\n *** Test case 30 ***")
+	// ["MinStack","push","push","push","getMin","top","pop","getMin"]
+	// [[],[-2],[0],[-1],[],[],[],[]]
+
+	minStack = models.NewMinStackV2()
+	minStack.Push(-2)
+	minStack.PrintAllMinStackVals()
+	minStack.PrintAllStackVals()
+
+	minStack.Push(0)
+	minStack.PrintAllMinStackVals()
+	minStack.PrintAllStackVals()
+
+	minStack.Push(-1)
+	minStack.PrintAllMinStackVals()
+	minStack.PrintAllStackVals()
+
+	fmt.Printf("Min value:%d", minStack.GetMin())
+	fmt.Println()
+
+	fmt.Printf("Top value:%d", minStack.Top())
+	fmt.Println()
+
+	fmt.Printf("Get min value:%d", minStack.GetMin())
+	fmt.Println()
+
+	fmt.Println("\n *** Test case 45 ***")
+	/*
+		["MinStack","push","push","push","getMin","pop","getMin","pop","getMin","pop","push","push","push","getMin","pop","top","getMin","pop","getMin","pop"]
+		[[],[0],[1],[0],[],[],[],[],[],[],[-2],[-1],[-2],[],[],[],[],[],[],[]]
+	*/
+	minStack = models.NewMinStackV2()
+	minStack.Push(0)
+	minStack.Push(1)
+	minStack.Push(0)
+
+	minStack.PrintAllStackVals()
+	minStack.PrintAllMinStackVals()
+
+	fmt.Printf("Get min value:%d", minStack.GetMin())
+	minStack.Pop()
+	minStack.PrintAllStackVals()
+	minStack.PrintAllMinStackVals()
+
+	fmt.Printf("Get min value:%d", minStack.GetMin())
+	minStack.Pop()
+	minStack.PrintAllStackVals()
+	minStack.PrintAllMinStackVals()
 	fmt.Println()
 }
