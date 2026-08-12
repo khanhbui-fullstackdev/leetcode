@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"leetcode/neetcode/hashing/models"
+	"slices"
 )
 
 func RunFirstUniqChar() {
@@ -131,4 +132,167 @@ func intersection(nums1 []int, nums2 []int) []int {
 	}
 
 	return arrInterSection
+}
+
+func RunIntersection2() {
+	nums1 := []int{1, 2, 2, 1}
+	nums2 := []int{2, 2}
+
+	intersectedArr := intersect(nums1, nums2)
+	fmt.Printf("Intersected arr:%v", intersectedArr)
+	fmt.Println()
+
+	nums1 = []int{4, 9, 5}
+	nums2 = []int{9, 4, 9, 8, 4}
+
+	intersectedArr = intersect(nums1, nums2)
+	fmt.Printf("Intersected arr:%v", intersectedArr)
+	fmt.Println()
+}
+
+func intersect(nums1 []int, nums2 []int) []int {
+	intersection := make([]int, 0, len(nums1))
+	numsFrequency := make(map[int]int, len(nums1))
+
+	for _, num := range nums1 {
+		numsFrequency[num]++
+	}
+
+	for _, num := range nums2 {
+		frequency, hasExisted := numsFrequency[num]
+		if hasExisted {
+			frequency--
+			if frequency < 0 {
+				delete(numsFrequency, num)
+			} else {
+				intersection = append(intersection, num)
+			}
+			numsFrequency[num] = frequency
+		}
+	}
+
+	return intersection
+}
+
+func RunTopKElement() {
+	nums := []int{1, 1, 1, 2, 2, 3}
+	k := 2
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct:%v", nums, k, topKFrequent(nums, k))
+	fmt.Println()
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct V2:%v", nums, k, topKFrequentV2(nums, k))
+	fmt.Println()
+
+	nums = []int{1}
+	k = 1
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct:%v", nums, k, topKFrequent(nums, k))
+	fmt.Println()
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct V2:%v", nums, k, topKFrequentV2(nums, k))
+	fmt.Println()
+
+	nums = []int{1, 2, 1, 2, 1, 2, 3, 1, 3, 2}
+	k = 2
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct:%v", nums, k, topKFrequent(nums, k))
+	fmt.Println()
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct V2:%v", nums, k, topKFrequentV2(nums, k))
+	fmt.Println()
+
+	nums = []int{1, 1, 1, 1, 1, 2, 2, 2, 2, 2}
+	k = 2
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct:%v", nums, k, topKFrequent(nums, k))
+	fmt.Println()
+	fmt.Printf("Nums:%v and k:%d => Top K frequenct V2:%v", nums, k, topKFrequentV2(nums, k))
+	fmt.Println()
+}
+
+func topKFrequent(nums []int, k int) []int {
+	mapFrequencies := make(map[int]int, len(nums))
+	mostFrequentElements := make([]int, 0, len(nums))
+
+	for _, num := range nums {
+		mapFrequencies[num]++
+	}
+
+	frequentNums := make([]models.FrequentNum, 0, len(nums))
+	for num, frequency := range mapFrequencies {
+		frequenNum := models.NewFrequentNum(num, frequency)
+		frequentNums = append(frequentNums, frequenNum)
+	}
+
+	clear(mapFrequencies)
+
+	// sort by frequency desc
+	slices.SortFunc(frequentNums, func(a, b models.FrequentNum) int {
+		return b.Count - a.Count
+	})
+
+	for index, frequentNum := range frequentNums {
+		if index == k {
+			break
+		}
+		mostFrequentElements = append(mostFrequentElements, frequentNum.Num)
+	}
+
+	return mostFrequentElements
+}
+
+/*
+          0 1 2 3 4 5
+	nums [1,1,1,2,2,2], k = 2
+
+	countingAppearance = [{1:3},{2:3}]
+
+	loop through an dictionary in reversed order
+
+	          0 1 2   3    4   5  6
+	bucket = [      [1,2]          ] // 2 array dimenstion
+
+          0 1 2 3 4 5
+	nums [2,2,2,2,2,2], k = 2
+	countingAppearance = [{2:3}]
+
+	loop through an dictionary in reversed order
+	          0 1   2   3    4   5  6
+	bucket = [                     [2]] // 2 array dimenstion
+
+	      0 1 2 3 4 5
+	nums [1,1,1,2,2,5], k = 2
+
+	countingAppearance = [{1:3},{2:2},{5:1}]
+
+	loop through an dictionary in reversed order
+
+	          0   1     2     3    4   5   6
+	bucket = [   [5]   [2]   [1]           ] // 2 array dimenstion
+	**/
+
+func topKFrequentV2(nums []int, k int) []int {
+	numsLength := len(nums)
+	countingAppearance := make(map[int]int, numsLength)
+	for _, num := range nums {
+		countingAppearance[num]++
+	}
+
+	// index represents the appearing numbers (frequent number)
+	bucket := make([][]int, numsLength+1)
+	bucketLength := len(bucket)
+
+	for num, frequentNum := range countingAppearance {
+		bucket[frequentNum] = append(bucket[frequentNum], num)
+	}
+	mostFrequentElements := make([]int, 0, numsLength)
+
+	for index := bucketLength - 1; index >= 0; index-- {
+		arr := bucket[index]
+		if len(arr) == 0 {
+			continue
+		}
+		if k == 0 {
+			break
+		}
+		for _, num := range arr {
+			mostFrequentElements = append(mostFrequentElements, num)
+			k--
+		}
+	}
+	return mostFrequentElements
 }

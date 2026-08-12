@@ -23,6 +23,7 @@ func main() {
 			RunIntersection()
 
 		case 4:
+			RunIntersection2()
 
 		case 5:
 			RunFirstUniqChar()
@@ -30,6 +31,7 @@ func main() {
 		case 6:
 
 		case 7:
+			RunTopKElement()
 
 		case 8:
 
@@ -54,7 +56,7 @@ func showMenu() {
 	fmt.Println("4. 350. Intersection of Two Arrays II")
 	fmt.Println("5. 387. First Unique Character in a String")
 	fmt.Println("6. ")
-	fmt.Println("7. ")
+	fmt.Println("7. 347. Top K Frequent Elements")
 	fmt.Println("8. ")
 	fmt.Println("9. ")
 	fmt.Print("Enter your choice: ")
