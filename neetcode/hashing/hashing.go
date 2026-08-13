@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
 	"leetcode/neetcode/hashing/models"
 	"slices"
@@ -295,4 +296,110 @@ func topKFrequentV2(nums []int, k int) []int {
 		}
 	}
 	return mostFrequentElements
+}
+
+func RunLongestConsecutive() {
+	nums := []int{100, 4, 200, 1, 3, 2}
+	longestElements := longestConsecutiveSortingSolution(nums)
+	fmt.Printf("Longest consecutive elements:%v", longestElements)
+	fmt.Println()
+	fmt.Printf("Longest consecutive elements V2:%v", longestConsecutiveUsingHashMap(nums))
+	fmt.Println()
+
+	// nums = []int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}
+	// longestElements = longestConsecutiveSortingSolution(nums)
+	// fmt.Printf("Longest consecutive elements:%v", longestElements)
+	// fmt.Println()
+	// fmt.Printf("Longest consecutive elements V2:%v", longestConsecutiveUsingHashMap(nums))
+	// fmt.Println()
+
+	// nums = []int{1, 0, 1, 2}
+	// longestElements = longestConsecutiveSortingSolution(nums)
+	// fmt.Printf("Longest consecutive elements:%v", longestElements)
+	// fmt.Println()
+	// fmt.Printf("Longest consecutive elements V2:%v", longestConsecutiveUsingHashMap(nums))
+	// fmt.Println()
+
+	// nums = []int{1, 2, 3, 10, 11, 12, 13}
+	// longestElements = longestConsecutiveSortingSolution(nums)
+	// fmt.Printf("Longest consecutive elements:%v", longestElements)
+	// fmt.Println()
+	// fmt.Printf("Longest consecutive elements V2:%v", longestConsecutiveUsingHashMap(nums))
+	// fmt.Println()
+}
+
+func longestConsecutiveSortingSolution(nums []int) int {
+	numLength := len(nums)
+	if numLength <= 1 {
+		return numLength
+	}
+
+	// O(nlogn)
+	// nums = [1, 2, 3, 4, 100, 200]
+	slices.SortFunc(nums, func(a, b int) int {
+		return cmp.Compare(a, b)
+	})
+
+	count := 1
+	maxCount := 0
+
+	for index, num := range nums {
+		nextIndex := index + 1
+		if nextIndex == numLength {
+			break
+		}
+		nextNum := nums[nextIndex]
+		if nextNum-num == 1 {
+			count++
+		} else if nextNum == num {
+			continue
+		} else {
+			if count > maxCount {
+				maxCount = count
+			}
+			count = 1
+		}
+	}
+
+	if count > maxCount {
+		maxCount = count
+	}
+
+	return maxCount
+}
+
+func longestConsecutiveUsingHashMap(nums []int) int {
+	numsLength := len(nums)
+
+	if numsLength <= 0 {
+		return numsLength
+	}
+
+	hashSet := make(map[int]bool)
+	for _, num := range nums {
+		hashSet[num] = true
+	}
+	maxLength := 0
+
+	for key, _ := range hashSet {
+		leftNeighbor := key - 1
+		_, existed := hashSet[leftNeighbor]
+		if !existed {
+			// 1. Tìm thấy đầu chuỗi, khởi tạo chuỗi hiện tại dài 1
+			currNum := key
+			currLength := 1
+
+			// 2. Vòng lặp đếm tiếp các số liên tiếp đằng sau: key+1, key+2, key+3...
+			for hashSet[currNum+1] {
+				currNum++
+				currLength++
+			}
+			// 3. Cập nhật kỷ lục max
+			if currLength > maxLength {
+				maxLength = currLength
+			}
+		}
+	}
+
+	return maxLength
 }
