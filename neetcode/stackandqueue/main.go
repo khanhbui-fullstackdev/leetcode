@@ -56,8 +56,7 @@ func showMenu() {
 	fmt.Println("5. 933. Number of Recent Calls")
 	fmt.Println("6. 155. Min Stack")
 	fmt.Println("7. 150. Evaluate Reverse Polish Notation")
-	fmt.Println("8. ")
-	fmt.Println("9. ")
+	fmt.Println("8. 739. Daily Temperatures")
 	fmt.Print("Enter your choice: ")
 }
 
