@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"leetcode/neetcode/hashing/models"
 	"slices"
+	"strings"
 )
 
 func RunFirstUniqChar() {
@@ -401,5 +402,254 @@ func longestConsecutiveUsingHashMap(nums []int) int {
 		}
 	}
 
+	return maxLength
+}
+
+func RunLengthOfLongestSubStringBruteForce() {
+	s := "abcabcbb"
+	fmt.Printf("Length of longest substring:%d", lengthOfLongestSubstringUsingBruteForce(s))
+	fmt.Println()
+
+	s = "bbbbb"
+	fmt.Printf("Length of longest substring:%d", lengthOfLongestSubstringUsingBruteForce(s))
+	fmt.Println()
+
+	s = "pwwkew"
+	fmt.Printf("Length of longest substring:%d", lengthOfLongestSubstringUsingBruteForce(s))
+	fmt.Println()
+
+	s = "mjvhmi"
+	fmt.Printf("Length of longest substring:%d", lengthOfLongestSubstringUsingBruteForce(s))
+	fmt.Println()
+}
+
+func RunLengthOfLongestSubStringV2() {
+	s := "abcdedabctgk"
+	fmt.Printf("Length of longest substring using sliding windows:%d", lengthOfLongestSubstringUsingSlidingWindows(s))
+	fmt.Println()
+
+	s = "abcabcbb"
+	fmt.Printf("Length of longest substring using sliding windows:%d", lengthOfLongestSubstringUsingSlidingWindows(s))
+	fmt.Println()
+
+	s = "bbbbb"
+	fmt.Printf("Length of longest substring using sliding windows:%d", lengthOfLongestSubstringUsingSlidingWindows(s))
+	fmt.Println()
+
+	s = "pwwkew"
+	fmt.Printf("Length of longest substring using sliding windows:%d", lengthOfLongestSubstringUsingSlidingWindows(s))
+	fmt.Println()
+
+	s = "mjvhmi"
+	fmt.Printf("Length of longest substring using sliding windows:%d", lengthOfLongestSubstringUsingSlidingWindows(s))
+	fmt.Println()
+}
+
+/*
+	Always start with brute force
+	     01234567
+	s:= "abcabcbb"
+         i
+          j
+
+	i=0-> charS = 'a'
+	j=1-> charS = 'b'
+
+	allUnique(s,i,j) = (s,0,1)
+	hashSet = []
+	index = 0 {
+		charS := s[0] = 'a'
+		hashSet = ['a']
+	}
+	-> currentLength:=j-i = 1
+	-> maxLength = 1
+
+	i=0-> charS = 'a'
+	j=2-> charS = 'c'
+
+	allUnique(s,i,j) = (s,0,2)
+	hashSet = []
+	index = 0;index<2 {
+		charS := s[0] = 'a'
+		hashSet = ['a']
+	}
+	index = 1;index<2 {
+		charS := s[1] = 'b'
+		hashSet = ['a','b']
+	}
+	-> currentLength:=j-i = 2 - 0 = 2
+	-> maxLength = 2
+
+	i=0-> charS = 'a'
+	j=3-> charS = 'a'
+
+	allUnique(s,i,j) = (s,0,3)
+	hashSet = []
+	index = 0;index<3 {
+		charS := s[0] = 'a'
+		hashSet = ['a']
+	}
+	index = 1;index<3 {
+		charS := s[1] = 'b'
+		hashSet = ['a','b']
+	}
+	index = 2;index<3 {
+		charS := s[1] = 'b'
+		hashSet = ['a','b','c']
+	}
+
+	i=0-> charS = 'a'
+	j=4-> charS = 'b'
+	allUnique(s,i,j) = (s,0,4)
+	hashSet = []
+
+	index = 0;index<4 {
+		charS := s[0] = 'a'
+		hashSet = ['a']
+	}
+	index = 1;index<4 {
+		charS := s[1] = 'b'
+		hashSet = ['a','b']
+	}
+	index = 2;index<4 {
+		charS := s[1] = 'b'
+		hashSet = ['a','b','c']
+	}
+	index = 3;index<4 {
+		charS := s[3] = 'a'
+		hashSet = ['a','b','c']
+		existed -> return false
+	}
+*/
+
+func lengthOfLongestSubstringUsingBruteForce(s string) int {
+	s = strings.TrimSpace(s)
+	sLength := len(s)
+	if sLength <= 1 {
+		return sLength
+	}
+	maxLength := 0
+	for index := range sLength {
+		for jIndex := index + 1; jIndex <= sLength; jIndex++ {
+			if allUnique(s, index, jIndex) {
+				currentLength := jIndex - index
+				if currentLength > maxLength {
+					maxLength = currentLength
+				}
+			}
+		}
+	}
+
+	return maxLength
+}
+
+func allUnique(s string, startIndex int, endIndex int) bool {
+	// create hashmap here
+	hashSet := make(map[byte]bool)
+	for index := startIndex; index < endIndex; index++ {
+		byteS := s[index]
+
+		_, existed := hashSet[byteS]
+		if existed {
+			return false
+		}
+		hashSet[byteS] = true
+	}
+	return true
+}
+
+/*   0 1 2 3 4 5 6 7 8 9  10  11
+s:= "a b c d e d a b c t  g   k"
+	         l
+	             r
+
+hashset = [a,b,c,d,e]
+r = 5 -> charS = 'd'
+isDuplicated {
+	maxLength = getMaxLengthFromHashSet() // 5
+	if l == duplicatedIndex (0==3)X
+	else {
+		hashset = [b,c,d,e]
+	}
+	l++ // 1
+}
+
+isDuplicated {
+	maxLength = getMaxLengthFromHashSet() // 5
+	if l == duplicatedIndex (1==3) X
+	else {
+		hashset = [c,d,e]
+	}
+	l++ // 2
+}
+
+isDuplicated {
+	maxLength = getMaxLengthFromHashSet() // 5
+	if l == duplicatedIndex (2==3) X
+	else {
+		hashset = [d,e]
+	}
+	l++ // 3
+}
+
+isDuplicated {
+	maxLength = getMaxLengthFromHashSet() // 5
+	if l == duplicatedIndex (3==3) Yes
+	{
+		// update d position
+		hashset = [d:5,e:4]
+		r++ // 6
+	}
+	l++ // 4
+}
+
+     0 1 2 3 4 5 6 7 8 9  10  11
+s:= "a b c d e d a b c t  g   k"
+	         l
+	                          r
+
+r = 6 -> charS = 'a' hashset = [d:5,e:4,a:6]
+r = 7 -> charS = 'b' hashset = [d:5,e:4,a:6,b]
+*/
+
+func lengthOfLongestSubstringUsingSlidingWindows(s string) int {
+	lenS := len(s)
+	leftIndex := 0
+	rightIndex := 0
+
+	maxLength := 0
+
+	hashSetBytes := make(map[byte]int, lenS)
+	for rightIndex <= lenS-1 {
+		rightBytes := s[rightIndex]
+		duplicatedIndex, hasExisted := hashSetBytes[rightBytes]
+
+		if hasExisted {
+			maxLength = getMaxLengthFromHashSet(maxLength, hashSetBytes)
+			if leftIndex == duplicatedIndex {
+				hashSetBytes[rightBytes] = rightIndex
+				rightIndex++
+			} else {
+				// remove key
+				leftBytes := s[leftIndex]
+				delete(hashSetBytes, leftBytes)
+			}
+			leftIndex++
+		} else {
+			hashSetBytes[rightBytes] = rightIndex
+			rightIndex++
+		}
+	}
+
+	maxLength = getMaxLengthFromHashSet(maxLength, hashSetBytes)
+	clear(hashSetBytes)
+
+	return maxLength
+}
+
+func getMaxLengthFromHashSet(maxLength int, hashSet map[byte]int) int {
+	if len(hashSet) > maxLength {
+		maxLength = len(hashSet)
+	}
 	return maxLength
 }
