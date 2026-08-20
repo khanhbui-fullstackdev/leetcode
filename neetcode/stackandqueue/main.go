@@ -31,10 +31,10 @@ func main() {
 			RunImplementMinStack()
 
 		case 7:
+			RunEvalRPN()
 
 		case 8:
-
-		case 9:
+			RunDailyTemperatures()
 
 		case 0:
 			fmt.Println("Exit...")

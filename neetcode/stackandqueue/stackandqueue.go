@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"leetcode/neetcode/stackandqueue/models"
+	"strconv"
 )
 
 func RunImplementStackUsingQueues() {
@@ -124,4 +125,201 @@ func RunImplementMinStack() {
 	minStack.PrintAllStackVals()
 	minStack.PrintAllMinStackVals()
 	fmt.Println()
+}
+
+func RunDailyTemperatures() {
+	temperatures := []int{73, 74, 75, 71, 69, 72, 76, 73}
+	waitingDays := dailyTemperaturesUsingStack(temperatures)
+	fmt.Printf("Waiting days:%v", waitingDays)
+	fmt.Println()
+
+	temperatures = []int{30, 40, 50, 60}
+	waitingDays = dailyTemperaturesUsingStack(temperatures)
+	fmt.Printf("Waiting days:%v", waitingDays)
+	fmt.Println()
+
+	temperatures = []int{30, 60, 90}
+	waitingDays = dailyTemperaturesUsingStack(temperatures)
+	fmt.Printf("Waiting days:%v", waitingDays)
+	fmt.Println()
+}
+
+/*
+	always starts with brute solution
+	            0   1   2   3   4   5   6   7
+
+temperatures = [73, 74, 75, 71, 69, 72, 76, 73]   len(temperatures) = 8
+
+					            i
+						                j
+	    output = []
+	    for i=0;i<len(temperatures)<;i++{
+	        for j=i+1;j<len(temperatures);j++{
+	            i = 0
+	            {
+	                j = 1
+	                (73<74){
+	                    waitingDays:=j-i=1
+	                    output=[1]
+	                    i++ // 1
+	                    continue
+	                }
+	            }
+	            i = 1
+	            {
+	               j = 2
+	               (74<75){
+	                     waitingDays:=j-i=1
+	                     output=[1,1]
+	                     i++ // 2
+	                     continue
+	               }
+	            }
+	            i = 2
+	            {
+	                j = 4
+	                (75<71)
+	                j = 5
+	                j = 6
+	                {
+	                     (75<76)
+	                     {
+	                        waitingDays:=j-i=4
+	                        output=[1,1,4]
+	                        i++//3
+	                        continue
+	                     }
+	                }
+	            }
+	            i = 3{
+
+	            }
+	        }
+	    }
+*/
+func dailyTemperaturesBruteForce(temperatures []int) []int {
+	lenTemperatures := len(temperatures)
+	numberofWaitingDays := make([]int, 0, lenTemperatures)
+
+	for index := 0; index < lenTemperatures; index++ {
+		if index == lenTemperatures-1 {
+			numberofWaitingDays = append(numberofWaitingDays, 0)
+		}
+		for jIndex := index + 1; jIndex < lenTemperatures; jIndex++ {
+			if temperatures[index] < temperatures[jIndex] {
+				numberofWaitingDays = append(numberofWaitingDays, jIndex-index)
+				break
+			} else if jIndex == lenTemperatures-1 {
+				numberofWaitingDays = append(numberofWaitingDays, 0)
+			}
+		}
+	}
+
+	return numberofWaitingDays
+}
+
+/*
+ 0   1   2   3   4   5   6   7   len = 8
+[73, 74, 75, 71, 69, 72, 76, 73]  input
+[1,  1,  4,  2,  1,  1,  0,  0]   output
+
+main idea: compare 2 temperature and store index the warmer one
+
+*/
+
+func dailyTemperaturesUsingStack(temperatures []int) []int {
+	lenTemperatures := len(temperatures)
+	numberofWaitingDays := make([]int, lenTemperatures)
+
+	stack := models.StackInt{}
+	for index, temperature := range temperatures {
+		for stack.Size > 0 {
+			previousIndex, _ := stack.Peek()
+			if temperatures[previousIndex] < temperature {
+				previousIndex, _ = stack.Pop()
+				numberofWaitingDays[previousIndex] = index - previousIndex
+			} else {
+				stack.Push(index)
+				break
+			}
+		}
+
+		if stack.IsEmpty() {
+			stack.Push(index)
+		}
+	}
+
+	if stack.Size > 0 {
+		clear(stack.Elements)
+		stack.Elements = nil
+		stack.Size = 0
+	}
+
+	return numberofWaitingDays
+}
+
+func RunEvalRPN() {
+	tokens := []string{"2", "1", "+", "3", "*"}
+	valueOfExpression := evalRPN(tokens)
+	fmt.Printf("Token:%v => Value:%d", tokens, valueOfExpression)
+	fmt.Println()
+
+	tokens = []string{"4", "13", "5", "/", "+"}
+	valueOfExpression = evalRPN(tokens)
+	fmt.Printf("Token:%v => Value:%d", tokens, valueOfExpression)
+	fmt.Println()
+
+	tokens = []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
+	valueOfExpression = evalRPN(tokens)
+	fmt.Printf("Token:%v => Value:%d", tokens, valueOfExpression)
+	fmt.Println()
+}
+
+func evalRPN(tokens []string) int {
+	valueOfExpression := 0
+
+	stack := models.StackInt{}
+
+	for _, token := range tokens {
+		if isValidNumber(token) {
+			num, err := strconv.Atoi(token)
+			if err != nil {
+				continue
+			}
+			stack.Push(num)
+		} else {
+			switch token {
+			case "+":
+				item1, _ := stack.Pop()
+				item2, _ := stack.Pop()
+				stack.Push(item2 + item1)
+
+			case "-":
+				item1, _ := stack.Pop()
+				item2, _ := stack.Pop()
+				stack.Push(item2 - item1)
+
+			case "*":
+				item1, _ := stack.Pop()
+				item2, _ := stack.Pop()
+				stack.Push(item2 * item1)
+
+			case "/":
+				item1, _ := stack.Pop()
+				item2, _ := stack.Pop()
+				stack.Push(item2 / item1)
+			}
+		}
+	}
+
+	for stack.Size > 0 {
+		item, _ := stack.Pop()
+		valueOfExpression += item
+	}
+
+	return valueOfExpression
+}
+
+func isValidNumber(s string) bool {
+	return s != "+" && s != "-" && s != "*" && s != "/"
 }
