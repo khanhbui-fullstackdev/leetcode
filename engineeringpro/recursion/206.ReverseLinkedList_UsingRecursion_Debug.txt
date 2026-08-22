@@ -1,0 +1,151 @@
+-------------------------------------------------------- Test case 1 --------------------------------------------------
+1->2->3
+output: 3->2->1
+// Call stack = [reverse(node1)]
+reverse(node1){
+	if node1 == nil ❌ || node1.Next == nil ❌
+	
+	nextNode:= node1.Next // node2
+	newHead:=reverse(node2)
+}
+// Call stack = [reverse(node1),reverse(node2)]
+reverse(node2){
+	if node2 == nil ❌ || node2.Next == nil ❌
+	
+	nextNode:= node2.Next // node3
+	newHead:=reverse(node3)
+}
+// Call stack = [reverse(node1),reverse(node2),reverse(node3)]
+reverse(node3){
+	if node3 == nil ❌ || node3.Next == nil  ✅
+	{
+		return node3 // pop() -> stack = [reverse(node1),reverse(node2)]
+	}
+}
+// Call stack = [reverse(node1),reverse(node2)]
+reverse(node2){
+	if node2 == nil ❌ || node2.Next == nil ❌
+	
+	nextNode:= node2.Next // node3
+	newHead:= reverse(node3) // node3
+			
+	head.Next.Next = head // node2.Next.Next = node2 <=> node3.Next = node2
+	head.Next = nil // node2.Next = nil
+	
+	return newHead // node3
+}
+// Call stack = [reverse(node1]
+reverse(node1){
+	if node1 == nil ❌ || node1.Next == nil ❌
+	
+	nextNode:= node1.Next // node2
+	newHead:=reverse(node2) // node3
+	
+	head.Next.Next = head // node1.Next.Next = node1 <=> node2.Next = node1
+	head.Next = nil // node1.Next = nil
+	
+	return newHead // node3 
+}
+//Call stack = []
+----------------------------------------------------- Test case 2 -----------------------------------------
+1->2->3->4->5
+output: 5->4->3->2->1
+
+// stack = [reverse(node1)]
+reverse(node1){
+	if node1 == nil ❌ || node1.Next == nil ❌
+	
+	nextNode:= node1.Next // node2
+	newHead:=reverse(node2)
+}
+
+// stack = [reverse(node1),reverse(node2)]
+reverse(node2){
+	if node2 == nil ❌ || node2.Next == nil ❌
+	
+	nextNode:= node2.Next // node3
+	newHead:=reverse(node3)
+}
+
+// stack = [reverse(node1),reverse(node2),reverse(node3)]
+reverse(node3){
+	if node3 == nil ❌ || node3.Next == nil ❌
+	
+	nextNode:= node3.Next // node4
+	newHead:=reverse(node4)
+}
+
+// stack = [reverse(node1),reverse(node2),reverse(node3),reserver(node4)]
+reverse(node4){
+	if node4 == nil ❌ || node4.Next == nil ❌
+	
+	nextNode:= node4.Next // node5
+	newHead:=reverse(node5)
+}
+
+// stack = [reverse(node1),reverse(node2),reverse(node3),reverse(node4),reverse(node5)]
+reverse(node5){
+	if node5 == nil ❌ || node5.Next == nil ✅	return node5
+}
+
+// stack = [reverse(node1),reverse(node2),reverse(node3),reverse(node4)]
+reverse(node4){
+	if node4 == nil ❌ || node4.Next == nil ❌
+	
+	nextNode:= node4.Next // node5
+	newHead:=reverse(node5)
+	
+	head.Next.Next = head // node4.Next.Next = head <=> node5.Next = node4
+	head.Next = nil // node4.Next = nil
+	return newHead // node5
+}
+
+// stack = [reverse(node1),reverse(node2),reverse(node3)]
+reverse(node3){
+	if node3 == nil ❌ || node3.Next == nil ❌
+	
+	nextNode:= node3.Next // node4
+	newHead:=reverse(node4) // node5
+	
+	head.Next.Next = head // node3.Next.Next = head <=> node4.Next = node3
+	head.Next = nil // node3.Next = nil
+	
+	return newHead//node5
+}
+
+// stack = [reverse(node1),reverse(node2)]
+reverse(node2){
+	if node2 == nil ❌ || node2.Next == nil ❌
+	
+	nextNode:= node2.Next // node3
+	newHead:=reverse(node3) // node5
+	
+	head.Next.Next = head // <=> node2.Next.Next = head <=> node3.Next = node2 
+	head.Next = nil
+	
+	return newHead // node5
+}
+
+// stack = [reverse(node1)]
+reverse(node1){
+	if node1 == nil ❌ || node1.Next == nil ❌
+	
+	nextNode:= node1.Next // node2
+	newHead:=reverse(node2) // node5
+	
+	head.Next.Next = head // <=> node1.Next.Next = node1 <=> node2.Next = node1
+	head.Next = nil // <=> node1.Next = nil
+	
+	return newHead // node5
+}
+
+------------------------------------------------- Implementation --------------------------------
+func reverse(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	newHead:= reverse(head.Next)
+	
+	 
+	return head
+}
